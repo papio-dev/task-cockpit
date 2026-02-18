@@ -1,0 +1,358 @@
+{
+  "name": "task-cockpit",
+  "icon": "icons/icon.png",
+  "galleryBanner": {
+    "color": "#F7F8EA",
+    "theme": "light"
+  },
+  "displayName": "Task Cockpit",
+  "description": "Tree view panel for browsing and running tasks. Displays tasks from workspace and task files in an organized, customizable tree structure.",
+  "version": "0.0.0",
+  "publisher": "lumen-dev",
+  "license": "MIT",
+  "keywords": [
+    "tasks",
+    "tasks.json",
+    "task runner",
+    "task tree",
+    "task panel",
+    "task explorer"
+  ],
+  "markdown": "github",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LumenGNU/task-cockpit.git"
+  },
+  "homepage": "https://github.com/LumenGNU/task-cockpit",
+  "bugs": {
+    "url": "https://github.com/LumenGNU/task-cockpit/issues"
+  },
+  "engines": {
+    "vscode": "^1.86.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "extensionKind": [
+    "workspace"
+  ],
+  "main": "~out/extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "commands": [
+      {
+        "command": "task-cockpit.DEBUG",
+        "category": "Task Cockpit",
+        "title": "--DEBUG--",
+        "icon": "$(error)"
+      },
+      {
+        "command": "task-cockpit.view.refresh",
+        "category": "Task Cockpit",
+        "title": "Refresh Task List",
+        "icon": "$(refresh)",
+        "enablement": "workbenchState != 'empty'"
+      },
+      {
+        "command": "_task-cockpit.tasks-file.open-tasks-file",
+        "category": "Task Cockpit",
+        "title": "Open Tasks File",
+        "icon": "$(go-to-file)",
+        "enablement": "view == task-cockpit-view && viewItem == task-cockpit::Folder:Project"
+      },
+      {
+        "command": "_task-cockpit.tasks-file.open-workspace-file",
+        "category": "Task Cockpit",
+        "title": "Open Workspace File",
+        "icon": "$(go-to-file)",
+        "enablement": "view == task-cockpit-view && viewItem == task-cockpit::Folder:Workspace"
+      },
+      {
+        "command": "_task-cockpit.task.execute",
+        "category": "Task Cockpit",
+        "title": "Run Task",
+        "icon": "$(play)",
+        "enablement": "view == task-cockpit-view && viewItem =~ /^task-cockpit::Task/ && !(viewItem =~ /:running|:empty|:broken/)"
+      },
+      {
+        "command": "task-cockpit.task.execute",
+        "category": "Task Cockpit",
+        "title": "Start New Instance",
+        "icon": "$(play)",
+        "enablement": "view == task-cockpit-view && viewItem =~ /^task-cockpit::Task/ && !(viewItem =~ /:empty|:broken/)"
+      },
+      {
+        "command": "task-cockpit.task.abort-all",
+        "category": "Task Cockpit",
+        "title": "Abort All Running Instances",
+        "icon": "$(stop)",
+        "enablement": "view == task-cockpit-view && viewItem =~ /^task-cockpit::Task/ && viewItem =~ /:running/"
+      },
+      {
+        "command": "task-cockpit.tasks-file.open-task",
+        "category": "Task Cockpit",
+        "title": "Edit Task",
+        "icon": "$(edit)",
+        "enablement": "view == task-cockpit-view && viewItem =~ /^task-cockpit::Task/"
+      },
+      {
+        "command": "task-cockpit.task.show-terminal",
+        "category": "Task Cockpit",
+        "title": "Show Task Terminal",
+        "icon": "$(terminal)",
+        "enablement": "view == task-cockpit-view && viewItem =~ /^task-cockpit::Task/ && viewItem =~ /:terminals/"
+      },
+      {
+        "command": "task-cockpit.open-help-page",
+        "category": "Task Cockpit",
+        "title": "Open Documentation",
+        "icon": "$(question)"
+      },
+      {
+        "command": "task-cockpit.settings.configure-display",
+        "category": "Task Cockpit",
+        "title": "Display Settings",
+        "icon": "$(list-tree)",
+        "enablement": "view == task-cockpit-view && workbenchState != 'empty'"
+      },
+      {
+        "command": "task-cockpit.settings.configure-filtering",
+        "category": "Task Cockpit",
+        "title": "Filtering Settings",
+        "icon": "$(list-filter)",
+        "enablement": "view == task-cockpit-view && workbenchState != 'empty'"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "task-cockpit-container",
+          "title": "Task Cockpit",
+          "icon": "icons/panel-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "task-cockpit-container": [
+        {
+          "id": "task-cockpit-view",
+          "name": "Task Explorer",
+          "icon": "icons/panel-icon.svg",
+          "type": "tree"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "task-cockpit-view",
+        "contents": "No tasks available. Open a folder or workspace to get started.",
+        "when": "workbenchState == 'empty'",
+        "enablement": "workbenchState == 'empty'"
+      },
+      {
+        "view": "task-cockpit-view",
+        "contents": "Loading...",
+        "when": "workbenchState != 'empty'",
+        "enablement": "workbenchState != 'empty'"
+      }
+    ],
+    "submenus": [],
+    "menus": {
+      "commandPalette": [],
+      "view/title": [
+        {
+          "command": "task-cockpit.view.refresh",
+          "when": "view == task-cockpit-view && workbenchState != 'empty'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "task-cockpit.settings.configure-display",
+          "when": "view == task-cockpit-view && workbenchState != 'empty'",
+          "group": "z1_view@1"
+        },
+        {
+          "command": "task-cockpit.settings.configure-filtering",
+          "when": "view == task-cockpit-view && workbenchState != 'empty'",
+          "group": "z1_view@2"
+        },
+        {
+          "command": "task-cockpit.open-help-page",
+          "when": "view == task-cockpit-view",
+          "group": "z2_help"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "_task-cockpit.task.execute",
+          "when": "view == task-cockpit-view && viewItem =~ /^task-cockpit::Task/ && !(viewItem =~ /:running|:empty|:broken/)",
+          "group": "inline"
+        },
+        {
+          "command": "task-cockpit.tasks-file.open-task",
+          "when": "view == task-cockpit-view && viewItem =~ /^task-cockpit::Task/",
+          "group": "z4_edit"
+        },
+        {
+          "command": "task-cockpit.task.execute",
+          "when": "view == task-cockpit-view && viewItem =~ /^task-cockpit::Task/",
+          "group": "z3_execute@1"
+        },
+        {
+          "command": "task-cockpit.task.abort-all",
+          "when": "view == task-cockpit-view && viewItem =~ /^task-cockpit::Task/",
+          "group": "z3_execute@2"
+        },
+        {
+          "command": "task-cockpit.task.show-terminal",
+          "when": "view == task-cockpit-view && viewItem =~ /^task-cockpit::Task/",
+          "group": "z5_terminals@1"
+        },
+        {
+          "command": "_task-cockpit.tasks-file.open-tasks-file",
+          "when": "view == task-cockpit-view && viewItem == task-cockpit::Folder:Project",
+          "group": "inline"
+        },
+        {
+          "command": "_task-cockpit.tasks-file.open-workspace-file",
+          "when": "view == task-cockpit-view && viewItem == task-cockpit::Folder:Workspace",
+          "group": "inline"
+        }
+      ]
+    },
+    "configuration": [
+      {
+        "title": "Display",
+        "description": "Visual appearance, hierarchy structure, and icon settings for tasks in the explorer.",
+        "order": 1,
+        "type": "object",
+        "properties": {
+          "taskCockpit.display.segmentSeparator": {
+            "type": "string",
+            "scope": "resource",
+            "default": "",
+            "pattern": "^$|^[^\\p{L}\\p{N}\\s]$|.{2,}",
+            "patternErrorMessage": "Must be a single non-alphanumeric, non-whitespace character (or empty to disable)",
+            "maxLength": 1,
+            "markdownDescription": "Character for splitting task labels into hierarchical segments. For example, `:` organizes `build:dev:watch` into a tree: `build` → `dev` → `watch`. The separator is ignored at the start/end of labels, in consecutive occurrences, or when adjacent to whitespace (e.g., `:build::dev : watch:` remains unsplit). Leave empty to disable hierarchy.  \nMust be a single non-alphanumeric, non-whitespace character or empty.  \nSee also `#taskCockpit.display.useGroupKind#`.",
+            "order": 4
+          },
+          "taskCockpit.display.useGroupKind": {
+            "type": "boolean",
+            "scope": "resource",
+            "default": false,
+            "markdownDescription": "Groups tasks by their `group` property. For example, tasks with `group: \"build\"` or `group: { kind: \"build\" }` will be placed under a `Build` folder (the group name will be capitalized). Works independently or combined with `#taskCockpit.display.segmentSeparator#`.  \n**Note:** When combined, both grouping and splitting apply: a task named `Build:dev:watch` with `group: \"build\"` and separator `:` creates `Build` → `Build` → `dev` → `watch`.",
+            "order": 5
+          },
+          "taskCockpit.display.useFolderIcon": {
+            "type": "boolean",
+            "scope": "resource",
+            "default": false,
+            "description": "Display folder icon for intermediate segments in the task hierarchy. Otherwise, no icon is applied.",
+            "order": 6
+          },
+          "taskCockpit.display.defaultIconName": {
+            "type": "string",
+            "scope": "resource",
+            "default": "tools",
+            "enum": [
+              "tools",
+              "target",
+              "zap",
+              "blank",
+              "folder"
+            ],
+            "markdownEnumDescriptions": [
+              "$(tools)",
+              "$(target)",
+              "$(zap)",
+              "$(blank)",
+              "$(folder)"
+            ],
+            "markdownDescription": "Icon name for tasks without a custom icon in their definition. Defaults to `tools`. Tip: use `blank` for an empty icon.  \n[Available icons list](https://code.visualstudio.com/api/references/icons-in-labels#icon-listing).",
+            "order": 7
+          },
+          "taskCockpit.display.tintLabel": {
+            "type": "boolean",
+            "scope": "resource",
+            "default": false,
+            "markdownDescription": "Apply the task icon color to the task label as well.",
+            "order": 8
+          }
+        }
+      },
+      {
+        "title": "Filtering",
+        "description": "Control which tasks and workspace folders are visible in the explorer.",
+        "order": 2,
+        "type": "object",
+        "properties": {
+          "taskCockpit.filtering.showHidden": {
+            "type": "boolean",
+            "scope": "resource",
+            "default": false,
+            "markdownDescription": "Show tasks marked with `hide: true` in the task explorer.",
+            "order": 9
+          },
+          "taskCockpit.filtering.excludeFolders": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "uniqueItems": true
+            },
+            "uniqueItems": true,
+            "scope": "window",
+            "default": [],
+            "markdownDescription": "Excludes specified workspace folders from the task explorer. Matches the folder's display name. Example: `[\"tests\", \"docs\"]`.  \n*Has no effect in single-folder workspaces*.",
+            "order": 10
+          },
+          "taskCockpit.filtering.excludeWorkspaceTasks": {
+            "type": "boolean",
+            "scope": "window",
+            "default": false,
+            "markdownDescription": "Hide tasks defined at the workspace level.  \n*Has no effect in single-folder workspaces*.",
+            "order": 11
+          }
+        }
+      },
+      {
+        "title": "Tasks Files Diagnostics",
+        "markdownDescription": "Enable diagnostics to detect potential issues with task definitions. Changes require window reload.",
+        "order": 3,
+        "type": "object",
+        "properties": {
+          "taskCockpit.validation.duplicateLabels": {
+            "type": "boolean",
+            "scope": "window",
+            "default": true,
+            "markdownDescription": "Check for tasks with duplicate labels and flag them as problematic.  \n(_Requires window reload to take effect._)",
+            "order": 12
+          },
+          "taskCockpit.validation.dependencies": {
+            "type": "boolean",
+            "scope": "window",
+            "default": false,
+            "markdownDescription": "[**Experimental**] Check that tasks referenced in `dependsOn` exist. Missing dependencies will be flagged as problems.  \n**Results may be inaccurate or incomplete**. Disable if you encounter incorrect diagnostics.  \n(_Requires window reload to take effect._)",
+            "order": 13
+          }
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.86.0",
+    "@vscode/codicons": "^0.0.44",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.39.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.3"
+  },
+  "dependencies": {
+    "jsonc-parser": "^3.3.1"
+  }
+}
