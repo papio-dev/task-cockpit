@@ -1,0 +1,25 @@
+
+/* отключить метку слево от параграфа при наведении */
+.vscode-light.showEditorSelection .code-active-line:before {
+	border: none;
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border: none;
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border: none;
+}

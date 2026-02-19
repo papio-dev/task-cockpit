@@ -79,7 +79,7 @@ Tree view panel for browsing and running tasks. Displays tasks from workspace an
   }
   ~~~
 
-  Result: only tasks with labels appear. The unlabeled `npm: test` task is not shown.
+  **Result**: only tasks with labels appear. The unlabeled `npm: test` task is not shown.
 
 - Global tasks (user-level `tasks.json`) are not shown — currently limited to workspace tasks.
 

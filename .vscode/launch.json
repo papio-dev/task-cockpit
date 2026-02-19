@@ -1,0 +1,283 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Extension",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--profile=Clean",
+        "--locale=en"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/~out/**/*.js"
+      ],
+      "preLaunchTask": "${defaultBuildTask}",
+      "env": {
+        "USER_TASK_DEBUG": "true",
+        "USER_TASK_CONSOLE_LOG": "true"
+      }
+    },
+    {
+      "name": "Run Extension (ComplexWorkspace)",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "${workspaceFolder}/test-fixtures/ComplexWorkspace/ComplexWorkspace.code-workspace",
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--profile=Clean",
+        "--locale=en"
+      ],
+      "cwd": "${workspaceFolder}/test-fixtures/ComplexWorkspace",
+      "outFiles": [
+        "${workspaceFolder}/~out/**/*.js"
+      ],
+      "env": {
+        "USER_TASK_DEBUG": "true",
+        "USER_TASK_CONSOLE_LOG": "true"
+      },
+      "preLaunchTask": "${defaultBuildTask}"
+    },
+    {
+      "name": "Run Extension (DecorationsTest)",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "${workspaceFolder}/test-fixtures/DecorationsTest/DecorationsTest.code-workspace",
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--profile=Clean",
+        "--locale=en"
+      ],
+      "cwd": "${workspaceFolder}/test-fixtures/DecorationsTest",
+      "outFiles": [
+        "${workspaceFolder}/~out/**/*.js"
+      ],
+      "env": {
+        "USER_TASK_DEBUG": "true",
+        "USER_TASK_CONSOLE_LOG": "true"
+      },
+      "preLaunchTask": "${defaultBuildTask}"
+    },
+    {
+      "name": "Run Extension (DepensResolveProblem)",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "${workspaceFolder}/test-fixtures/DepensResolveProblem/DepensResolveProblem.code-workspace",
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--profile=Clean",
+        "--locale=en"
+      ],
+      "cwd": "${workspaceFolder}/test-fixtures/DepensResolveProblem",
+      "outFiles": [
+        "${workspaceFolder}/~out/**/*.js"
+      ],
+      "env": {
+        "USER_TASK_DEBUG": "true",
+        "USER_TASK_CONSOLE_LOG": "true"
+      },
+      "preLaunchTask": "${defaultBuildTask}"
+    },
+    {
+      "name": "Run Extension (DifferentsConfigs)",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "${workspaceFolder}/test-fixtures/DifferentsConfigs/DifferentsConfigs.code-workspace",
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--profile=Clean",
+        "--locale=en"
+      ],
+      "cwd": "${workspaceFolder}/test-fixtures/DifferentsConfigs",
+      "outFiles": [
+        "${workspaceFolder}/~out/**/*.js"
+      ],
+      "env": {
+        "USER_TASK_DEBUG": "true",
+        "USER_TASK_CONSOLE_LOG": "true"
+      },
+      "preLaunchTask": "${defaultBuildTask}"
+    },
+    {
+      "name": "Run Extension (DuplicateLabelsProblem)",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "${workspaceFolder}/test-fixtures/DuplicateLabelsProblem",
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--profile=Clean",
+        "--locale=en"
+      ],
+      "cwd": "${workspaceFolder}/test-fixtures/DuplicateLabelsProblem",
+      "outFiles": [
+        "${workspaceFolder}/~out/**/*.js"
+      ],
+      "env": {
+        "USER_TASK_DEBUG": "true",
+        "USER_TASK_CONSOLE_LOG": "true"
+      },
+      "preLaunchTask": "${defaultBuildTask}"
+    },
+    {
+      "name": "Run Extension (Empty)",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "${workspaceFolder}/test-fixtures/Empty/Empty.code-workspace",
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--profile=Clean",
+        "--locale=en"
+      ],
+      "cwd": "${workspaceFolder}/test-fixtures/Empty",
+      "outFiles": [
+        "${workspaceFolder}/~out/**/*.js"
+      ],
+      "env": {
+        "USER_TASK_DEBUG": "true",
+        "USER_TASK_CONSOLE_LOG": "true"
+      },
+      "preLaunchTask": "${defaultBuildTask}"
+    },
+    {
+      "name": "Run Extension (MassiveParallelDeps)",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "${workspaceFolder}/test-fixtures/MassiveParallelDeps",
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--profile=Clean",
+        "--locale=en"
+      ],
+      "cwd": "${workspaceFolder}/test-fixtures/MassiveParallelDeps",
+      "outFiles": [
+        "${workspaceFolder}/~out/**/*.js"
+      ],
+      "env": {
+        "USER_TASK_DEBUG": "true",
+        "USER_TASK_CONSOLE_LOG": "true"
+      },
+      "preLaunchTask": "${defaultBuildTask}"
+    },
+    {
+      "name": "Run Extension (MultirootHappyPath)",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "${workspaceFolder}/test-fixtures/MultirootHappyPath/MultirootHappyPath.code-workspace",
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--profile=Clean",
+        "--locale=en"
+      ],
+      "cwd": "${workspaceFolder}/test-fixtures/MultirootHappyPath",
+      "outFiles": [
+        "${workspaceFolder}/~out/**/*.js"
+      ],
+      "env": {
+        "USER_TASK_DEBUG": "true",
+        "USER_TASK_CONSOLE_LOG": "true"
+      },
+      "preLaunchTask": "${defaultBuildTask}"
+    },
+    {
+      "name": "Run Extension (OnlyProblems)",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "${workspaceFolder}/test-fixtures/OnlyProblems",
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--profile=Clean",
+        "--locale=en"
+      ],
+      "cwd": "${workspaceFolder}/test-fixtures/OnlyProblems",
+      "outFiles": [
+        "${workspaceFolder}/~out/**/*.js"
+      ],
+      "env": {
+        "USER_TASK_DEBUG": "true",
+        "USER_TASK_CONSOLE_LOG": "true"
+      },
+      "preLaunchTask": "${defaultBuildTask}"
+    },
+    {
+      "name": "Run Extension (OrderingTest)",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "${workspaceFolder}/test-fixtures/OrderingTest",
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--profile=Clean",
+        "--locale=en"
+      ],
+      "cwd": "${workspaceFolder}/test-fixtures/OrderingTest",
+      "outFiles": [
+        "${workspaceFolder}/~out/**/*.js"
+      ],
+      "env": {
+        "USER_TASK_DEBUG": "true",
+        "USER_TASK_CONSOLE_LOG": "true"
+      },
+      "preLaunchTask": "${defaultBuildTask}"
+    },
+    {
+      "name": "Run Extension (Project)",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "${workspaceFolder}/test-fixtures/Project",
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--profile=Clean",
+        "--locale=en"
+      ],
+      "cwd": "${workspaceFolder}/test-fixtures/Project",
+      "outFiles": [
+        "${workspaceFolder}/~out/**/*.js"
+      ],
+      "env": {
+        "USER_TASK_DEBUG": "true",
+        "USER_TASK_CONSOLE_LOG": "true"
+      },
+      "preLaunchTask": "${defaultBuildTask}"
+    },
+    {
+      "name": "Run Extension (SingleFolder)",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "${workspaceFolder}/test-fixtures/SingleFolder",
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--profile=Clean",
+        "--locale=en"
+      ],
+      "cwd": "${workspaceFolder}/test-fixtures/SingleFolder",
+      "outFiles": [
+        "${workspaceFolder}/~out/**/*.js"
+      ],
+      "env": {
+        "USER_TASK_DEBUG": "true",
+        "USER_TASK_CONSOLE_LOG": "true"
+      },
+      "preLaunchTask": "${defaultBuildTask}"
+    },
+    {
+      "name": "Run Extension (Void)",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "${workspaceFolder}/test-fixtures/Void",
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--profile=Clean",
+        "--locale=en"
+      ],
+      "cwd": "${workspaceFolder}/test-fixtures/Void",
+      "outFiles": [
+        "${workspaceFolder}/~out/**/*.js"
+      ],
+      "env": {
+        "USER_TASK_DEBUG": "true",
+        "USER_TASK_CONSOLE_LOG": "true"
+      },
+      "preLaunchTask": "${defaultBuildTask}"
+    }
+  ]
+}

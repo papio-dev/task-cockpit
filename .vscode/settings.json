@@ -1,0 +1,44 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+	"files.exclude": {
+		".vscode-test": true,
+		"node_modules": true,
+	},
+	"search.exclude": {
+		"~*": true,
+		".vscode-test": true,
+		"node_modules": true,
+	},
+	// Turn off tsc task auto detection since we have the necessary tasks as npm scripts
+	"typescript.tsc.autoDetect": "off",
+	"[typescript]": {
+		"editor.colorDecorators": false
+	},
+	"[javascript]": {
+		"editor.colorDecorators": false
+	},
+	"cSpell.words": [
+		"бейджи",
+		"vsc"
+	],
+	"taskCockpit.display.segmentSeparator": "|",
+	"files.trimTrailingWhitespace": true,
+	"files.autoSave": "afterDelay",
+	"files.autoSaveDelay": 660000,
+	"files.insertFinalNewline": true,
+	"files.trimFinalNewlines": true,
+	"notelets.notesFolder": "dev-docs",
+	"notelets.showStatusBar": false,
+	"terminal.integrated.shellIntegration.enabled": false,
+	"taskCockpit.display.tintLabel": true,
+	"taskCockpit.validation.dependencies": true,
+	"cSpell.ignoreRandomStrings": false,
+	"cSpell.language": "en,ru",
+	"markdown.styles": [
+		".vscode/markdown.css"
+	],
+	"markdown.validate.enabled": true,
+	"taskExplorer.groupSeparator": "|",
+	"taskExplorer.groupMaxLevel": 5,
+	"taskCockpit.display.defaultIconName": "target",
+}
