@@ -12,7 +12,7 @@ echo -e "\e[1m[PKG] Preparing package.json ...\e[0m"
 CODICONS_MAP_JSON='node_modules/@vscode/codicons/src/template/mapping.json'
 
 # Версия из последнего git тега (Vn.n.n -> n.n.n)
-VERSION=$(git tag -l 'V[0-9]*' --sort=-committerdate | grep -E '^V[0-9]+\.[0-9]+\.[0-9]+$' | head -1 | sed 's/^V//')
+VERSION=$(git tag -l 'v[0-9]*' --sort=-committerdate | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -1 | sed 's/^v//')
 [[ -z "${VERSION}" ]] && { echo 'ERROR: No version tag found (expected Vn.n.n format)' ; exit 1  ; }
 
 # Иконки из mapping.json: извлекаем все имена из всех массивов,
