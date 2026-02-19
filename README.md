@@ -88,6 +88,7 @@ Tree view panel for browsing and running tasks. Displays tasks from workspace an
 
 **Composite task status:** A task's running status badge only appears while its own command is executing — not during the `dependsOn` phase. For purely composite tasks (no command), this means no status badge will appear at all. Dependencies show their own status normally.
 
+**Workspace-level task validation:** Validation does not yet cover tasks defined in `.code-workspace` files.
 
 ## Installation
 
@@ -231,6 +232,9 @@ Hide tasks defined at the workspace level. (Has no effect in single-folder works
 Enable diagnostics to detect potential issues with task definitions.
 
 ![Task Cockpit panel showing warnings about duplicate tasks and missing dependencies](media/validation-problems.png)
+
+> [!NOTE]
+> Validation runs when VS Code rebuilds the task list (e.g., after saving the task file or changing settings) — not in real time while editing.
 
 
 #### `duplicateLabels`
