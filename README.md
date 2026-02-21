@@ -296,6 +296,11 @@ To add your own, open **Keyboard Shortcuts** (`Ctrl+K Ctrl+S`) and search for `T
 
 The `focusedView` condition ensures shortcuts only work when the Task Cockpit panel has focus.
 
+<!-- #region GITHUB --
+## Sponsor this project
+
+[![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/lumen_dev)
+-- #endregion GITHUB -->
 
 ## License
 
