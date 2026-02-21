@@ -5,6 +5,9 @@
     "color": "#F7F8EA",
     "theme": "light"
   },
+  "sponsor": {
+    "url": "https://ko-fi.com/lumen_dev"
+  },
   "displayName": "Task Cockpit",
   "description": "Tree view panel for browsing and running tasks. Displays tasks from workspace and task files in an organized, customizable tree structure.",
   "version": "0.0.0",
