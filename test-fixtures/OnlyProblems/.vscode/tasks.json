@@ -17,13 +17,21 @@
             "label": 123,
             "detail": "Label is a number instead of string — type coercion edge case",
             "type": "shell",
-            "command": "node -e \"process.exit(0)\""
+            "command": "node",
+            "args": [
+                "-e",
+                "'process.exit(0)'"
+            ]
         },
         {
             "label": "Test Task 1",
             "detail": "Valid task with instanceLimit=10 and slow execution (10s + failure)",
             "type": "shell",
-            "command": "node -e \"setTimeout(() => process.exit(1), 10000)\"",
+            "command": "node",
+            "args": [
+                "-e",
+                "'setTimeout(() => process.exit(1), 10000)'"
+            ],
             "presentation": {
                 "showReuseMessage": false
             },
@@ -36,7 +44,11 @@
             "label": "Task",
             "detail": "Valid task with special chars in label — list end marker",
             "type": "shell",
-            "command": "node -e \"process.exit(0)\""
+            "command": "node",
+            "args": [
+                "-e",
+                "'process.exit(0)'"
+            ]
         },
         {
             "label": "Only Broken Depends",

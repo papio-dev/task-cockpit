@@ -20,7 +20,11 @@
       "icon": {
         "id": "symbol-interface"
       },
-      "command": "node -e \"console.log('[Shared] Generating types...'); console.log('Done!')\"",
+      "command": "node",
+      "args": [
+        "-e",
+        "'console.log(`[Shared] Generating types...`); console.log(`Done!`)'"
+      ],
       "problemMatcher": []
     },
     {
@@ -30,7 +34,11 @@
       "icon": {
         "id": "library"
       },
-      "command": "node -e \"console.log('[Shared] Compiling utils...'); console.log('Done!')\"",
+      "command": "node",
+      "args": [
+        "-e",
+        "'console.log(`[Shared] Compiling utils...`); console.log(`Done!`)'"
+      ],
       "problemMatcher": []
     },
     {
@@ -40,7 +48,11 @@
       "icon": {
         "id": "beaker"
       },
-      "command": "node -e \"console.log('[Shared] Testing...'); console.log('All passed!')\"",
+      "command": "node",
+      "args": [
+        "-e",
+        "'console.log(`[Shared] Testing...`); console.log(`All passed!`)'"
+      ],
       "problemMatcher": []
     }
   ]

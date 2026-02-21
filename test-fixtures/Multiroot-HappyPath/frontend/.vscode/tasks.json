@@ -20,7 +20,11 @@
       "icon": {
         "id": "code"
       },
-      "command": "node -e \"console.log('[Frontend] Compiling TypeScript...'); setTimeout(() => console.log('Done!'), 1000)\"",
+      "command": "node",
+      "args": [
+        "-e",
+        "'console.log(`[Frontend] Compiling TypeScript...`); setTimeout(() => console.log(`Done!`), 1000)'"
+      ],
       "problemMatcher": []
     },
     {
@@ -30,7 +34,11 @@
       "icon": {
         "id": "package"
       },
-      "command": "node -e \"console.log('[Frontend] Bundling assets...'); setTimeout(() => console.log('Done!'), 1000)\"",
+      "command": "node",
+      "args": [
+        "-e",
+        "'console.log(`[Frontend] Bundling assets...`); setTimeout(() => console.log(`Done!`), 1000)'"
+      ],
       "problemMatcher": []
     },
     {
@@ -40,7 +48,11 @@
       "icon": {
         "id": "beaker"
       },
-      "command": "node -e \"console.log('[Frontend] Running tests...'); setTimeout(() => console.log('All tests passed!'), 2000)\"",
+      "command": "node",
+      "args": [
+        "-e",
+        "'console.log(`[Frontend] Running tests...`); setTimeout(() => console.log(`All tests passed!`), 2000)'"
+      ],
       "problemMatcher": []
     },
     {
@@ -50,7 +62,11 @@
       "icon": {
         "id": "checklist"
       },
-      "command": "node -e \"console.log('[Frontend] Linting...'); console.log('No issues found!')\"",
+      "command": "node",
+      "args": [
+        "-e",
+        "'console.log(`[Frontend] Linting...`); console.log(`No issues found!`)'"
+      ],
       "problemMatcher": []
     }
   ]

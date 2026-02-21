@@ -1,9 +1,17 @@
 {
     "folders": [
-        { "path": "FolderA" },
-        { "path": "FolderB" },
-        { "path": "FolderC" },
-        { "path": "FolderD" }
+        {
+            "path": "FolderA"
+        },
+        {
+            "path": "FolderB"
+        },
+        {
+            "path": "FolderC"
+        },
+        {
+            "path": "FolderD"
+        }
     ],
     "tasks": {
         "version": "2.0.0",
@@ -12,12 +20,23 @@
                 "label": "FolderA",
                 "detail": "Workspace-level task, target for cross-scope dependsOn",
                 "type": "shell",
-                "command": "node -e \"console.log('workspace task A done')\"",
+                "command": "node",
+                "args": [
+                    "-e",
+                    "'console.log(`workspace task FolderA done`)'",
+                ],
                 "problemMatcher": []
             },
             {
                 "label": "test-C",
-                "detail": "Depends on workspace task + global user task + workspace user task (cross-scope resolution)"
+                "detail": "Depends on workspace task + global user task + workspace user task (cross-scope resolution)",
+                "type": "shell",
+                "command": "node",
+                "args": [
+                    "-e",
+                    "'console.log(`workspace task test-C done`)'",
+                ],
+                "problemMatcher": []
             }
         ]
     }

@@ -5,15 +5,25 @@
             "label": "shared-name",
             "detail": "Duplicate label (also in FolderA) — tests per-folder scope resolution",
             "type": "shell",
-            "command": "node -e \"console.log('shared-name from B')\"",
+            "command": "node",
+            "args": [
+                "-e",
+                "'console.log(`shared-name from B`)'"
+            ],
             "problemMatcher": []
         },
         {
             "label": "test-B",
             "detail": "Depends on local 'shared-name' — should resolve to FolderB's copy",
             "type": "shell",
-            "command": "node -e \"console.log('test-B done')\"",
-            "dependsOn": ["shared-name"],
+            "command": "node",
+            "args": [
+                "-e",
+                "'console.log(`test-B done`)'"
+            ],
+            "dependsOn": [
+                "shared-name"
+            ],
             "problemMatcher": []
         }
     ]

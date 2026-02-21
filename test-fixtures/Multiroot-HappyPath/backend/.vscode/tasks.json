@@ -20,7 +20,11 @@
       "icon": {
         "id": "code"
       },
-      "command": "node -e \"console.log('[Backend] Compiling...'); setTimeout(() => console.log('Done!'), 1000)\"",
+      "command": "node",
+      "args": [
+        "-e",
+        "'console.log(`[Backend] Compiling...`); setTimeout(() => console.log(`Done!`), 1000)'"
+      ],
       "problemMatcher": []
     },
     {
@@ -30,7 +34,11 @@
       "icon": {
         "id": "database"
       },
-      "command": "node -e \"console.log('[Backend] Generating Prisma client...'); console.log('Generated!')\"",
+      "command": "node",
+      "args": [
+        "-e",
+        "'console.log(`[Backend] Generating Prisma client...`); console.log(`Generated!`)'"
+      ],
       "problemMatcher": []
     },
     {
@@ -40,7 +48,11 @@
       "icon": {
         "id": "debug-start"
       },
-      "command": "node -e \"console.log('[Backend] Starting dev server on :3000...'); setInterval(() => {}, 1000); setTimeout(() => { console.log('Server stopped.'); process.exit(0); }, 5000)\"",
+      "command": "node",
+      "args": [
+        "-e",
+        "'console.log(`[Backend] Starting dev server on :3000...`); setInterval(() => {}, 1000); setTimeout(() => { console.log(`Server stopped.`); process.exit(0); }, 5000)'"
+      ],
       "isBackground": true,
       "problemMatcher": []
     },
@@ -51,7 +63,11 @@
       "icon": {
         "id": "beaker"
       },
-      "command": "node -e \"console.log('[Backend] Running tests...'); setTimeout(() => console.log('42 tests passed!'), 2000)\"",
+      "command": "node",
+      "args": [
+        "-e",
+        "'console.log(`[Backend] Running tests...`); setTimeout(() => console.log(`42 tests passed!`), 2000)'"
+      ],
       "problemMatcher": []
     },
     {
@@ -61,7 +77,11 @@
       "icon": {
         "id": "arrow-up"
       },
-      "command": "node -e \"console.log('[Backend] Running migrations...'); console.log('3 migrations applied!')\"",
+      "command": "node",
+      "args": [
+        "-e",
+        "'console.log(`[Backend] Running migrations...`); console.log(`3 migrations applied!`)'"
+      ],
       "problemMatcher": []
     }
   ]

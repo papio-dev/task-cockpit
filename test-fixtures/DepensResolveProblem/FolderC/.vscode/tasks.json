@@ -3,7 +3,14 @@
     "tasks": [
         {
             "label": "test-C",
-            "detail": "Depends on tasks from workspace, global user, and workspace user scopes (no local tasks)"
+            "detail": "Depends on tasks from workspace, global user, and workspace user scopes (no local tasks)",
+            "type": "shell",
+            "command": "node",
+            "args": [
+                "-e",
+                "'console.log(`workspace task test-C done`)'",
+            ],
+            "problemMatcher": []
         }
     ]
 }

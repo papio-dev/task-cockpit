@@ -5,7 +5,11 @@
             "label": "icon: none",
             "detail": "Task with no icon and no color (baseline)",
             "type": "shell",
-            "command": "node -e \"console.log('icon: none')\"",
+            "command": "node",
+            "args": [
+                "-e",
+                "'console.log(`icon: none`)'"
+            ],
             "problemMatcher": []
         },
         {
@@ -15,7 +19,11 @@
             },
             "detail": "Task with icon id but no color",
             "type": "shell",
-            "command": "node -e \"console.log('icon: id only')\"",
+            "command": "node",
+            "args": [
+                "-e",
+                "'console.log(`icon: id only`)'"
+            ],
             "problemMatcher": []
         },
         {
@@ -25,7 +33,11 @@
             },
             "detail": "Task with icon color but no id (should use default icon)",
             "type": "shell",
-            "command": "node -e \"console.log('icon: color only')\"",
+            "command": "node",
+            "args": [
+                "-e",
+                "'console.log(`icon: color only`)'"
+            ],
             "problemMatcher": []
         },
         {
@@ -36,7 +48,11 @@
             },
             "detail": "Task with both icon id and color",
             "type": "shell",
-            "command": "node -e \"console.log('icon: id + color')\"",
+            "command": "node",
+            "args": [
+                "-e",
+                "'console.log(`icon: id + color`)'"
+            ],
             "problemMatcher": []
         }
     ]

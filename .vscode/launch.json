@@ -20,26 +20,6 @@
       }
     },
     {
-      "name": "Run Extension (ComplexWorkspace)",
-      "type": "extensionHost",
-      "request": "launch",
-      "args": [
-        "${workspaceFolder}/test-fixtures/ComplexWorkspace/ComplexWorkspace.code-workspace",
-        "--extensionDevelopmentPath=${workspaceFolder}",
-        "--profile=Clean",
-        "--locale=en"
-      ],
-      "cwd": "${workspaceFolder}/test-fixtures/ComplexWorkspace",
-      "outFiles": [
-        "${workspaceFolder}/~out/**/*.js"
-      ],
-      "env": {
-        "USER_TASK_DEBUG": "true",
-        "USER_TASK_CONSOLE_LOG": "true"
-      },
-      "preLaunchTask": "${defaultBuildTask}"
-    },
-    {
       "name": "Run Extension (DecorationsTest)",
       "type": "extensionHost",
       "request": "launch",
@@ -160,16 +140,16 @@
       "preLaunchTask": "${defaultBuildTask}"
     },
     {
-      "name": "Run Extension (MultirootHappyPath)",
+      "name": "Run Extension (Multiroot-HappyPath)",
       "type": "extensionHost",
       "request": "launch",
       "args": [
-        "${workspaceFolder}/test-fixtures/MultirootHappyPath/MultirootHappyPath.code-workspace",
+        "${workspaceFolder}/test-fixtures/Multiroot-HappyPath/Multiroot-HappyPath.code-workspace",
         "--extensionDevelopmentPath=${workspaceFolder}",
         "--profile=Clean",
         "--locale=en"
       ],
-      "cwd": "${workspaceFolder}/test-fixtures/MultirootHappyPath",
+      "cwd": "${workspaceFolder}/test-fixtures/Multiroot-HappyPath",
       "outFiles": [
         "${workspaceFolder}/~out/**/*.js"
       ],
@@ -210,26 +190,6 @@
         "--locale=en"
       ],
       "cwd": "${workspaceFolder}/test-fixtures/OrderingTest",
-      "outFiles": [
-        "${workspaceFolder}/~out/**/*.js"
-      ],
-      "env": {
-        "USER_TASK_DEBUG": "true",
-        "USER_TASK_CONSOLE_LOG": "true"
-      },
-      "preLaunchTask": "${defaultBuildTask}"
-    },
-    {
-      "name": "Run Extension (Project)",
-      "type": "extensionHost",
-      "request": "launch",
-      "args": [
-        "${workspaceFolder}/test-fixtures/Project",
-        "--extensionDevelopmentPath=${workspaceFolder}",
-        "--profile=Clean",
-        "--locale=en"
-      ],
-      "cwd": "${workspaceFolder}/test-fixtures/Project",
       "outFiles": [
         "${workspaceFolder}/~out/**/*.js"
       ],

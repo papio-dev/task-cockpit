@@ -5,21 +5,33 @@
             "label": "seg/nested",
             "detail": "Label with '/' — tests segmentSeparator='/' splitting",
             "type": "shell",
-            "command": "node -e \"process.exit(0)\"",
+            "command": "node",
+            "args": [
+                "-e",
+                "'process.exit(0)'"
+            ],
             "problemMatcher": []
         },
         {
             "label": "seg:nested",
             "detail": "Label with ':' — tests segmentSeparator=':' splitting",
             "type": "shell",
-            "command": "node -e \"process.exit(0)\"",
+            "command": "node",
+            "args": [
+                "-e",
+                "'process.exit(0)'"
+            ],
             "problemMatcher": []
         },
         {
             "label": "group task",
             "detail": "Has group:'build' — tests useGroupKind display",
             "type": "shell",
-            "command": "node -e \"process.exit(0)\"",
+            "command": "node",
+            "args": [
+                "-e",
+                "'process.exit(0)'"
+            ],
             "group": "build",
             "problemMatcher": []
         },
@@ -27,7 +39,11 @@
             "label": "hidden task",
             "detail": "Has hide:true — tests showHidden filtering",
             "type": "shell",
-            "command": "node -e \"process.exit(0)\"",
+            "command": "node",
+            "args": [
+                "-e",
+                "'process.exit(0)'"
+            ],
             "hide": true,
             "problemMatcher": []
         }

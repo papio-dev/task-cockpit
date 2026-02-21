@@ -5,42 +5,76 @@
             "label": "1. Generate Protobuf",
             "detail": "Linear chain step 1/6 — no dependencies (entry point)",
             "type": "shell",
-            "command": "node -e \"console.log('Generating protobuf...'); setTimeout(() => process.exit(0), 1000)\"",
+            "command": "node",
+            "args": [
+                "-e",
+                "'console.log(`Generating protobuf...`); setTimeout(() => process.exit(0), 1000)'"
+            ],
             "problemMatcher": []
         },
         {
             "label": "2. Build Shared Lib",
             "detail": "Linear chain step 2/6 — depends on protobuf generation",
             "type": "shell",
-            "command": "node -e \"console.log('Building shared lib...'); setTimeout(() => process.exit(0), 1000)\"",
-            "dependsOn": ["1. Generate Protobuf"],
-            "problemMatcher": ["$tsc"]
+            "command": "node",
+            "args": [
+                "-e",
+                "'console.log(`Building shared lib...`); setTimeout(() => process.exit(0), 1000)'"
+            ],
+            "dependsOn": [
+                "1. Generate Protobuf"
+            ],
+            "problemMatcher": [
+                "$tsc"
+            ]
         },
         {
             "label": "3. Build Server",
             "detail": "Linear chain step 3/6 — depends on shared lib",
             "type": "shell",
-            "command": "node -e \"console.log('Building server...'); setTimeout(() => process.exit(0), 1000)\"",
-            "dependsOn": ["2. Build Shared Lib"],
-            "problemMatcher": ["$tsc"]
+            "command": "node",
+            "args": [
+                "-e",
+                "'console.log(`Building server...`); setTimeout(() => process.exit(0), 1000)'"
+            ],
+            "dependsOn": [
+                "2. Build Shared Lib"
+            ],
+            "problemMatcher": [
+                "$tsc"
+            ]
         },
         {
             "label": "4. Run Migrations",
             "detail": "Linear chain step 4/6 — depends on server build",
             "type": "shell",
-            "command": "node -e \"console.log('Running migrations...'); setTimeout(() => process.exit(0), 1000)\"",
-            "dependsOn": ["3. Build Server"],
+            "command": "node",
+            "args": [
+                "-e",
+                "'console.log(`Running migrations...`); setTimeout(() => process.exit(0), 1000)'"
+            ],
+            "dependsOn": [
+                "3. Build Server"
+            ],
             "problemMatcher": []
         },
         {
             "label": "5. Start Server",
             "detail": "Linear chain step 5/6 — isBackground with problemMatcher, depends on migrations",
             "type": "shell",
-            "command": "node -e \"console.log('Starting server'); setTimeout(() => console.log('Listening on port 3000'), 1000)\"",
-            "dependsOn": ["4. Run Migrations"],
+            "command": "node",
+            "args": [
+                "-e",
+                "'console.log(`Starting server`); setTimeout(() => console.log(`Listening on port 3000`), 1000)'"
+            ],
+            "dependsOn": [
+                "4. Run Migrations"
+            ],
             "isBackground": true,
             "problemMatcher": {
-                "pattern": { "regexp": "." },
+                "pattern": {
+                    "regexp": "."
+                },
                 "background": {
                     "activeOnStart": true,
                     "beginsPattern": "Starting server",
@@ -52,8 +86,14 @@
             "label": "6. Build & Launch Client",
             "detail": "Linear chain step 6/6 — final step, depends on background server",
             "type": "shell",
-            "command": "node -e \"console.log('Client launched'); setTimeout(() => process.exit(0), 1000)\"",
-            "dependsOn": ["5. Start Server"],
+            "command": "node",
+            "args": [
+                "-e",
+                "'console.log(`Client launched`); setTimeout(() => process.exit(0), 1000)'"
+            ],
+            "dependsOn": [
+                "5. Start Server"
+            ],
             "problemMatcher": []
         }
     ]
