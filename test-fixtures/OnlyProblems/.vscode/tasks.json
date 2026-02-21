@@ -1,0 +1,51 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {},
+        {
+            "label": "broken task",
+            "detail": "No type, no command — structurally invalid task definition"
+        },
+        {
+            "label": "NO command Task",
+            "detail": "Process type with empty command string",
+            "type": "process",
+            "command": "",
+            "hide": false
+        },
+        {
+            "label": 123,
+            "detail": "Label is a number instead of string — type coercion edge case",
+            "type": "shell",
+            "command": "node -e \"process.exit(0)\""
+        },
+        {
+            "label": "Test Task 1",
+            "detail": "Valid task with instanceLimit=10 and slow execution (10s + failure)",
+            "type": "shell",
+            "command": "node -e \"setTimeout(() => process.exit(1), 10000)\"",
+            "presentation": {
+                "showReuseMessage": false
+            },
+            "runOptions": {
+                "instanceLimit": 10
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Task",
+            "detail": "Valid task with special chars in label — list end marker",
+            "type": "shell",
+            "command": "node -e \"process.exit(0)\""
+        },
+        {
+            "label": "Only Broken Depends",
+            "detail": "All dependsOn targets are unresolvable (nonexistent tasks)",
+            "dependsOn": [
+                "task not found",
+                "user-task"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}

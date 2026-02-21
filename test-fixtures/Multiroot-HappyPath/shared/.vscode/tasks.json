@@ -1,0 +1,47 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build",
+      "detail": "$(tools) Build shared modules\nTypes and utilities",
+      "icon": {
+        "id": "tools"
+      },
+      "dependsOn": [
+        "Build:Types",
+        "Build:Utils"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Build:Types",
+      "detail": "$(symbol-interface) Generate TypeScript definitions\nShared type declarations",
+      "type": "shell",
+      "icon": {
+        "id": "symbol-interface"
+      },
+      "command": "node -e \"console.log('[Shared] Generating types...'); console.log('Done!')\"",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build:Utils",
+      "detail": "$(library) Compile utility functions\nCommon helpers library",
+      "type": "shell",
+      "icon": {
+        "id": "library"
+      },
+      "command": "node -e \"console.log('[Shared] Compiling utils...'); console.log('Done!')\"",
+      "problemMatcher": []
+    },
+    {
+      "label": "Test",
+      "detail": "$(beaker) Test shared modules",
+      "type": "shell",
+      "icon": {
+        "id": "beaker"
+      },
+      "command": "node -e \"console.log('[Shared] Testing...'); console.log('All passed!')\"",
+      "problemMatcher": []
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+	"folders": [
+		{
+			"path": "FolderA"
+		},
+		{
+			"path": "FolderB"
+		},
+		{
+			"path": "FolderC"
+		}
+	],
+	"settings": {
+		"taskCockpit.display.segmentSeparator": "",
+		"taskCockpit.display.useGroupKind": true,
+		"taskCockpit.filtering.showHidden": false,
+		"taskCockpit.display.defaultIconName": "zap"
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "seg/nested",
+				"detail": "Label with '/' — tests segmentSeparator='/' splitting",
+				"type": "shell",
+				"command": "node -e \"process.exit(0)\"",
+				"problemMatcher": []
+			},
+			{
+				"label": "seg:nested",
+				"detail": "Label with ':' — tests segmentSeparator=':' splitting",
+				"type": "shell",
+				"command": "node -e \"process.exit(0)\"",
+				"problemMatcher": []
+			},
+			{
+				"label": "group task",
+				"detail": "Has group:'build' — tests useGroupKind display",
+				"type": "shell",
+				"command": "node -e \"process.exit(0)\"",
+				"group": "build",
+				"problemMatcher": []
+			},
+			{
+				"label": "hidden task",
+				"detail": "Has hide:true — tests showHidden filtering",
+				"type": "shell",
+				"command": "node -e \"process.exit(0)\"",
+				"hide": true,
+				"problemMatcher": []
+			}
+		]
+	}
+}

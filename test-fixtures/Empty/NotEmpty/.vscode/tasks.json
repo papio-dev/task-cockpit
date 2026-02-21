@@ -1,0 +1,11 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "NO Hidden Task",
+            "type": "process",
+            "command": "",
+            "hide": false
+        }
+    ]
+}

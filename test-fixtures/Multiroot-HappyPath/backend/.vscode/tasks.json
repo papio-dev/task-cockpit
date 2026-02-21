@@ -1,0 +1,68 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build",
+      "detail": "$(tools) Full backend build\nCompiles and prepares server",
+      "icon": {
+        "id": "tools"
+      },
+      "dependsOn": [
+        "Build:Compile",
+        "Build:Generate Prisma"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Build:Compile",
+      "detail": "$(code) Compile TypeScript\nServer-side compilation",
+      "type": "shell",
+      "icon": {
+        "id": "code"
+      },
+      "command": "node -e \"console.log('[Backend] Compiling...'); setTimeout(() => console.log('Done!'), 1000)\"",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build:Generate Prisma",
+      "detail": "$(database) Generate Prisma client\nDatabase schema sync",
+      "type": "shell",
+      "icon": {
+        "id": "database"
+      },
+      "command": "node -e \"console.log('[Backend] Generating Prisma client...'); console.log('Generated!')\"",
+      "problemMatcher": []
+    },
+    {
+      "label": "Start:Dev",
+      "detail": "$(debug-start) Start dev server\nWith hot reload enabled",
+      "type": "shell",
+      "icon": {
+        "id": "debug-start"
+      },
+      "command": "node -e \"console.log('[Backend] Starting dev server on :3000...'); setInterval(() => {}, 1000); setTimeout(() => { console.log('Server stopped.'); process.exit(0); }, 5000)\"",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Test",
+      "detail": "$(beaker) Run tests\nIntegration and unit tests",
+      "type": "shell",
+      "icon": {
+        "id": "beaker"
+      },
+      "command": "node -e \"console.log('[Backend] Running tests...'); setTimeout(() => console.log('42 tests passed!'), 2000)\"",
+      "problemMatcher": []
+    },
+    {
+      "label": "DB:Migrate",
+      "detail": "$(arrow-up) Run migrations\nApply pending database migrations",
+      "type": "shell",
+      "icon": {
+        "id": "arrow-up"
+      },
+      "command": "node -e \"console.log('[Backend] Running migrations...'); console.log('3 migrations applied!')\"",
+      "problemMatcher": []
+    }
+  ]
+}

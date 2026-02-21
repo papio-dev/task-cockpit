@@ -1,0 +1,57 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build",
+      "detail": "$(tools) Full frontend build\nCompiles TypeScript and bundles assets",
+      "icon": {
+        "id": "tools"
+      },
+      "dependsOn": [
+        "Build:Compile TypeScript",
+        "Build:Bundle Assets"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Build:Compile TypeScript",
+      "detail": "$(code) Compile TypeScript files\nUses **tsconfig.json**",
+      "type": "shell",
+      "icon": {
+        "id": "code"
+      },
+      "command": "node -e \"console.log('[Frontend] Compiling TypeScript...'); setTimeout(() => console.log('Done!'), 1000)\"",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build:Bundle Assets",
+      "detail": "$(package) Bundle production assets\nWebpack with optimizations",
+      "type": "shell",
+      "icon": {
+        "id": "package"
+      },
+      "command": "node -e \"console.log('[Frontend] Bundling assets...'); setTimeout(() => console.log('Done!'), 1000)\"",
+      "problemMatcher": []
+    },
+    {
+      "label": "Test",
+      "detail": "$(beaker) Run unit tests\nJest with coverage report",
+      "type": "shell",
+      "icon": {
+        "id": "beaker"
+      },
+      "command": "node -e \"console.log('[Frontend] Running tests...'); setTimeout(() => console.log('All tests passed!'), 2000)\"",
+      "problemMatcher": []
+    },
+    {
+      "label": "Lint",
+      "detail": "$(checklist) Run ESLint\nCheck code style and errors",
+      "type": "shell",
+      "icon": {
+        "id": "checklist"
+      },
+      "command": "node -e \"console.log('[Frontend] Linting...'); console.log('No issues found!')\"",
+      "problemMatcher": []
+    }
+  ]
+}

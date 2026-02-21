@@ -1,0 +1,28 @@
+{
+	"folders": [
+		
+		{
+			"path": "PureEmptyTasksJSON"
+		},		
+		{
+			"path": "EmptyTasksJSON"
+		},
+		{
+			"path": "HiddenTask"
+		},
+		{
+			"path": "NoTasksJSON"
+		},
+		{
+		    "path": "NotEmpty"
+		},
+		{
+		    "path": "NoTasksJSONFile"
+		}
+	],
+
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": []
+	}
+}

@@ -1,0 +1,16 @@
+{
+    "folders": [
+        {
+            "path": "FolderA"
+        },
+        {
+            "path": "FolderB"
+        },
+        {
+            "path": "FolderC"
+        }
+    ],
+    "settings": {
+        "taskCockpit.display.tintLabel": true
+    }
+}

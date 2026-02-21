@@ -1,0 +1,89 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "a1/b",
+            "detail": "Child before parent — tests tree stability when child appears first",
+            "type": "shell",
+            "command": "node -e \"process.exit(0)\"",
+            "problemMatcher": []
+        },
+        {
+            "label": "a1/c",
+            "detail": "Second child before parent",
+            "type": "shell",
+            "command": "node -e \"process.exit(0)\"",
+            "problemMatcher": []
+        },
+        {
+            "label": "a1",
+            "detail": "Parent declared after its children",
+            "type": "shell",
+            "command": "node -e \"process.exit(0)\"",
+            "problemMatcher": []
+        },
+        {
+            "label": "a2",
+            "detail": "Parent declared before its children",
+            "type": "shell",
+            "command": "node -e \"process.exit(0)\"",
+            "problemMatcher": []
+        },
+        {
+            "label": "a2/b",
+            "detail": "Child after parent — normal order",
+            "type": "shell",
+            "command": "node -e \"process.exit(0)\"",
+            "problemMatcher": []
+        },
+        {
+            "label": "a2/c",
+            "detail": "Second child after parent",
+            "type": "shell",
+            "command": "node -e \"process.exit(0)\"",
+            "problemMatcher": []
+        },
+        {
+            "label": "a3/b",
+            "detail": "Child interleaved — parent between children",
+            "type": "shell",
+            "command": "node -e \"process.exit(0)\"",
+            "problemMatcher": []
+        },
+        {
+            "label": "a3",
+            "detail": "Parent between its children (b before, c after)",
+            "type": "shell",
+            "command": "node -e \"process.exit(0)\"",
+            "problemMatcher": []
+        },
+        {
+            "label": "a3/c",
+            "detail": "Child after interleaved parent",
+            "type": "shell",
+            "command": "node -e \"process.exit(0)\"",
+            "problemMatcher": []
+        },
+        {
+            "label": "3/ three",
+            "detail": "Numbered tasks in reverse order — tests sort stability (3/3)",
+            "type": "shell",
+            "command": "node -e \"process.exit(0)\"",
+            "problemMatcher": []
+        },
+        {
+            "label": "2/ two",
+            "detail": "Numbered tasks in reverse order (2/3)",
+            "type": "shell",
+            "command": "node -e \"process.exit(0)\"",
+            "problemMatcher": []
+        },
+        {
+            "label": "1/ one",
+            "detail": "Numbered tasks in reverse order (1/3)",
+            "type": "shell",
+            "command": "node -e \"process.exit(0)\"",
+            "problemMatcher": []
+        }
+    ]
+}

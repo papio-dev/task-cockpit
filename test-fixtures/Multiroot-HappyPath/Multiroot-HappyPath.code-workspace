@@ -1,0 +1,16 @@
+{
+  "folders": [
+    { "name": "Frontend", "path": "frontend" },
+    { "name": "Backend", "path": "backend" },
+    { "name": "Shared", "path": "shared" }
+  ],
+  "settings": {
+    "taskCockpit.filtering.excludeWorkspaceTasks": false,
+    "taskCockpit.display.tintLabel": false
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": []
+  }
+
+}

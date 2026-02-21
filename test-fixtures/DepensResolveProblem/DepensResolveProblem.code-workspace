@@ -1,0 +1,24 @@
+{
+    "folders": [
+        { "path": "FolderA" },
+        { "path": "FolderB" },
+        { "path": "FolderC" },
+        { "path": "FolderD" }
+    ],
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "label": "FolderA",
+                "detail": "Workspace-level task, target for cross-scope dependsOn",
+                "type": "shell",
+                "command": "node -e \"console.log('workspace task A done')\"",
+                "problemMatcher": []
+            },
+            {
+                "label": "test-C",
+                "detail": "Depends on workspace task + global user task + workspace user task (cross-scope resolution)"
+            }
+        ]
+    }
+}

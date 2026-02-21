@@ -1,0 +1,6 @@
+{
+    "taskCockpit.display.segmentSeparator": ":",
+    "taskCockpit.display.useGroupKind": false,
+    "taskCockpit.filtering.showHidden": false,
+    "taskCockpit.display.defaultIconName": "info"
+}

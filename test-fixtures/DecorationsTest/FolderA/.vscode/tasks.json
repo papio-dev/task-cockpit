@@ -1,0 +1,43 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "icon: none",
+            "detail": "Task with no icon and no color (baseline)",
+            "type": "shell",
+            "command": "node -e \"console.log('icon: none')\"",
+            "problemMatcher": []
+        },
+        {
+            "label": "icon: id only",
+            "icon": {
+                "id": "robot"
+            },
+            "detail": "Task with icon id but no color",
+            "type": "shell",
+            "command": "node -e \"console.log('icon: id only')\"",
+            "problemMatcher": []
+        },
+        {
+            "label": "icon: color only",
+            "icon": {
+                "color": "terminal.ansiGreen"
+            },
+            "detail": "Task with icon color but no id (should use default icon)",
+            "type": "shell",
+            "command": "node -e \"console.log('icon: color only')\"",
+            "problemMatcher": []
+        },
+        {
+            "label": "icon: id + color",
+            "icon": {
+                "id": "rocket",
+                "color": "terminal.ansiRed"
+            },
+            "detail": "Task with both icon id and color",
+            "type": "shell",
+            "command": "node -e \"console.log('icon: id + color')\"",
+            "problemMatcher": []
+        }
+    ]
+}

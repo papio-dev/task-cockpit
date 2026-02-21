@@ -1,0 +1,35 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Pre Task",
+            "detail": "Duplicate 1/3 — exits with failure (exit code 1)",
+            "command": "node -e \"setTimeout(() => process.exit(1), 1000)\"",
+            "type": "shell",
+            "problemMatcher": []
+        },
+        {
+            "label": "Pre Task",
+            "detail": "Duplicate 2/3 — prints message but may be shadowed by duplicate resolution",
+            "command": "node -e \"setTimeout(() => console.log('I\\'m lost!'), 1000)\"",
+            "type": "shell",
+            "problemMatcher": []
+        },
+        {
+            "label": "Pre Task",
+            "detail": "Duplicate 3/3 — exits with success",
+            "command": "node -e \"setTimeout(() => process.exit(0), 1000)\"",
+            "type": "shell",
+            "problemMatcher": []
+        },
+        {
+            "label": "Work Task",
+            "detail": "Depends on 'Pre Task' — ambiguous: which duplicate does VS Code resolve?",
+            "command": "node -e \"setTimeout(() => console.log('Work OK!'), 1000)\"",
+            "type": "shell",
+            "dependsOn": ["Pre Task"],
+            "dependsOrder": "sequence",
+            "problemMatcher": []
+        }
+    ]
+}

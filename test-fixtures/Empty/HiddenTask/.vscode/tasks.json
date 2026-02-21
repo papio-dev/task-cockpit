@@ -1,0 +1,11 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Hidden Task",
+            "type": "shell",
+            "command": "true",
+            "hide": true
+        }
+    ]
+}

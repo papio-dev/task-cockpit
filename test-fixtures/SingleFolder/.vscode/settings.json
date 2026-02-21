@@ -1,0 +1,11 @@
+{
+    "taskCockpit.display.defaultIconName": "target",
+    "taskCockpit.display.segmentSeparator": ":",
+    "taskCockpit.display.useGroupKind": false,
+    "terminal.integrated.shellIntegration.enabled": false,
+    "taskCockpit.filtering.showHidden": false,
+    "terminal.integrated.stickyScroll.enabled": false,
+    "terminal.integrated.suggest.enabled": false,
+    "taskCockpit.display.tintLabel": true,
+    "taskCockpit.validation.dependencies": true
+}

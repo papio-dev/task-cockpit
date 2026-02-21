@@ -1,0 +1,434 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Test: showReuseMessage=false",
+            "detail": "Visual state updates correctly when showReuseMessage is disabled (no exit code reported)",
+            "type": "shell",
+            "command": "node -e \"setTimeout(() => process.exit(0), 1000)\"",
+            "presentation": {
+                "showReuseMessage": false,
+                "panel": "dedicated"
+            },
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Shared Terminal A",
+            "detail": "Shared panel/group — launching B should steal terminal and clear A's visual state",
+            "icon": {
+                "color": "terminal.ansiCyan"
+            },
+            "type": "shell",
+            "command": "node -e \"setTimeout(() => process.exit(0), 2000)\"",
+            "presentation": {
+                "panel": "shared",
+                "group": "SharedTerminal"
+            },
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Shared Terminal B",
+            "detail": "Shared panel/group — launching this should steal A's terminal and clear A's visual state",
+            "icon": {
+                "color": "terminal.ansiCyan"
+            },
+            "type": "shell",
+            "command": "node -e \"setTimeout(() => process.exit(0), 2000)\"",
+            "presentation": {
+                "panel": "shared",
+                "group": "SharedTerminal"
+            },
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Auto Close",
+            "detail": "close=true — terminal closes on completion, badge should disappear immediately",
+            "type": "shell",
+            "command": "node -e \"setTimeout(() => process.exit(0), 1000)\"",
+            "presentation": {
+                "close": true
+            },
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Multiple Instances",
+            "detail": "instanceLimit=3 — each run adds to badge (●2, ●3), each completion decrements",
+            "type": "shell",
+            "command": "node -e \"console.log('Instance started'); setTimeout(() => console.log('Done'), 5000)\"",
+            "presentation": {
+                "panel": "dedicated"
+            },
+            "runOptions": {
+                "instanceLimit": 3
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Failing Task",
+            "detail": "Exits with code 1 — extension does not distinguish success/failure (known limitation)",
+            "type": "shell",
+            "command": "node -e \"setTimeout(() => process.exit(1), 1000)\"",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Long Running",
+            "detail": "30s task — closing terminal mid-run should immediately clear visual state",
+            "type": "shell",
+            "command": "node -e \"console.log('Running for 30s...'); setTimeout(() => process.exit(0), 30000)\"",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: dependsOn Simple",
+            "detail": "Sequential chain — runs 'showReuseMessage=false' first, then this. Two separate terminals",
+            "type": "shell",
+            "command": "node -e \"console.log('After dependency'); setTimeout(() => process.exit(0), 1000)\"",
+            "dependsOn": [
+                "Test: showReuseMessage=false"
+            ],
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: dependsOn Simple 2",
+            "detail": "Sequential chain into shared terminal — this task occupies dependency's terminal, clearing its visual state",
+            "type": "shell",
+            "command": "node -e \"console.log('After dependency'); setTimeout(() => process.exit(0), 1000)\"",
+            "dependsOn": [
+                "Test: Shared Terminal A"
+            ],
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "presentation": {
+                "panel": "shared",
+                "group": "SharedTerminal"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: dependsOn Multiple Instances",
+            "detail": "Attempts to spawn 3 instances via dependsOn — does NOT work as expected (VS Code deduplicates)",
+            "type": "shell",
+            "command": "node -e \"console.log('Spawning instances done')\"",
+            "dependsOn": [
+                "Test: Multiple Instances",
+                "Test: Multiple Instances",
+                "Test: Multiple Instances"
+            ],
+            "dependsOrder": "parallel",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: dependsOrder Parallel",
+            "detail": "Parallel dependencies — Shared A and Shared B run simultaneously",
+            "type": "shell",
+            "command": "node -e \"console.log('Both finished')\"",
+            "dependsOn": [
+                "Test: Shared Terminal A",
+                "Test: Shared Terminal B"
+            ],
+            "dependsOrder": "parallel",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Background Watcher",
+            "detail": "isBackground=true — never-ending watcher. Closing terminal should clear visual state",
+            "type": "shell",
+            "command": "node -e \"let i=0; setInterval(() => console.log(`[${new Date().toTimeString().slice(0,8)}] Watching... (${i++})`), 2000)\"",
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^$"
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "^Watching",
+                    "endsPattern": "^$never$"
+                }
+            },
+            "runOptions": {
+                "instanceLimit": 1
+            }
+        },
+        {
+            "label": "Test: Type Process",
+            "detail": "type=process — direct execution without shell wrapper",
+            "type": "process",
+            "command": "node",
+            "args": [
+                "-e",
+                "setTimeout(() => process.exit(0), 2000)"
+            ],
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Shell Node",
+            "detail": "Custom shell=node — visual state should update normally despite non-default interpreter",
+            "type": "shell",
+            "command": "console.log('Node shell started'); setTimeout(() => { console.log('Done'); process.exit(0); }, 2000)",
+            "options": {
+                "shell": {
+                    "executable": "node",
+                    "args": [
+                        "-e"
+                    ]
+                }
+            },
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Shell Python",
+            "detail": "Custom shell=python3 — visual state should update normally. NOTE: use 'python' on Windows",
+            "type": "shell",
+            "command": "import time; print('Python shell'); time.sleep(2); print('Done')",
+            "options": {
+                "shell": {
+                    "executable": "python3",
+                    "args": [
+                        "-c"
+                    ]
+                }
+            },
+            "windows": {
+                "options": {
+                    "shell": {
+                        "executable": "python",
+                        "args": [
+                            "-c"
+                        ]
+                    }
+                }
+            },
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Group Build",
+            "detail": "group=build — appears under Build folder when useGroupKind is enabled",
+            "type": "shell",
+            "command": "node -e \"setTimeout(() => console.log('Building...'), 1000)\"",
+            "group": "build",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Group Test",
+            "detail": "group=test — appears under Test folder when useGroupKind is enabled",
+            "type": "shell",
+            "command": "node -e \"setTimeout(() => console.log('Testing...'), 1000)\"",
+            "group": "test",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Compound Task",
+            "detail": "Compound task (no command) — has no visual state itself (known limitation), but triggers dependencies",
+            "dependsOn": [
+                "Test: Group Build",
+                "Test: Group Test"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": []
+        },
+        {
+            "label": "Test:Hierarchy:Deep",
+            "detail": "With segmentSeparator=':' displays as Test → Hierarchy → Deep",
+            "type": "shell",
+            "command": "node -e \"setTimeout(() => process.exit(0), 1000)\"",
+            "problemMatcher": []
+        },
+        {
+            "label": "Test:Hierarchy:Sibling",
+            "detail": "With segmentSeparator=':' should appear alongside Deep under Test → Hierarchy",
+            "type": "shell",
+            "command": "node -e \"setTimeout(() => process.exit(0), 1000)\"",
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Custom Color",
+            "detail": "With tintLabel enabled, label text becomes green (icon color bleeds into label)",
+            "type": "shell",
+            "command": "node -e \"setTimeout(() => process.exit(0), 1000)\"",
+            "icon": {
+                "id": "circle-filled",
+                "color": "terminal.ansiGreen"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Hidden Task",
+            "detail": "hide=true — only visible when filtering.showHidden is enabled",
+            "type": "shell",
+            "command": "node -e \"setTimeout(() => process.exit(0), 1000)\"",
+            "hide": true,
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Duplicate Label",
+            "detail": "Duplicate 1/2 — validation.duplicateLabels should flag this",
+            "type": "shell",
+            "command": "node -e \"console.log('First')\"",
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Duplicate Label",
+            "detail": "Duplicate 2/2 — validation.duplicateLabels should flag this",
+            "type": "shell",
+            "command": "node -e \"console.log('Second')\"",
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Invalid dependsOn",
+            "detail": "dependsOn references nonexistent task — validation.dependencies should flag this",
+            "type": "shell",
+            "command": "node -e \"setTimeout(() => process.exit(0), 1000)\"",
+            "dependsOn": [
+                "This Task Does Not Exist"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Zombie Child",
+            "detail": "Parent exits only when you kill the orphan node process via OS task manager. Tests honest ● badge",
+            "type": "shell",
+            "command": "node -e \"const{spawn}=require('child_process');const c=spawn('node',['-e','setTimeout(()=>{},120000)'],{stdio:'inherit'});console.log('Child PID:',c.pid);c.on('exit',()=>process.exit())\"",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Diamond A",
+            "detail": "Diamond dependency root — should only run once even though B and C both depend on it",
+            "type": "shell",
+            "command": "node -e \"console.log('Starting A'); setTimeout(() => console.log('A done'), 1000)\"",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Diamond B",
+            "detail": "Diamond left branch — depends on A",
+            "dependsOn": [
+                "Test: Diamond A"
+            ],
+            "type": "shell",
+            "command": "node -e \"console.log('Starting B'); setTimeout(() => process.exit(0), 2000)\"",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Diamond C",
+            "detail": "Diamond right branch — depends on A",
+            "dependsOn": [
+                "Test: Diamond A"
+            ],
+            "type": "shell",
+            "command": "node -e \"console.log('Starting C'); setTimeout(() => process.exit(0), 2000)\"",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Diamond D (Final)",
+            "detail": "Diamond sink — run this. A should run once, B and C after it, then this",
+            "dependsOn": [
+                "Test: Diamond B",
+                "Test: Diamond C"
+            ],
+            "dependsOrder": "parallel",
+            "type": "shell",
+            "command": "node -e \"console.log('Diamond Complete')\"",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Dependency Fail - Part 1",
+            "detail": "Fails with exit code 1 after 1s — Part 2 should never reach ● state",
+            "type": "shell",
+            "command": "node -e \"console.log('I will fail'); setTimeout(() => process.exit(1), 1000)\"",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test: Dependency Fail - Part 2",
+            "detail": "Run this — should never execute because Part 1 fails. Must stay idle (no ● badge)",
+            "dependsOn": [
+                "Test: Dependency Fail - Part 1"
+            ],
+            "type": "shell",
+            "command": "node -e \"console.log('I should never run')\"",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "build:dev:watch",
+            "detail": "With segmentSeparator=':' splits into build → dev → watch hierarchy",
+            "type": "shell",
+            "command": "node -e \"console.log('watching')\"",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": ":build::dev : watch:",
+            "detail": "Malformed separators — should NOT be split into hierarchy (leading/trailing/double colons, spaces)",
+            "type": "shell",
+            "command": "node -e \"console.log('not split')\"",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        }
+    ]
+}
