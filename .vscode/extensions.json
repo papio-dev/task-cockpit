@@ -5,6 +5,6 @@
 		"dbaeumer.vscode-eslint",
 		"ms-vscode.extension-test-runner",
 		"benmcmorran.vscode-api-explorer",
-		"lumen-dev.task-cockpit"
+		"papio-dev.task-cockpit"
 	]
 }

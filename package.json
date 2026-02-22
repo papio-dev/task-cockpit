@@ -1,17 +1,17 @@
 {
   "name": "task-cockpit",
+  "publisher": "papio-dev",
   "icon": "icons/icon.png",
   "galleryBanner": {
     "color": "#F7F8EA",
     "theme": "light"
   },
   "sponsor": {
-    "url": "https://ko-fi.com/lumen_dev"
+    "url": "https://ko-fi.com/papio_dev"
   },
   "displayName": "Task Cockpit",
   "description": "Tree view panel for browsing and running tasks. Displays tasks from workspace and task files in an organized, customizable tree structure.",
   "version": "0.0.0",
-  "publisher": "lumen-dev",
   "license": "MIT",
   "keywords": [
     "tasks",
@@ -24,11 +24,11 @@
   "markdown": "github",
   "repository": {
     "type": "git",
-    "url": "https://github.com/LumenGNU/task-cockpit.git"
+    "url": "https://github.com/papio-dev/task-cockpit.git"
   },
-  "homepage": "https://github.com/LumenGNU/task-cockpit",
+  "homepage": "https://github.com/papio-dev/task-cockpit",
   "bugs": {
-    "url": "https://github.com/LumenGNU/task-cockpit/issues"
+    "url": "https://github.com/papio-dev/task-cockpit/issues"
   },
   "engines": {
     "vscode": "^1.86.0"

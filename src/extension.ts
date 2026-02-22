@@ -382,14 +382,14 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.commands.registerCommand('task-cockpit.settings.configure-display', function () {
             return vscode.commands.executeCommand(
                 'workbench.action.openWorkspaceSettings',
-                { query: '@ext:lumen-dev.task-cockpit taskCockpit.display' });
+                { query: '@ext:papio-dev.task-cockpit taskCockpit.display' });
         }),
 
 
         vscode.commands.registerCommand('task-cockpit.settings.configure-filtering', function () {
             return vscode.commands.executeCommand(
                 'workbench.action.openWorkspaceSettings',
-                { query: '@ext:lumen-dev.task-cockpit taskCockpit.filtering' });
+                { query: '@ext:papio-dev.task-cockpit taskCockpit.filtering' });
         }),
 
 
@@ -397,7 +397,7 @@ export function activate(context: vscode.ExtensionContext) {
             vscode.commands.executeCommand('vscode.open', vscode.Uri.from({
                 scheme: 'https',
                 authority: 'github.com',
-                path: '/LumenGNU/task-cockpit/tree/main',
+                path: '/papio-dev/task-cockpit/tree/main',
                 query: 'tab=readme-ov-file',
                 fragment: 'configuration'
             }));

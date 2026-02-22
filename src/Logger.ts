@@ -34,7 +34,7 @@ function dispose() {
 
 function get(file: string): { logger: LoggerFn; assert: AssertFn; fail: FailFn; table: TableFn; } {
 
-    const ext = vscode.extensions.getExtension('lumen-dev.task-cockpit')!;
+    const ext = vscode.extensions.getExtension('papio-dev.task-cockpit')!;
     const id = `${file.replace(`${ext.extensionPath}${path.sep}`, '')}`;
 
     return {

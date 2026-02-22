@@ -92,11 +92,11 @@ Tree view panel for browsing and running tasks. Displays tasks from workspace an
 
 ## Installation
 
-**VS Code Marketplace:** Search for `@id:lumen-dev.task-cockpit` in Extensions View.
+**VS Code Marketplace:** Search for `@id:papio-dev.task-cockpit` in Extensions View.
 
-**Open VSX:** [open-vsx.org/extension/lumen-dev/task-cockpit](https://open-vsx.org/extension/lumen-dev/task-cockpit).
+**Open VSX:** [open-vsx.org/extension/papio-dev/task-cockpit](https://open-vsx.org/extension/papio-dev/task-cockpit).
 
-**Manual (VSIX):** Download from [GitHub Releases](https://github.com/LumenGNU/task-cockpit/releases).
+**Manual (VSIX):** Download from [GitHub Releases](https://github.com/papio-dev/task-cockpit/releases).
 
 
 ## Usage
@@ -296,11 +296,15 @@ To add your own, open **Keyboard Shortcuts** (`Ctrl+K Ctrl+S`) and search for `T
 
 The `focusedView` condition ensures shortcuts only work when the Task Cockpit panel has focus.
 
-<!-- #region GITHUB -->
-## Sponsor this project
 
-[![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/lumen_dev)
-<!-- #endregion GITHUB -->
+## Tip this project
+
+If you find Task Cockpit useful:
+
+- **Rate it** on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=papio-dev.task-cockpit) or [Open VSX](https://open-vsx.org/extension/papio-dev/task-cockpit)
+- **Report issues** and **share ideas** on [GitHub Issues](https://github.com/LumenGNU/task-cockpit/issues)
+- [**Support financially** — currently more helpful than usual](https://ko-fi.com/papio_dev)
+
 
 ## License
 
