@@ -176,6 +176,10 @@
         {
             "location": "-22257d27",
             "name": "extension-debug-clean"
+        },
+        {
+            "location": "playground-ScreenShots",
+            "name": "playground-ScreenShots"
         }
     ],
     "lastKnownMenubarData": {
@@ -1856,15 +1860,15 @@
     "windowsState": {
         "lastActiveWindow": {
             "workspaceIdentifier": {
-                "id": "3754669d59e1637350be0d3c5aef8364",
-                "configURIPath": "file:///home/lumen/Projects/Task%20Cockpit/~fixtures/Multiroot-HappyPath/Multiroot-HappyPath.code-workspace"
+                "id": "8f8dbc149117e8f01453e3745d9dc153",
+                "configURIPath": "file:///home/lumen/Projects/Task%20Cockpit/playground/ScreenShots/diagnostics-problems/MyApp.code-workspace"
             },
             "uiState": {
                 "mode": 1,
-                "x": 448,
-                "y": 172,
-                "width": 1024,
-                "height": 768
+                "x": 580,
+                "y": 204,
+                "width": 1280,
+                "height": 720
             }
         },
         "openedWindows": []

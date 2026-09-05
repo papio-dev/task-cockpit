@@ -404,7 +404,7 @@ const MANIFEST: {
         url: 'https://ko-fi.com/papio_dev',
     },
     displayName: EXTENSION.NAME,
-    description: 'Tree view panel for browsing and running tasks. Displays tasks from workspace and task files in an organized, customizable tree structure.',
+    description: 'A tree view for organizing, browsing, and running VS Code tasks from workspace and user profile.',
     version: getLatestVersion(),
     license: 'MIT',
     keywords: [
@@ -1065,21 +1065,6 @@ const MANIFEST: {
         ]),
         configuration: [
             {
-                title: EXTENSION.NAME,
-                type: 'object',
-                order: 0,
-                properties: {
-                    [SETTING.FILTERING.SHOW_GLOBAL_TASKS]: {
-                        type: 'boolean',
-                        scope: 'window',
-                        default: true,
-                        markdownDescription: 'Show the "Global Tasks" view in the panel',
-                        order: order.nextIn('configuration'),
-                    },
-
-                }
-            },
-            {
                 title: 'Display',
                 description: 'Visual appearance, hierarchy structure, and icon settings for tasks in the explorer.',
                 order: order.nextIn('configuration'),
@@ -1154,6 +1139,13 @@ const MANIFEST: {
                 order: order.nextIn('configuration'),
                 type: 'object',
                 properties: {
+                    [SETTING.FILTERING.SHOW_GLOBAL_TASKS]: {
+                        type: 'boolean',
+                        scope: 'window',
+                        default: true,
+                        markdownDescription: 'Show the "Global Tasks" view in the panel',
+                        order: order.nextIn('configuration.filtering'),
+                    },
                     [SETTING.FILTERING.SHOW_HIDDEN]: {
                         type: 'boolean',
                         scope: 'resource',

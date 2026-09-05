@@ -1,0 +1,45 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "app:dev:web",
+            "type": "npm",
+            "script": "dev",
+            "icon": {
+                "id": "server-process",
+                "color": "terminal.ansiBlue"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "app:dev:mobile",
+            "type": "npm",
+            "script": "mobile",
+            "icon": {
+                "id": "device-mobile",
+                "color": "terminal.ansiRed"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "app:build:web",
+            "type": "npm",
+            "script": "build-web",
+            "icon": {
+                "id": "package",
+                "color": "terminal.ansiBlue"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "app:build:mobile",
+            "type": "npm",
+            "script": "build-mobile",
+            "icon": {
+                "id": "package",
+                "color": "terminal.ansiRed"
+            },
+            "problemMatcher": []
+        }
+    ]
+}

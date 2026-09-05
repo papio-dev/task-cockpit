@@ -1,0 +1,49 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "web",
+            "group": "build",
+            "type": "npm",
+            "script": "dev",
+            "icon": {
+                "id": "server-process",
+                "color": "terminal.ansiBlue"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "mobile",
+            "group": "build",
+            "type": "npm",
+            "script": "mobile",
+            "icon": {
+                "id": "device-mobile",
+                "color": "terminal.ansiRed"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "run unit tests",
+            "group": "test",
+            "type": "npm",
+            "script": "build-web",
+            "icon": {
+                "id": "beaker",
+                "color": "terminal.ansiBlue"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "run integration tests",
+            "group": "test",
+            "type": "npm",
+            "script": "build-mobile",
+            "icon": {
+                "id": "beaker",
+                "color": "terminal.ansiRed"
+            },
+            "problemMatcher": []
+        }
+    ]
+}

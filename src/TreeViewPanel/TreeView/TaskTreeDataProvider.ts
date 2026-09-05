@@ -199,7 +199,7 @@ class TaskTreeDataProvider implements ReadonlyTreeDataProvider<Immutable<Element
         return {
             isRunning: treeItem.contextValue?.includes(':Running') ?? false,
             isBroken: treeItem.contextValue?.includes(':Broken') ?? false,
-            hasTerminals: treeItem.contextValue?.includes(':Terminals') ?? false,
+            hasTerminals: treeItem.contextValue?.includes(':Terminals') ?? false
         };
     }
 

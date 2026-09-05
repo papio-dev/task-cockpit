@@ -1,0 +1,48 @@
+{
+    "folders": [
+        {
+            "path": "web-app"
+        },
+        {
+            "path": "mobile-app"
+        }
+    ],
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "label": "deploy",
+                "type": "shell",
+                "command": "echo deploying",
+                "detail": "Deploy all projects to production\n\n- Build all targets\n- Push to registry\n- Rollout to cluster",
+                "icon": {
+                    "id": "cloud-upload",
+                    "color": "terminal.ansiMagenta"
+                }
+            },
+            {
+                "label": "release",
+                "type": "shell",
+                "command": "echo releasing",
+                "detail": "Create a new release\n\n- Bump version\n- Generate changelog\n- Tag & push commit",
+                "icon": {
+                    "id": "tag",
+                    "color": "terminal.ansiYellow"
+                }
+            },
+            {
+                "label": "lint:all",
+                "type": "shell",
+                "command": "echo linting",
+                "detail": "Lint all workspaces\n\n- ESLint\n- Stylelint\n- TypeScript strict check",
+                "icon": {
+                    "id": "wand",
+                    "color": "terminal.ansiCyan"
+                }
+            }
+        ]
+    },
+    "settings": {
+        "taskCockpit.display.useFolderIcon": false,
+    }
+}

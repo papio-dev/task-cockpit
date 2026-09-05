@@ -162,7 +162,6 @@
             },
             "problemMatcher": []
         },
-        // ===================================================================================================================
         {
             "label": "_kill-vscode-test-runner",
             "hide": true,
@@ -176,12 +175,12 @@
                 "      sleep 0.5 ; ",
                 "    done ; ",
                 "  done ; ",
-                "fi ; ",
+                "fi ; "
             ],
             "presentation": {
                 "panel": "new",
                 "focus": false,
-                "close": true,
+                "close": true
             }
         },
         {
@@ -191,7 +190,7 @@
             "presentation": {
                 "panel": "new",
                 "focus": false,
-                "close": true,
+                "close": true
             }
         },
         {
@@ -201,35 +200,11 @@
             "presentation": {
                 "panel": "new",
                 "focus": false,
-                "close": true,
-            }
-        },
-        // {
-        //     "label": "_waiting-for-debugger",
-        //     "type": "shell",
-        //     "command": [
-        //         "set -euo pipefail ; ",
-        //         "echo 'Waiting for debugger...' ; ",
-        //         "timeout 30 bash -c 'until nc -z localhost 9229 2>/dev/null; do sleep 0.5; done' || { echo Timeout ; exit 1; } ;"
-        //     ]
-        // },
-        // ===================================================================================================================
-        {
-            "label": "Debug-inspect",
-            "dependsOn": [
-                "_command:workbench.view.debug",
-                "Debug-inspect|Build",
-                "Debug-inspect|Run (debug-clean)",
-                "_command:workbench.panel.repl.view.focus",
-            ],
-            "dependsOrder": "sequence",
-            "group": {
-                "kind": "build",
-                "isDefault": true
+                "close": true
             }
         },
         {
-            "label": "Debug-inspect|Build|Create/Clean `~out-debug/`",
+            "label": "Build|Create/Clean `~out-debug/`",
             "detail": "",
             "icon": {
                 "id": "new-folder"
@@ -238,7 +213,7 @@
             "command": [
                 "set -euo pipefail ; ",
                 "[[ -d \"${OUT_DIR}\" && \"$(basename \"${OUT_DIR}\")\" == ~* ]] || { echo \"OUT_DIR='${OUT_DIR}' — not a directory or its name does not start with '~'\" ; exit 1 ; }; ",
-                "find \"${OUT_DIR}\" -mindepth 1 -maxdepth 1 -exec gio trash -- {} + ; ",
+                "find \"${OUT_DIR}\" -mindepth 1 -maxdepth 1 -exec gio trash -- {} + ; "
             ],
             "options": {
                 "cwd": "${workspaceFolder}",
@@ -249,14 +224,13 @@
             "presentation": {
                 "panel": "shared",
                 "clear": false,
-                // "echo": false,
                 "showReuseMessage": false,
                 "group": "Debug"
             },
             "problemMatcher": []
         },
         {
-            "label": "Debug-inspect|Build|Transpile TypeScript to `./~out-debug`",
+            "label": "Build|Transpile TypeScript to `./~out-debug`",
             "detail": "",
             "icon": {
                 "id": "target"
@@ -276,7 +250,6 @@
             "presentation": {
                 "panel": "shared",
                 "clear": false,
-                // "echo": false,
                 "showReuseMessage": false,
                 "group": "Debug"
             },
@@ -286,7 +259,7 @@
             }
         },
         {
-            "label": "Debug-inspect|Build|Copy icons to `./~out-debug`",
+            "label": "Build|Copy icons to `./~out-debug`",
             "detail": "Copy icons to distribution",
             "icon": {
                 "id": "copy"
@@ -308,14 +281,13 @@
             "presentation": {
                 "panel": "shared",
                 "clear": false,
-                // "echo": false,
                 "showReuseMessage": false,
                 "group": "Debug"
             },
             "problemMatcher": []
         },
         {
-            "label": "Debug-inspect|Build|Create package.json",
+            "label": "Build|Create package.json",
             "detail": "Generate `package.json`",
             "icon": {
                 "id": "json"
@@ -323,7 +295,7 @@
             "type": "shell",
             "command": [
                 "set -euo pipefail ; ",
-                "npx tsx manifest.mts ; ",
+                "npx tsx manifest.mts ; "
             ],
             "options": {
                 "cwd": "${workspaceFolder}",
@@ -337,23 +309,36 @@
             "presentation": {
                 "panel": "shared",
                 "clear": false,
-                // "echo": false,
                 "showReuseMessage": false,
                 "group": "Debug"
             },
             "problemMatcher": []
         },
         {
-            "label": "Debug-inspect|Build",
+            "label": "Debug-inspect",
+            "dependsOn": [
+                "_command:workbench.view.debug",
+                "Debug-inspect|Build (debug)",
+                "Debug-inspect|Run (debug-inspect)",
+                "_command:workbench.panel.repl.view.focus"
+            ],
+            "dependsOrder": "sequence",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Debug-inspect|Build (debug)",
             "detail": "",
             "icon": {
                 "id": "package"
             },
             "dependsOn": [
-                "Debug-inspect|Build|Create/Clean `~out-debug/`",
-                "Debug-inspect|Build|Transpile TypeScript to `./~out-debug`",
-                "Debug-inspect|Build|Copy icons to `./~out-debug`",
-                "Debug-inspect|Build|Create package.json"
+                "Build|Create/Clean `~out-debug/`",
+                "Build|Transpile TypeScript to `./~out-debug`",
+                "Build|Copy icons to `./~out-debug`",
+                "Build|Create package.json"
             ],
             "dependsOrder": "sequence",
             "type": "shell",
@@ -378,16 +363,15 @@
                 "instancePolicy": "warn"
             }
         },
-        // .............................................................................
         {
-            "label": "Debug-inspect|Run (debug-clean)",
+            "label": "Debug-inspect|Run (debug-inspect)",
             "icon": {
                 "id": "rocket"
             },
             "detail": "",
             "group": "build",
             "dependsOn": [
-                "_kill-vscode-test-runner",
+                "_kill-vscode-test-runner"
             ],
             "dependsOrder": "sequence",
             "type": "shell",
@@ -398,9 +382,8 @@
                     "OUT_DIR": "./~out-debug",
                     "VSC_PROFILE": "extension-debug-clean",
                     "VSC_OPEN": "./~fixtures/Multiroot-HappyPath/Multiroot-HappyPath.code-workspace",
-                    "VSC_INSPECT": "inspect", // "inspect-brk",
-                    "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace",
-                    // "VSC_VERSION": "1.131.0",
+                    "VSC_INSPECT": "inspect",
+                    "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace"
                 }
             },
             "presentation": {
@@ -416,7 +399,6 @@
                 "instancePolicy": "warn"
             }
         },
-        // ======================================================================================================================
         {
             "label": "Pack|Pack pre-release VSIX|Clear terminal",
             "hide": true,
@@ -471,7 +453,7 @@
             "command": [
                 "set -euo pipefail ; ",
                 "[[ -d \"${OUT_DIR}\" && \"$(basename \"${OUT_DIR}\")\" == ~* ]] || { echo \"OUT_DIR='${OUT_DIR}' — not a directory or its name does not start with '~'\" ; exit 1 ; }; ",
-                "find \"${OUT_DIR}\" -mindepth 1 -maxdepth 1 -exec gio trash -- {} + ; ",
+                "find \"${OUT_DIR}\" -mindepth 1 -maxdepth 1 -exec gio trash -- {} + ; "
             ],
             "options": {
                 "cwd": "${workspaceFolder}",
@@ -591,7 +573,7 @@
                 "cwd": "${workspaceFolder}",
                 "env": {
                     "SRC_SVG": "icons/icon.svg",
-                    "OUT_DIR": "~out",
+                    "OUT_DIR": "~out"
                 }
             },
             "presentation": {
@@ -616,7 +598,7 @@
             "type": "shell",
             "command": [
                 "set -euo pipefail ; ",
-                "npx tsx manifest.mts ; ",
+                "npx tsx manifest.mts ; "
             ],
             "options": {
                 "cwd": "${workspaceFolder}",
@@ -707,7 +689,7 @@
                 "cwd": "${workspaceFolder}",
                 "env": {
                     "OUT_DIR": "~out",
-                    "VSIX_DIR": "~vsix",
+                    "VSIX_DIR": "~vsix"
                 }
             },
             "presentation": {
@@ -719,7 +701,6 @@
             },
             "problemMatcher": []
         },
-        // ------------------------------------------------------------------------------------------------------------------------------
         {
             "label": "playground|Clean/create '~out-sandbox/'",
             "detail": "Ensure '~out-sandbox' directory exists and is empty",
@@ -728,9 +709,8 @@
             },
             "type": "shell",
             "command": "mkdir -p \"./~out-sandbox\" && find \"./~out-sandbox\" -mindepth 1 -maxdepth 1 -exec gio trash -- {} +",
-            "problemMatcher": [],
+            "problemMatcher": []
         },
-        // ..............................................................................................................................
         {
             "label": "playground|open-task-definition",
             "icon": {
@@ -751,8 +731,7 @@
                     "OUT_DIR": "~out-sandbox",
                     "EXT_SANDBOX": "playground/open-task-definition",
                     "VSC_PROFILE": "playground-open-task-definition",
-                    "VSC_OPEN": "playground/open-task-definition/prj:playground/open-task-definition/prj/.vscode/tasks.json",
-                    // "VSC_VERSION": "1.131.0"
+                    "VSC_OPEN": "playground/open-task-definition/prj:playground/open-task-definition/prj/.vscode/tasks.json"
                 }
             },
             "problemMatcher": [
@@ -762,7 +741,6 @@
                 }
             ]
         },
-        // ..............................................................................................................................
         {
             "label": "playground|flat-task-inventory|manual",
             "icon": {
@@ -814,7 +792,7 @@
                     "OUT_DIR": "~out-sandbox/",
                     "EXT_SANDBOX": "playground/flat-task-inventory",
                     "VSC_OPEN": "playground/flat-task-inventory/massive-parallel-deps",
-                    "VSC_PROFILE": "playground-flat-task-inventory",
+                    "VSC_PROFILE": "playground-flat-task-inventory"
                 }
             },
             "problemMatcher": [
@@ -876,8 +854,7 @@
                     "OUT_DIR": "~out-sandbox/",
                     "EXT_SANDBOX": "playground/flat-task-inventory",
                     "VSC_OPEN": "playground/flat-task-inventory/single-folder-multi-instance-task",
-                    "VSC_PROFILE": "playground-flat-task-inventory",
-                    // "VSC_VERSION": "1.131.0"
+                    "VSC_PROFILE": "playground-flat-task-inventory"
                 }
             },
             "problemMatcher": [
@@ -887,7 +864,6 @@
                 }
             ]
         },
-        // ..............................................................................................................................
         {
             "label": "playground|my-command",
             "icon": {
@@ -909,8 +885,7 @@
                     "OUT_DIR": "~out-sandbox",
                     "EXT_SANDBOX": "playground/my-command",
                     "VSC_PROFILE": "playground-my-command",
-                    "VSC_OPEN": "playground/my-command/prj",
-                    // "VSC_VERSION": "1.131.0"
+                    "VSC_OPEN": "playground/my-command/prj"
                 }
             },
             "problemMatcher": [
@@ -920,7 +895,6 @@
                 }
             ]
         },
-        // ..............................................................................................................................
         {
             "label": "playground|tree-panel|cycle-tasks+burst",
             "icon": {
@@ -984,7 +958,6 @@
                     "EXT_SANDBOX": "playground/tree-panel",
                     "VSC_PROFILE": "playground-tree-panel",
                     "VSC_OPEN": "playground/tree-panel/full-monty/full-monty.code-workspace",
-                    // "VSC_VERSION": "1.131.0",
                     "VSC_INSPECT": "inspect"
                 }
             },
@@ -1020,7 +993,6 @@
                     "EXT_SANDBOX": "playground/tree-panel",
                     "VSC_PROFILE": "playground-tree-panel",
                     "VSC_OPEN": "playground/tree-panel/semi-manual/project.code-workspace:playground/tree-panel/semi-manual/folder1/project.code-workspace.jsonc:playground/tree-panel/semi-manual/folder1/.vscode/tasks.json:playground/tree-panel/semi-manual/folder2/.vscode/tasks.json",
-                    // "VSC_VERSION": "1.131.0"
                     "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace"
                 }
             },
@@ -1052,7 +1024,6 @@
                     "OUT_DIR": "~out-sandbox",
                     "EXT_SANDBOX": "playground/tree-panel",
                     "VSC_PROFILE": "playground-tree-panel",
-                    // "VSC_VERSION": "1.131.0"
                     "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace"
                 }
             },
@@ -1063,7 +1034,87 @@
                 }
             ]
         },
-        // ------------------------------------------------------------------------------------------------------------------------------
+        {
+            "label": "playground|ScreenShots",
+            "icon": {
+                "id": "file-media"
+            },
+            "dependsOn": [
+                "playground|ScreenShots|Build",
+                "playground|ScreenShots|Run"
+            ],
+            "dependsOrder": "sequence"
+        },
+        {
+            "label": "playground|ScreenShots|Build",
+            "detail": "",
+            "icon": {
+                "id": "package"
+            },
+            "dependsOn": [
+                "Build|Create/Clean `~out-debug/`",
+                "Build|Transpile TypeScript to `./~out-debug`",
+                "Build|Copy icons to `./~out-debug`",
+                "Build|Create package.json"
+            ],
+            "dependsOrder": "sequence",
+            "type": "shell",
+            "command": "echo [Build Complete]",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {}
+            },
+            "group": {
+                "kind": "build"
+            },
+            "presentation": {
+                "panel": "shared",
+                "clear": false,
+                "echo": false,
+                "showReuseMessage": false,
+                "group": "Debug"
+            },
+            "problemMatcher": [],
+            "runOptions": {
+                "instanceLimit": 1,
+                "instancePolicy": "warn"
+            }
+        },
+        {
+            "label": "playground|ScreenShots|Run",
+            "icon": {
+                "id": "rocket"
+            },
+            "detail": "",
+            "group": "build",
+            "dependsOn": [
+                "_kill-vscode-test-runner"
+            ],
+            "dependsOrder": "sequence",
+            "type": "shell",
+            "command": "setsid -f ./.vscode-test/interactive-runner.mjs && echo [Started Debug Extension] ; sleep 3",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "OUT_DIR": "./~out-debug",
+                    "VSC_PROFILE": "playground-ScreenShots",
+                    "VSC_OPEN": "./playground/ScreenShots/",
+                    "VSC_PARAM_DISABLE_EXTENSIONS": "no"
+                }
+            },
+            "presentation": {
+                "panel": "shared",
+                "clear": false,
+                "echo": false,
+                "showReuseMessage": false,
+                "group": "Debug"
+            },
+            "problemMatcher": [],
+            "runOptions": {
+                "instanceLimit": 1,
+                "instancePolicy": "warn"
+            }
+        },
         {
             "label": "Probes|PreProbe|Clean/create '~out-probe/'",
             "detail": "Ensure '~out-probe' directory exists and is empty",
@@ -1072,7 +1123,7 @@
             },
             "type": "shell",
             "command": "mkdir -p \"./~out-probe\" && find \"./~out-probe\" -mindepth 1 -maxdepth 1 -exec gio trash -- {} +",
-            "problemMatcher": [],
+            "problemMatcher": []
         },
         {
             "label": "Probes|FileDecorationProvider|URLSearchParams-benchmark",
@@ -1092,8 +1143,7 @@
                 "cwd": "${workspaceFolder}",
                 "env": {
                     "OUT_DIR": "~out-probe",
-                    "EXT_SANDBOX": "probes/FileDecorationProvider/URLSearchParams-benchmark",
-                    // "VSC_OPEN": ""
+                    "EXT_SANDBOX": "probes/FileDecorationProvider/URLSearchParams-benchmark"
                 }
             },
             "problemMatcher": [
@@ -1121,8 +1171,7 @@
                 "cwd": "${workspaceFolder}",
                 "env": {
                     "OUT_DIR": "~out-probe",
-                    "EXT_SANDBOX": "probes/FileDecorationProvider/badge-render-scenarios",
-                    // "VSC_OPEN": ""
+                    "EXT_SANDBOX": "probes/FileDecorationProvider/badge-render-scenarios"
                 }
             },
             "problemMatcher": [
@@ -1181,7 +1230,7 @@
                     "OUT_DIR": "~out-probe",
                     "EXT_SANDBOX": "probes/Runtime/behavioral-study",
                     "VSC_PROFILE": "probes-Runtime-behavioral-study-single-folder",
-                    "VSC_OPEN": "probes/Runtime/behavioral-study/single-folder",
+                    "VSC_OPEN": "probes/Runtime/behavioral-study/single-folder"
                 }
             },
             "problemMatcher": [
@@ -1244,8 +1293,7 @@
                     "EXT_SANDBOX": "probes/task-shadowing/demonstration",
                     "VSC_OPEN": "probes/task-shadowing/multi-root-conflicts-between-scopes-s1/project.code-workspace:probes/task-shadowing/demonstration/task-shadowing.md",
                     "VSC_PROFILE": "probe-multi-root-conflicts-between-scopes-s1",
-                    "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace Tasks:trace",
-                    // "VSC_VERSION": "1.110.0"
+                    "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace Tasks:trace"
                 }
             },
             "problemMatcher": [
@@ -1276,8 +1324,7 @@
                     "EXT_SANDBOX": "probes/task-shadowing/demonstration",
                     "VSC_OPEN": "probes/task-shadowing/multi-root-conflicts-between-scopes-s2/project.code-workspace:probes/task-shadowing/demonstration/task-shadowing.md",
                     "VSC_PROFILE": "probe-multi-root-conflicts-between-scopes-s2",
-                    "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace Tasks:trace",
-                    // "VSC_VERSION": "1.110.0"
+                    "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace Tasks:trace"
                 }
             },
             "problemMatcher": [
@@ -1308,8 +1355,7 @@
                     "EXT_SANDBOX": "probes/task-shadowing/demonstration",
                     "VSC_OPEN": "probes/task-shadowing/multi-root-conflicts-between-scopes-s3/project.code-workspace:probes/task-shadowing/demonstration/task-shadowing.md",
                     "VSC_PROFILE": "probe-multi-root-conflicts-between-scopes-s3",
-                    "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace Tasks:trace",
-                    // "VSC_VERSION": "1.110.0"
+                    "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace Tasks:trace"
                 }
             },
             "problemMatcher": [
@@ -1340,8 +1386,7 @@
                     "EXT_SANDBOX": "probes/task-shadowing/demonstration",
                     "VSC_OPEN": "probes/task-shadowing/multi-root-conflicts-between-scopes-s4/project.code-workspace:probes/task-shadowing/demonstration/task-shadowing.md",
                     "VSC_PROFILE": "probe-multi-root-conflicts-between-scopes-s4",
-                    "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace Tasks:trace",
-                    // "VSC_VERSION": "1.110.0"
+                    "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace Tasks:trace"
                 }
             },
             "problemMatcher": [
@@ -1372,8 +1417,7 @@
                     "EXT_SANDBOX": "probes/task-shadowing/demonstration",
                     "VSC_OPEN": "probes/task-shadowing/multi-root-conflicts-between-scopes-s5/project.code-workspace:probes/task-shadowing/demonstration/task-shadowing.md",
                     "VSC_PROFILE": "probe-multi-root-conflicts-between-scopes-s5",
-                    "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace Tasks:trace",
-                    // "VSC_VERSION": "1.110.0"
+                    "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace Tasks:trace"
                 }
             },
             "problemMatcher": [
@@ -1404,8 +1448,7 @@
                     "EXT_SANDBOX": "probes/task-shadowing/demonstration",
                     "VSC_OPEN": "probes/task-shadowing/multi-root-conflicts-between-scopes-s6/project.code-workspace:probes/task-shadowing/demonstration/task-shadowing.md",
                     "VSC_PROFILE": "probe-multi-root-conflicts-between-scopes-s6",
-                    "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace Tasks:trace",
-                    // "VSC_VERSION": "1.110.0"
+                    "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace Tasks:trace"
                 }
             },
             "problemMatcher": [
@@ -1436,8 +1479,7 @@
                     "EXT_SANDBOX": "probes/task-shadowing/demonstration",
                     "VSC_OPEN": "probes/task-shadowing/multi-root-conflicts-between-scopes-s7/project.code-workspace:probes/task-shadowing/demonstration/task-shadowing.md",
                     "VSC_PROFILE": "probe-multi-root-conflicts-between-scopes-s7",
-                    "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace Tasks:trace",
-                    // "VSC_VERSION": "1.110.0"
+                    "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace Tasks:trace"
                 }
             },
             "problemMatcher": [
@@ -1468,8 +1510,7 @@
                     "EXT_SANDBOX": "probes/task-shadowing/demonstration",
                     "VSC_OPEN": "probes/task-shadowing/single-folder-conflicts-between-user-level:probes/task-shadowing/demonstration/task-shadowing.md",
                     "VSC_PROFILE": "probe-single-folder-conflicts-between-user-level",
-                    "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace Tasks:trace",
-                    // "VSC_VERSION": "1.110.0"
+                    "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace Tasks:trace"
                 }
             },
             "problemMatcher": [
@@ -1500,8 +1541,7 @@
                     "EXT_SANDBOX": "probes/task-shadowing/demonstration",
                     "VSC_OPEN": "probes/task-shadowing/single-folder-conflicts-within-single-scope:probes/task-shadowing/demonstration/task-shadowing.md",
                     "VSC_PROFILE": "probe-single-folder-conflicts-within-single-scope",
-                    "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace Tasks:trace",
-                    // "VSC_VERSION": "1.110.0"
+                    "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace Tasks:trace"
                 }
             },
             "problemMatcher": [
@@ -1564,8 +1604,7 @@
                     "EXT_SANDBOX": "probes/task-shadowing/behavioral-study",
                     "VSC_OPEN": "probes/task-shadowing/behavioral-study/multiroot-workspace/workspace.code-workspace",
                     "VSC_PROFILE": "probe-ResourceStateCoordinator-task-shadowing-behavior",
-                    "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace",
-                    // "VSC_VERSION": "1.111.0"
+                    "VSC_PARAM_LOG": "papio-dev.task-cockpit:trace"
                 }
             },
             "problemMatcher": [
@@ -1594,7 +1633,7 @@
                 "env": {
                     "OUT_DIR": "~out-probe",
                     "EXT_SANDBOX": "probes/vscode-tree-mutation",
-                    "VSC_PROFILE": "Task Cockpit Test",
+                    "VSC_PROFILE": "Task Cockpit Test"
                 }
             },
             "problemMatcher": [
@@ -1655,7 +1694,7 @@
                     "OUT_DIR": "~out-probe",
                     "EXT_SANDBOX": "probes/vscode-TreeDataProvider-reveal-behavior",
                     "VSC_OPEN": "probes/vscode-TreeDataProvider-reveal-behavior/prj",
-                    "VSC_PROFILE": "Task Cockpit Test",
+                    "VSC_PROFILE": "Task Cockpit Test"
                 }
             },
             "problemMatcher": [
@@ -1665,7 +1704,6 @@
                 }
             ]
         },
-        //---------------------------------------------------------------------------------------------------------------------------------------------------------
         {
             "label": "Test|PreTest|Clean/create '~out-test/'",
             "detail": "Ensure '~out-test' directory exists and is empty",
@@ -1674,7 +1712,7 @@
             },
             "type": "shell",
             "command": "mkdir -p \"./~out-test\" && find \"./~out-test\" -mindepth 1 -maxdepth 1 -exec gio trash -- {} +",
-            "problemMatcher": [],
+            "problemMatcher": []
         },
         {
             "label": "Test|Configuration",
@@ -1697,7 +1735,7 @@
                     "SUT_EXT": "src",
                     "SUT_TEST": "test/Configuration",
                     "TESTS": "*/*",
-                    "VSC_PROFILE": "test-Configuration",
+                    "VSC_PROFILE": "test-Configuration"
                 }
             },
             "problemMatcher": [
@@ -1737,8 +1775,8 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
-                },
+                    }
+                }
             ]
         },
         {
@@ -1762,7 +1800,7 @@
                     "SUT_EXT": "src",
                     "SUT_TEST": "test/FileDecorationProvider",
                     "TESTS": "*/*",
-                    "VSC_PROFILE": "test-FileDecorationProvider",
+                    "VSC_PROFILE": "test-FileDecorationProvider"
                 }
             },
             "problemMatcher": [
@@ -1802,8 +1840,8 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
-                },
+                    }
+                }
             ]
         },
         {
@@ -1827,7 +1865,7 @@
                     "SUT_EXT": "src",
                     "SUT_TEST": "test/HierarchyModel",
                     "TESTS": "*/*",
-                    "VSC_PROFILE": "Task Cockpit Test",
+                    "VSC_PROFILE": "Task Cockpit Test"
                 }
             },
             "problemMatcher": [
@@ -1867,8 +1905,8 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
-                },
+                    }
+                }
             ]
         },
         {
@@ -1933,8 +1971,8 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
-                },
+                    }
+                }
             ]
         },
         {
@@ -1958,7 +1996,7 @@
                     "SUT_EXT": "src",
                     "SUT_TEST": "test/Runtime",
                     "TESTS": "*/**/ProcessRegistry*",
-                    "VSC_PROFILE": "Task Cockpit Test",
+                    "VSC_PROFILE": "Task Cockpit Test"
                 }
             },
             "problemMatcher": [
@@ -1998,8 +2036,8 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
-                },
+                    }
+                }
             ]
         },
         {
@@ -2024,8 +2062,7 @@
                     "SUT_TEST": "test/Runtime",
                     "TESTS": "*/**/getTerminalProcessId*",
                     "VSC_PROFILE": "Task Cockpit Test",
-                    "MOCHA_SLOW": "5_000",
-                    // "VSC_VERSION": "1.131.0"
+                    "MOCHA_SLOW": "5_000"
                 }
             },
             "problemMatcher": [
@@ -2065,8 +2102,8 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
-                },
+                    }
+                }
             ]
         },
         {
@@ -2090,8 +2127,7 @@
                     "SUT_EXT": "src",
                     "SUT_TEST": "test/TasksSource",
                     "TESTS": "*/**/findTaskDefinitionRange*",
-                    "VSC_PROFILE": "Task Cockpit Test",
-                    // "VSC_VERSION": "1.131.0"
+                    "VSC_PROFILE": "Task Cockpit Test"
                 }
             },
             "problemMatcher": [
@@ -2131,8 +2167,8 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
-                },
+                    }
+                }
             ]
         },
         {
@@ -2156,8 +2192,7 @@
                     "SUT_EXT": "src",
                     "SUT_TEST": "test/TasksSource",
                     "TESTS": "*/**/openTaskDefinitionInEditor*",
-                    "VSC_PROFILE": "Task Cockpit Test",
-                    // "VSC_VERSION": "1.131.0"
+                    "VSC_PROFILE": "Task Cockpit Test"
                 }
             },
             "problemMatcher": [
@@ -2197,11 +2232,10 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
-                },
+                    }
+                }
             ]
         },
-        // -----------------------------------------------------------------------------------------------------------
         {
             "label": "Test|ResourceState|ResourceConfig|mapScopedConfig",
             "icon": {
@@ -2223,7 +2257,7 @@
                     "SUT_EXT": "src",
                     "SUT_TEST": "test/ResourceState/ResourceConfig/mapScopedConfig",
                     "TESTS": "*/*",
-                    "VSC_PROFILE": "test-ResourceState.ResourceConfig.mapScopedConfig",
+                    "VSC_PROFILE": "test-ResourceState.ResourceConfig.mapScopedConfig"
                 }
             },
             "problemMatcher": [
@@ -2263,8 +2297,8 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
-                },
+                    }
+                }
             ]
         },
         {
@@ -2288,7 +2322,7 @@
                     "SUT_EXT": "src",
                     "SUT_TEST": "test/ResourceState/ResourceStructure",
                     "TESTS": "*/*",
-                    "VSC_PROFILE": "Task Cockpit Test",
+                    "VSC_PROFILE": "Task Cockpit Test"
                 }
             },
             "problemMatcher": [
@@ -2328,8 +2362,8 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
-                },
+                    }
+                }
             ]
         },
         {
@@ -2353,7 +2387,7 @@
                     "SUT_EXT": "src",
                     "SUT_TEST": "test/ResourceState/TaskDefinition/mapTaskDefinitions",
                     "TESTS": "*/*",
-                    "VSC_PROFILE": "test-ResourceState.TaskDefinition.mapTaskDefinitions",
+                    "VSC_PROFILE": "test-ResourceState.TaskDefinition.mapTaskDefinitions"
                 }
             },
             "problemMatcher": [
@@ -2393,12 +2427,10 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
-                },
+                    }
+                }
             ]
         },
-        // -----------------------------------------------------------------------------------------------------------------------------------
-        // shadowing-behavior
         {
             "label": "Test|shadowing-behavior",
             "icon": {
@@ -2441,7 +2473,7 @@
                     "SUT_EXT": "src",
                     "SUT_TEST": "test/shadowing-behavior",
                     "TESTS": "multi-root-combined-shadowing-c1/*",
-                    "VSC_PROFILE": "test-multi-root-combined-shadowing-c1",
+                    "VSC_PROFILE": "test-multi-root-combined-shadowing-c1"
                 }
             },
             "problemMatcher": [
@@ -2481,8 +2513,8 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
-                },
+                    }
+                }
             ]
         },
         {
@@ -2506,7 +2538,7 @@
                     "SUT_EXT": "src",
                     "SUT_TEST": "test/shadowing-behavior",
                     "TESTS": "multi-root-combined-shadowing-c2/*",
-                    "VSC_PROFILE": "test-multi-root-combined-shadowing-c2",
+                    "VSC_PROFILE": "test-multi-root-combined-shadowing-c2"
                 }
             },
             "problemMatcher": [
@@ -2546,8 +2578,8 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
-                },
+                    }
+                }
             ]
         },
         {
@@ -2571,7 +2603,7 @@
                     "SUT_EXT": "src",
                     "SUT_TEST": "test/shadowing-behavior",
                     "TESTS": "multi-root-combined-shadowing-c3/*",
-                    "VSC_PROFILE": "test-multi-root-combined-shadowing-c3",
+                    "VSC_PROFILE": "test-multi-root-combined-shadowing-c3"
                 }
             },
             "problemMatcher": [
@@ -2611,8 +2643,8 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
-                },
+                    }
+                }
             ]
         },
         {
@@ -2636,7 +2668,7 @@
                     "SUT_EXT": "src",
                     "SUT_TEST": "test/shadowing-behavior",
                     "TESTS": "multi-root-conflicts-between-scopes-s1/*",
-                    "VSC_PROFILE": "test-multi-root-conflicts-between-scopes-s1",
+                    "VSC_PROFILE": "test-multi-root-conflicts-between-scopes-s1"
                 }
             },
             "problemMatcher": [
@@ -2676,8 +2708,8 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
-                },
+                    }
+                }
             ]
         },
         {
@@ -2701,7 +2733,7 @@
                     "SUT_EXT": "src",
                     "SUT_TEST": "test/shadowing-behavior",
                     "TESTS": "multi-root-conflicts-between-scopes-s2/*",
-                    "VSC_PROFILE": "test-multi-root-conflicts-between-scopes-s2",
+                    "VSC_PROFILE": "test-multi-root-conflicts-between-scopes-s2"
                 }
             },
             "problemMatcher": [
@@ -2741,8 +2773,8 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
-                },
+                    }
+                }
             ]
         },
         {
@@ -2766,7 +2798,7 @@
                     "SUT_EXT": "src",
                     "SUT_TEST": "test/shadowing-behavior",
                     "TESTS": "multi-root-conflicts-between-scopes-s3/*",
-                    "VSC_PROFILE": "test-multi-root-conflicts-between-scopes-s3",
+                    "VSC_PROFILE": "test-multi-root-conflicts-between-scopes-s3"
                 }
             },
             "problemMatcher": [
@@ -2806,8 +2838,8 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
-                },
+                    }
+                }
             ]
         },
         {
@@ -2831,7 +2863,7 @@
                     "SUT_EXT": "src",
                     "SUT_TEST": "test/shadowing-behavior",
                     "TESTS": "multi-root-conflicts-between-scopes-s4/*",
-                    "VSC_PROFILE": "test-multi-root-conflicts-between-scopes-s4",
+                    "VSC_PROFILE": "test-multi-root-conflicts-between-scopes-s4"
                 }
             },
             "problemMatcher": [
@@ -2871,8 +2903,8 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
-                },
+                    }
+                }
             ]
         },
         {
@@ -2896,7 +2928,7 @@
                     "SUT_EXT": "src",
                     "SUT_TEST": "test/shadowing-behavior",
                     "TESTS": "multi-root-conflicts-between-scopes-s5/*",
-                    "VSC_PROFILE": "test-multi-root-conflicts-between-scopes-s5",
+                    "VSC_PROFILE": "test-multi-root-conflicts-between-scopes-s5"
                 }
             },
             "problemMatcher": [
@@ -2936,8 +2968,8 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
-                },
+                    }
+                }
             ]
         },
         {
@@ -2961,7 +2993,7 @@
                     "SUT_EXT": "src",
                     "SUT_TEST": "test/shadowing-behavior",
                     "TESTS": "multi-root-conflicts-between-scopes-s6/*",
-                    "VSC_PROFILE": "test-multi-root-conflicts-between-scopes-s6",
+                    "VSC_PROFILE": "test-multi-root-conflicts-between-scopes-s6"
                 }
             },
             "problemMatcher": [
@@ -3001,8 +3033,8 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
-                },
+                    }
+                }
             ]
         },
         {
@@ -3026,7 +3058,7 @@
                     "SUT_EXT": "src",
                     "SUT_TEST": "test/shadowing-behavior",
                     "TESTS": "multi-root-conflicts-between-scopes-s7/*",
-                    "VSC_PROFILE": "test-multi-root-conflicts-between-scopes-s7",
+                    "VSC_PROFILE": "test-multi-root-conflicts-between-scopes-s7"
                 }
             },
             "problemMatcher": [
@@ -3066,8 +3098,8 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
-                },
+                    }
+                }
             ]
         },
         {
@@ -3091,7 +3123,7 @@
                     "SUT_EXT": "src",
                     "SUT_TEST": "test/shadowing-behavior",
                     "TESTS": "single-folder-conflicts-between-user-level/*",
-                    "VSC_PROFILE": "test-single-folder-conflicts-between-user-level",
+                    "VSC_PROFILE": "test-single-folder-conflicts-between-user-level"
                 }
             },
             "problemMatcher": [
@@ -3131,8 +3163,8 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
-                },
+                    }
+                }
             ]
         },
         {
@@ -3156,7 +3188,7 @@
                     "SUT_EXT": "src",
                     "SUT_TEST": "test/shadowing-behavior",
                     "TESTS": "single-folder-conflicts-within-single-scope/*",
-                    "VSC_PROFILE": "test-single-folder-conflicts-within-single-scope",
+                    "VSC_PROFILE": "test-single-folder-conflicts-within-single-scope"
                 }
             },
             "problemMatcher": [
@@ -3196,11 +3228,10 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
-                },
+                    }
+                }
             ]
         },
-        // ------------------------------------------------------------------------------------------------------------------------------------
         {
             "label": "Test|units",
             "icon": {
@@ -3222,7 +3253,7 @@
                     "SUT_EXT": "src",
                     "SUT_TEST": "test/units",
                     "TESTS": "*/*",
-                    "VSC_PROFILE": "Task Cockpit Test",
+                    "VSC_PROFILE": "Task Cockpit Test"
                 }
             },
             "problemMatcher": [
@@ -3262,16 +3293,11 @@
                         "file": 1,
                         "line": 2,
                         "column": 3
-                    },
+                    }
                 }
             ]
         },
-        //---------------------------------------------------------------------------------------------------------------------------------------------------------
-        // {
-        //     "label": "action-run-task",
-        //     "type": "process",
-        //     "command": "${input:action-run-task}",
-        // }
+
     ],
     // ============================================================================================
     // "inputs": [

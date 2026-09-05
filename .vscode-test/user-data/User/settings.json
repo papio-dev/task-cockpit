@@ -11,4 +11,5 @@
     "git.openRepositoryInParentFolders": "never",
     "workbench.secondarySideBar.defaultVisibility": "hidden",
     "workbench.colorTheme": "Visual Studio Light",
+    "window.menuBarVisibility": "compact",
 }

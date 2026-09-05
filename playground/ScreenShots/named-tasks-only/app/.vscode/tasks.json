@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Make", // User-defined task — shown
+        "type": "shell",
+        "command": "make"
+      },
+      {
+        "label": "npm: install", // Provider task, label matches auto-generated name — shown
+        "type": "npm",
+        "script": "install"
+      },
+      {
+        "label": "dev", // Renamed provider task — shown
+        "type": "npm",
+        "script": "watch"
+      },
+      {
+        "type": "npm", // Provider task without a label — not shown
+        "script": "test",
+        "group": "test"
+      }
+    ]
+  }

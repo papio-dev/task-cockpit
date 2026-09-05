@@ -71,9 +71,7 @@
 
 	"cSpell.ignoreRandomStrings": false,
 	"cSpell.language": "en,ru",
-	"markdown.styles": [
-		".vscode/markdown.css"
-	],
+	"markdown.styles": [],
 	"markdown.validate.enabled": true,
 
 	"taskCockpit.display.defaultIconName": "target",
@@ -83,7 +81,9 @@
 	"codeium.enableCodeLens": "hide_x",
 	"cSpell.words": [
 		"снапшоте"
-	],
+    ],
+    "taskCockpit.display.groupByTaskGroup": false,
+    "taskCockpit.display.useFolderIcon": false,
 
 
 	//=============================================================================

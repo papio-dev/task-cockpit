@@ -1,0 +1,35 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "deploy to staging",
+            "icon": { "id": "rocket", "color": "terminal.ansiCyan" },
+            "type": "shell",
+            "command": "true"
+        },
+        {
+            "label": "format & lint",
+            "icon": { "id": "paintcan", "color": "terminal.ansiMagenta" },
+            "type": "shell",
+            "command": "true"
+        },
+        {
+            "label": "seed database",
+            "icon": { "id": "database", "color": "terminal.ansiGreen" },
+            "type": "shell",
+            "command": "true"
+        },
+        {
+            "label": "watch & reload",
+            "icon": { "id": "refresh", "color": "terminal.ansiYellow" },
+            "type": "shell",
+            "command": "true"
+        },
+        {
+            "label": "generate docs",
+            "icon": { "id": "book", "color": "terminal.ansiBlue" },
+            "type": "shell",
+            "command": "true"
+        }
+    ]
+}

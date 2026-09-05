@@ -1,0 +1,10 @@
+{
+    "folders": [
+        {
+            "path": "MyApp"
+        }
+    ],
+    "settings": {
+        "taskCockpit.display.groupByTaskGroup": true
+    }
+}

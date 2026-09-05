@@ -85,7 +85,14 @@ function resolveRunnableElementWithGuard(
 }
 
 
-function create(context: ExtensionContext, services: Readonly<Services>, logOutputChannel: LogOutputChannel) {
+function create(
+    context: ExtensionContext,
+    services: Readonly<Services>,
+    logOutputChannel: LogOutputChannel
+): Readonly<Record<
+    CommandKey,
+    (...args: never[]) => unknown
+>> {
 
 
     const taskLaunchQueue = createTaskLaunchQueue(logOutputChannel);
@@ -364,7 +371,7 @@ function create(context: ExtensionContext, services: Readonly<Services>, logOutp
         },
 
         async [EXTENSION.COMMAND.OPEN_HELP_PAGE.ID]() {
-            const version = context.extension.packageJSON['version'] as string;
+            const { version } = context.extension.packageJSON as { version?: string; };
             try {
                 await commands.executeCommand('vscode.open', Uri.from({
                     scheme: 'https',
@@ -379,7 +386,7 @@ function create(context: ExtensionContext, services: Readonly<Services>, logOutp
             }
         }
 
-    } satisfies Record<CommandKey, (...args: any[]) => unknown>;
+    };
 
 }
 

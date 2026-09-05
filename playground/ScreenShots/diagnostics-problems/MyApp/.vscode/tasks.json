@@ -1,0 +1,34 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+        "label": "My Task",
+        "type": "shell",
+        "command": "echo Hello",
+        "problemMatcher": []
+    },
+    {
+        "label": "New Task",
+        "type": "shell",
+        "command": "echo Hello",
+        "problemMatcher": []
+    },
+    {
+        "label": "New Task",
+        "type": "shell",
+        "command": "echo Hello",
+        "problemMatcher": []
+    },
+    {
+        "label": "Other Task",
+        "dependsOn": [
+            "My Task",
+            "New Task",
+            "Missing Task"
+        ],
+        "type": "shell",
+        "command": "echo Hello",
+        "problemMatcher": []
+    }
+  ]
+}

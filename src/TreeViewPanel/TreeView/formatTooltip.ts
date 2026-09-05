@@ -30,8 +30,18 @@ function formatTooltip(
             ? `<tr><td><b>${escapeHtml(label)}</b></td></tr>`
             : '';
 
+    const firstLine = detail
+        ?.split('\n')
+        .map(line => line.trim())
+        .find(line => line.length > 0);
+
+    const widthTag =
+        (firstLine?.length ?? 0) > 42
+            ? 'width="100%"'
+            : 'width="237"';
+
     if (titleRow || labelRow) {
-        tooltipMd.appendMarkdown(`<table width="237">${titleRow}${labelRow}</table>`);
+        tooltipMd.appendMarkdown(`<table ${widthTag}>${titleRow}${labelRow}</table>`);
     }
 
     tooltipMd.appendMarkdown(detail ? `\n\n${escapeHtml(detail)}` : '');

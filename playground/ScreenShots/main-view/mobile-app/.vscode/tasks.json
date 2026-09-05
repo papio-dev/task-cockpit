@@ -1,0 +1,58 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+
+        {
+            "label": "android",
+            "dependsOn": "android:build",
+            "icon": {
+                "id": "device-mobile",
+                "color": "terminal.ansiBlue"
+            }
+        },
+        {
+            "label": "android:build",
+            "type": "shell",
+            "command": "echo android build",
+            "detail": "Android production build\n\n- Gradle assembleRelease\n- Sign APK\n- Optimize resources",
+            "icon": {
+                "id": "package"
+            }
+        },
+        {
+            "label": "android:test",
+            "type": "shell",
+            "command": "echo android test",
+            "detail": "Android test suite\n\n- Unit tests (JUnit)\n- Instrumented tests\n- Coverage report",
+            "icon": {
+                "id": "beaker"
+            }
+        },
+        {
+            "label": "ios",
+            "dependsOn": "ios:build",
+            "icon": {
+                "id": "device-mobile",
+                "color": "terminal.ansiRed"
+            }
+        },
+        {
+            "label": "ios:build",
+            "type": "shell",
+            "command": "echo ios build",
+            "detail": "iOS production build\n\n- Xcode archive\n- Sign IPA\n- App Store ready",
+            "icon": {
+                "id": "package"
+            }
+        },
+        {
+            "label": "ios:test",
+            "type": "shell",
+            "command": "echo ios test",
+            "detail": "iOS test suite\n\n- XCTest unit tests\n- UI tests\n- Coverage report",
+            "icon": {
+                "id": "beaker"
+            }
+        }
+    ]
+}

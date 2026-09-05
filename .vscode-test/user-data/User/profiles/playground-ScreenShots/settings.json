@@ -1,0 +1,15 @@
+{
+    "workbench.tree.enableStickyScroll": false,
+    "workbench.tree.indent": 18,
+    "window.commandCenter": false,
+    "window.title": "Task Cockpit Demo",
+    "git.autoRepositoryDetection": false,
+    "taskCockpit.display.segmentSeparator": ":",
+    "editor.renderLineHighlight": "none",
+    "editor.guides.bracketPairs": "active",
+    "editor.guides.highlightActiveIndentation": false,
+    "editor.guides.indentation": false,
+    "editor.guides.highlightActiveBracketPair": false,
+    "editor.minimap.enabled": false,
+    "workbench.tree.renderIndentGuides": "always",
+}

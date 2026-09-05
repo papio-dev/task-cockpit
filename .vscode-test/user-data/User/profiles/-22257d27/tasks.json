@@ -1,20 +1,33 @@
 {
     "version": "2.0.0",
     "tasks": [
-        {
-            "label": "hhh:echo",
-            "type": "shell",
-            "command": "echo Hello"
-        },
-        {
-            "label": "<b>AAAA</b>",
-            "detail": "<span style=\"color:red\">Your text here</span>\n\n\naaaa\n\n-----\n\npppp",
-            "type": "shell",
-            "command": "sleep 66 ; echo AAAAAAAAAAAAAAAAAAAAAAAA"
-        },
-        {
-            "label": "BBB77",
-
-        }
+      {
+        "label": "git:status",
+        "type": "shell",
+        "command": "git status",
+        "detail": "Quick repo overview\n\n- Staged changes\n- Untracked files\n- Branch info",
+        "icon": { "id": "source-control", "color": "terminal.ansiBlue" }
+      },
+      {
+        "label": "git:push",
+        "type": "shell",
+        "command": "git push",
+        "detail": "Push current branch\n\n- Upstream: origin\n- Current branch only\n- No force push",
+        "icon": { "id": "arrow-up", "color": "terminal.ansiGreen" }
+      },
+      {
+        "label": "sys:free space",
+        "type": "shell",
+        "command": "df -h",
+        "detail": "Disk usage overview\n\n- Human-readable sizes\n- All mounted filesystems",
+        "icon": { "id": "database", "color": "terminal.ansiYellow" }
+      },
+      {
+        "label": "sys:ports",
+        "type": "shell",
+        "command": "ss -tulpn",
+        "detail": "Active listening ports\n\n- TCP & UDP\n- Process names\n- Numeric output",
+        "icon": { "id": "plug", "color": "terminal.ansiCyan" }
+      }
     ]
-}
+  }

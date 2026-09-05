@@ -196,34 +196,34 @@ export const CONFIG_SECTION = 'taskCockpit';
 
 export const SETTING = {
   DECORATOR: {
-    AVAILABLE_SYMBOL                /**/: `${CONFIG_SECTION}.decorator.availableSymbol`,
-    BADGE_ORDER                     /**/: `${CONFIG_SECTION}.decorator.badgeOrder`,
-    OVERFLOW_SYMBOL                 /**/: `${CONFIG_SECTION}.decorator.overflowSymbol`,
-    RUNNING_SYMBOL                  /**/: `${CONFIG_SECTION}.decorator.runningSymbol`
+    AVAILABLE_SYMBOL          /**/: `${CONFIG_SECTION}.decorator.availableSymbol`,
+    BADGE_ORDER               /**/: `${CONFIG_SECTION}.decorator.badgeOrder`,
+    OVERFLOW_SYMBOL           /**/: `${CONFIG_SECTION}.decorator.overflowSymbol`,
+    RUNNING_SYMBOL            /**/: `${CONFIG_SECTION}.decorator.runningSymbol`
   },
   DISPLAY: {
-    DEFAULT_ICON_NAME               /**/: `${CONFIG_SECTION}.display.defaultIconName`,
-    GROUP_BY_TASK_GROUP             /**/: `${CONFIG_SECTION}.display.groupByTaskGroup`,
-    SEGMENT_SEPARATOR               /**/: `${CONFIG_SECTION}.display.segmentSeparator`,
-    TINT_LABEL                      /**/: `${CONFIG_SECTION}.display.tintLabel`,
-    USE_FOLDER_ICON                 /**/: `${CONFIG_SECTION}.display.useFolderIcon`
+    DEFAULT_ICON_NAME         /**/: `${CONFIG_SECTION}.display.defaultIconName`,
+    GROUP_BY_TASK_GROUP       /**/: `${CONFIG_SECTION}.display.groupByTaskGroup`,
+    SEGMENT_SEPARATOR         /**/: `${CONFIG_SECTION}.display.segmentSeparator`,
+    TINT_LABEL                /**/: `${CONFIG_SECTION}.display.tintLabel`,
+    USE_FOLDER_ICON           /**/: `${CONFIG_SECTION}.display.useFolderIcon`
   },
   FILTERING: {
-    EXCLUDE_FOLDERS                 /**/: `${CONFIG_SECTION}.filtering.excludeFolders`,
-    SHOW_HIDDEN                     /**/: `${CONFIG_SECTION}.filtering.showHidden`,
-    SHOW_GLOBAL_TASKS               /**/: `${CONFIG_SECTION}.filtering.showUserLevelTasks`
+    EXCLUDE_FOLDERS           /**/: `${CONFIG_SECTION}.filtering.excludeFolders`,
+    SHOW_HIDDEN               /**/: `${CONFIG_SECTION}.filtering.showHidden`,
+    SHOW_GLOBAL_TASKS         /**/: `${CONFIG_SECTION}.filtering.showUserLevelTasks`
   },
   PROCESS_MONITOR: {
-    POLLING_ACCEL                   /**/: `${CONFIG_SECTION}.processMonitor.polling.acceleration`,
-    POLLING_CAP                     /**/: `${CONFIG_SECTION}.processMonitor.polling.cap`,
-    POLLING_MIN                     /**/: `${CONFIG_SECTION}.processMonitor.polling.min`
+    POLLING_ACCEL             /**/: `${CONFIG_SECTION}.processMonitor.polling.acceleration`,
+    POLLING_CAP               /**/: `${CONFIG_SECTION}.processMonitor.polling.cap`,
+    POLLING_MIN               /**/: `${CONFIG_SECTION}.processMonitor.polling.min`
   },
   TERMINALS: {
-    TIMEOUT                         /**/: `${CONFIG_SECTION}.terminals.timeout`
+    TIMEOUT                    /**/: `${CONFIG_SECTION}.terminals.timeout`
   },
   DIAGNOSTICS: {
-    SHADOWED_TASKS                  /**/: `${CONFIG_SECTION}.diagnostics.shadowedTasks`,
-    UNREACHABLE_DEPENDENCIES        /**/: `${CONFIG_SECTION}.diagnostics.unreachableDependencies`
+    SHADOWED_TASKS             /**/: `${CONFIG_SECTION}.diagnostics.shadowedTasks`,
+    UNREACHABLE_DEPENDENCIES   /**/: `${CONFIG_SECTION}.diagnostics.unreachableDependencies`
   }
 
 } as const;

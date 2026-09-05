@@ -2,5 +2,6 @@
     "taskCockpit.display.segmentSeparator": ":",
     "task.problemMatchers.neverPrompt": {
         "shell": true
-    }
+    },
+    "taskCockpit.display.useFolderIcon": true
 }

@@ -1,0 +1,35 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Make it",
+      "type": "shell",
+      "command": "echo All steps done",
+      "dependsOn": [
+        "Make it:Step 1",
+        "Make it:Step 2",
+        "Make it:Step 3"
+      ],
+      "detail": "Composite task with multiple dependencies",
+      "icon": { "id": "rocket", "color": "terminal.ansiMagenta" }
+    },
+    {
+      "label": "Make it:Step 1",
+      "type": "shell",
+      "command": "echo Step 1 done",
+      "icon": { "id": "check", "color": "terminal.ansiGreen" }
+    },
+    {
+      "label": "Make it:Step 2",
+      "type": "shell",
+      "command": "echo Step 2 done",
+      "icon": { "id": "play", "color": "terminal.ansiBlue" }
+    },
+    {
+      "label": "Make it:Step 3",
+      "type": "shell",
+      "command": "echo Step 3 done",
+      "icon": { "id": "package", "color": "terminal.ansiBlue" }
+    }
+  ]
+}

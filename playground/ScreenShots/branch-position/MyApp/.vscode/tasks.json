@@ -1,0 +1,61 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+      {
+          "label": "alpha",
+          "type": "shell",
+          "command": "echo alpha",
+          "group": "build",
+          "presentation": { "reveal": "silent" },
+          "problemMatcher": []
+      },
+      {
+          "label": "beta",
+          "type": "shell",
+          "command": "echo beta",
+          "group": "build",
+          "presentation": { "reveal": "silent" },
+          "problemMatcher": []
+      },
+      {
+          "label": "root:work:task", // branch created here
+          "type": "shell",
+          "command": "echo task",
+          "group": "build",
+          "presentation": { "reveal": "silent" },
+          "problemMatcher": []
+      },
+      {
+          "label": "gamma",
+          "type": "shell",
+          "command": "echo gamma",
+          "group": "build",
+          "presentation": { "reveal": "silent" },
+          "problemMatcher": []
+      },
+      {
+          "label": "root:work:task:depends",
+          "type": "shell",
+          "command": "echo depends",
+          "group": "build",
+          "presentation": { "reveal": "silent" },
+          "problemMatcher": []
+      },
+      {
+          "label": "root", // root — but branch position already set
+          "type": "shell",
+          "command": "echo root",
+          "group": "build",
+          "presentation": { "reveal": "silent" },
+          "problemMatcher": []
+      },
+      {
+          "label": "delta",
+          "type": "shell",
+          "command": "echo delta",
+          "group": "build",
+          "presentation": { "reveal": "silent" },
+          "problemMatcher": []
+      }
+  ]
+}
