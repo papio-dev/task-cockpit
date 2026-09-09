@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.2.0] - 2026-??-??
+## [1.2.0] - 2026-09-15
 
 > ⚠️ This release contains breaking changes.
 > Several setting keys and command IDs have been renamed or removed —

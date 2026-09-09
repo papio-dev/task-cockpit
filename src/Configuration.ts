@@ -114,17 +114,13 @@ function isSpec(entry: unknown): entry is Spec {
 
 type ConfigSchema<S> = Configuration.ConfigSchema<S>;
 
-interface SchemaType {
-    [k: string]: string | number | boolean | Set<string>;
-}
-
 
 /** Валидирует структуру самой схемы дескрипторов.
  * Вызывает `assert`, если дескрипторы настроены противоречиво (например, fallback не входит в min/max).
  *
  * @param schema Объект схемы.
  * @throws { AssertionError } Если схема содержит логические ошибки. */
-function createSchema<Schema extends SchemaType>(schema: ConfigSchema<Schema>): ConfigSchema<Schema> {
+function createSchema<Schema extends object>(schema: ConfigSchema<Schema>): ConfigSchema<Schema> {
 
     function walkSchema(entry: unknown, path: string[] = []) {
 
@@ -386,7 +382,7 @@ function resolveFieldValue(
 // ---------------------------------------------------------------------------------------------
 
 
-function coerce<Schema extends SchemaType>(
+function coerce<Schema extends object>(
     configObj: WorkspaceConfiguration,
     schema: ConfigSchema<Schema>,
     isolated?: IsolationMode
