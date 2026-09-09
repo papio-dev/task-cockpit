@@ -1865,11 +1865,11 @@
         "lastActiveWindow": {
             "folder": "file:///home/lumen/Projects/Task%20Cockpit/fixtures/KeyBindings",
             "uiState": {
-                "mode": 0,
-                "x": 0,
-                "y": 32,
-                "width": 1920,
-                "height": 1048
+                "mode": 1,
+                "x": 448,
+                "y": 172,
+                "width": 1024,
+                "height": 768
             }
         },
         "openedWindows": []
