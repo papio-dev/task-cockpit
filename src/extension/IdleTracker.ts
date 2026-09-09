@@ -1,3 +1,4 @@
+/** @file extension/IdleTracker.ts */
 
 import {
     EventEmitter

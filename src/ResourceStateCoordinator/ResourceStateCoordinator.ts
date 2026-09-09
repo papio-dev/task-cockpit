@@ -676,10 +676,10 @@ class ResourceStateCoordinator implements Disposable {
         if (this.#phase !== capturedPhase) {
             // Могли перейти в dispose, или нас обогнали:
             // результат нашей работы уже никому не нужен — отбрасываем
-
+            const currentPhase = this.#phase as Phase; // явная аннотация разрывает narrowing, иначе currentPhase: never
             const reason =
-                typeof this.#phase === 'string'
-                    ? `phase changed to '${this.#phase}'`
+                typeof currentPhase === 'string'
+                    ? `phase changed to '${currentPhase}'`
                     : 'newer update cycle started';
             this.#logOutputChannel.trace(`[${this.constructor.name}#performUpdate]: stale — ${reason}, discarding results`);
             return;

@@ -1,3 +1,5 @@
+/** @file ResourceStateCoordinator/EligibleTask/lookupTaskOrigin.ts */
+
 import { TaskScope } from 'vscode';
 import OriginKey from '../../OriginKey';
 

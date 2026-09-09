@@ -1,3 +1,5 @@
+/** @file TreeViewPanel/TreeView/Element/Element.ts */
+
 import type Immutable from '../../../utils/Immutable';
 import EmptyElement from './EmptyElement';
 import IntermediateElement from './IntermediateElement';

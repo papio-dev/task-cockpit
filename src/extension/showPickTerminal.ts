@@ -1,3 +1,5 @@
+/** @file extension/showPickTerminal.ts */
+
 import {
     env,
     ThemeIcon,

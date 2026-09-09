@@ -1,3 +1,5 @@
+/** @file extension/Services.ts */
+
 import {
     commands,
     Disposable,

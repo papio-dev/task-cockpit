@@ -1,3 +1,5 @@
+/** @file extension/LogOutputChannel.ts */
+
 import { LogLevel, window, type LogOutputChannel as VscLogOutputChannel, type Event } from 'vscode';
 
 interface LogOutputChannel {
