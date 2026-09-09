@@ -85,19 +85,19 @@ suite('Shadowing behavior', function () {
             suiteSetup(function () {
 
                 taskInUser = fixture.availableKeys.userKey
-                    ? fixture.taskDefinitions.get(fixture.availableKeys.userKey)?.get(fixture.testedTaskName)
+                    ? fixture.taskDefinitionMap.get(fixture.availableKeys.userKey)?.get(fixture.testedTaskName)
                     : undefined;
 
                 taskInWorkspace = fixture.availableKeys.workspaceKey
-                    ? fixture.taskDefinitions.get(fixture.availableKeys.workspaceKey)?.get(fixture.testedTaskName)
+                    ? fixture.taskDefinitionMap.get(fixture.availableKeys.workspaceKey)?.get(fixture.testedTaskName)
                     : undefined;
 
                 taskInPrima = fixture.availableKeys.primaKey
-                    ? fixture.taskDefinitions.get(fixture.availableKeys.primaKey)?.get(fixture.testedTaskName)
+                    ? fixture.taskDefinitionMap.get(fixture.availableKeys.primaKey)?.get(fixture.testedTaskName)
                     : undefined;
 
                 taskInFolder2 = fixture.availableKeys.folder2Key
-                    ? fixture.taskDefinitions.get(fixture.availableKeys.folder2Key)?.get(fixture.testedTaskName)
+                    ? fixture.taskDefinitionMap.get(fixture.availableKeys.folder2Key)?.get(fixture.testedTaskName)
                     : undefined;
             });
 
@@ -131,21 +131,21 @@ suite('Shadowing behavior', function () {
 
         suiteSetup(function () {
 
-            taskInUser = fixture.eligibleTasks.get(fixture.availableKeys.userKey)?.get(fixture.testedTaskName);
+            taskInUser = fixture.eligibleTaskMap.get(fixture.availableKeys.userKey)?.get(fixture.testedTaskName);
 
             taskInWorkspace =
                 fixture.availableKeys.workspaceKey
-                    ? fixture.eligibleTasks.get(fixture.availableKeys.workspaceKey)?.get(fixture.testedTaskName)
+                    ? fixture.eligibleTaskMap.get(fixture.availableKeys.workspaceKey)?.get(fixture.testedTaskName)
                     : undefined;
 
             taskInPrima =
                 fixture.availableKeys.primaKey
-                    ? fixture.eligibleTasks.get(fixture.availableKeys.primaKey)?.get(fixture.testedTaskName)
+                    ? fixture.eligibleTaskMap.get(fixture.availableKeys.primaKey)?.get(fixture.testedTaskName)
                     : undefined;
 
             taskInFolder2 =
                 fixture.availableKeys.folder2Key
-                    ? fixture.eligibleTasks.get(fixture.availableKeys.folder2Key)?.get(fixture.testedTaskName)
+                    ? fixture.eligibleTaskMap.get(fixture.availableKeys.folder2Key)?.get(fixture.testedTaskName)
                     : undefined;
 
         });

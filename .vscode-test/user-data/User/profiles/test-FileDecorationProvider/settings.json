@@ -2,5 +2,9 @@
     "taskCockpit.display.badges.runningSymbol": "●",
     "taskCockpit.display.badges.overflowSymbol": "+",
     "taskCockpit.display.badges.badgeOrder": "symbolFirst",
-    "taskCockpit.display.badges.availableSymbol": "•"
+    "taskCockpit.display.badges.availableSymbol": "•",
+    "taskCockpit.decorator.runningSymbol": "●",
+    "taskCockpit.decorator.badgeOrder": "symbolFirst",
+    "taskCockpit.decorator.availableSymbol": "•",
+    "taskCockpit.decorator.overflowSymbol": "+"
 }

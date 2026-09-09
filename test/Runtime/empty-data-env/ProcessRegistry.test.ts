@@ -9,6 +9,7 @@ import type TaskName from '../../../src/TaskName';
 import type RequestId from '../../../src/Runtime/RequestId';
 import type Immutable from '../../../src/utils/Immutable';
 import TaskProcessRegistry from '../../../src/Runtime/TaskProcessRegistry';
+import LogOutputChannel from '../../../src/extension/LogOutputChannel';
 
 
 function hashDjb2(s: string): number {
@@ -42,11 +43,21 @@ const mono = () => ++_mono as RequestId;
 
 suite('ProcessRegistry', function () {
 
+    let logOutputChannel: LogOutputChannel;
+    suiteSetup(function () {
+        logOutputChannel = LogOutputChannel.createLogger('ProcessRegistry.test');
+    });
+
+    suiteTeardown(function () {
+        logOutputChannel.dispose();
+    });
+
+
     let registry: TaskProcessRegistry;
     let disposables: Disposable[];
 
     setup(function () {
-        registry = new TaskProcessRegistry();
+        registry = new TaskProcessRegistry(logOutputChannel);
         disposables = [registry];
     });
 
@@ -113,10 +124,10 @@ suite('ProcessRegistry', function () {
             assert.equal(registry.getTaskProcessStates(...p.taskId())?.get(p.pid)?.running, false);
         });
 
-        test(`${/*++N*/'006'/**/} незарегистрированный процесс — ошибка`, function () {
-            assert.throws(() => {
+        test(`${/*++N*/'006'/**/} незарегистрированный процесс — НЕ ошибка`, function () {
+            assert.doesNotThrow(() => {
                 registry.markCompleted(mono(), new Set([producePid('ghost')]));
-            }, /* @todo */);
+            });
         });
 
         test(`${/*++N*/'007'/**/} только указанные процессы переходят в completed`, function () {
@@ -290,13 +301,13 @@ suite('ProcessRegistry', function () {
             assert.ok(registry.getTaskProcessStates(...p.taskId())?.get(p.pid));
         });
 
-        test(`${/*++N*/'021'/**/} markCompleted после reconcile — ошибка`, function () {
+        test(`${/*++N*/'021'/**/} markCompleted после reconcile — НЕ ошибка`, function () {
             const p = tp('ws', 't1', 'p1');
             registry.register(...p.args(mono()));
             registry.reconcile(mono(), new Set());
-            assert.throws(() => {
+            assert.doesNotThrow(() => {
                 registry.markCompleted(mono(), new Set([p.pid]));
-            }, /* @todo */);
+            });
         });
 
     });

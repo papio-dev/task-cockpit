@@ -67,10 +67,10 @@ suite('Shadowing behavior', function () {
 
             suiteSetup(function () {
 
-                taskInUser = fixture.taskDefinitions.get(fixture.availableKeys.userKey)?.get(fixture.testedTaskName);
+                taskInUser = fixture.taskDefinitionMap.get(fixture.availableKeys.userKey)?.get(fixture.testedTaskName);
 
                 taskInPrima = fixture.availableKeys.primaKey
-                    ? fixture.taskDefinitions.get(fixture.availableKeys.primaKey)?.get(fixture.testedTaskName)
+                    ? fixture.taskDefinitionMap.get(fixture.availableKeys.primaKey)?.get(fixture.testedTaskName)
                     : undefined;
 
                 // single-folder
@@ -114,10 +114,10 @@ suite('Shadowing behavior', function () {
 
             suiteSetup(function () {
 
-                taskInUser = fixture.eligibleTasks.get(fixture.availableKeys.userKey)?.get(fixture.testedTaskName);
+                taskInUser = fixture.eligibleTaskMap.get(fixture.availableKeys.userKey)?.get(fixture.testedTaskName);
 
                 taskInPrima = fixture.availableKeys.primaKey
-                    ? fixture.eligibleTasks.get(fixture.availableKeys.primaKey)?.get(fixture.testedTaskName)
+                    ? fixture.eligibleTaskMap.get(fixture.availableKeys.primaKey)?.get(fixture.testedTaskName)
                     : undefined;
 
                 // single-folder

@@ -1,10 +1,20 @@
 import * as assert from 'assert';
 import AsyncQueue from '../../../src/utils/AsyncQueue';
+import LogOutputChannel from '../../../src/extension/LogOutputChannel';
 
 
 // `${/*N=0*/'000'/**/}`
 
 suite('Unit', function () {
+
+    let logOutputChannel: LogOutputChannel;
+    suiteSetup(function () {
+        logOutputChannel = LogOutputChannel.createLogger('AsyncQueue.test');
+    });
+
+    suiteTeardown(function () {
+        logOutputChannel.dispose();
+    });
 
     suite('utils', function () {
 
@@ -13,7 +23,7 @@ suite('Unit', function () {
             let queue: AsyncQueue;
 
             setup(() => {
-                queue = AsyncQueue.create();
+                queue = AsyncQueue.create(logOutputChannel);
             });
 
             test(`${/*++N*/'001'/**/} выполняет операции последовательно`, async function () {

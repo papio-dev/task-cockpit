@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import ProjectLayout from '../../src/ResourceStateCoordinator/ResourceStructure';
 import assert from 'node:assert/strict';
 import groupTaskDefinitions from '../../src/ResourceStateCoordinator/TaskDefinition/groupTaskDefinitions';
+import groupEligibleTasks from '../../src/ResourceStateCoordinator/EligibleTask/groupEligibleTasks';
 import type TaskName from '../../src/TaskName';
 import type Immutable from '../../src/utils/Immutable';
 import OriginKey from '../../src/OriginKey';
@@ -11,8 +12,8 @@ import type EligibleTasksMap from '../../src/ResourceStateCoordinator/EligibleTa
 
 
 interface IFixture {
-    taskDefinitions: Immutable<Map<OriginKey, TaskDefinitionMap>>;
-    eligibleTasks: Immutable<Map<OriginKey, EligibleTasksMap>>;
+    taskDefinitionMap: Immutable<Map<OriginKey, TaskDefinitionMap>>;
+    eligibleTaskMap: Immutable<Map<OriginKey, EligibleTasksMap>>;
     availableKeys: {
         userKey: OriginKey.User,
         workspaceKey: OriginKey.Workspace | undefined,
@@ -26,14 +27,14 @@ interface IFixture {
 export async function activate(context: vscode.ExtensionContext): Promise<Immutable<IFixture>> {
 
 
-    const scopeLayout = ProjectLayout.getLayout();
-    const [primaKey, folder2Key] = scopeLayout.folders?.map(f => f.key) ?? [undefined, undefined];
+    const scopeLayout = ProjectLayout.build();
+    const [primaKey, folder2Key] = scopeLayout.folders?.map(f => f.originKey) ?? [undefined, undefined];
 
-    const taskDefinitions = groupTaskDefinitions(scopeLayout);
+    const taskDefinitionMap = groupTaskDefinitions(scopeLayout);
 
-    const fetchedTasks = await vscode.tasks.fetchTasks();
+    const eligibleTasks = await EligibleTask.fetchTasks();
 
-    const eligibleTasks = EligibleTask.mapEligibleTasks(fetchedTasks, taskDefinitions);
+    const eligibleTaskMap = groupEligibleTasks(eligibleTasks, taskDefinitionMap);
 
     // console.log(
     //     JSON.stringify(eligibleTasks, (_, v) => v instanceof Map ? Object.fromEntries(v) : v)
@@ -41,11 +42,11 @@ export async function activate(context: vscode.ExtensionContext): Promise<Immuta
     // process.exit(100);
 
     return {
-        taskDefinitions,
-        eligibleTasks,
+        taskDefinitionMap,
+        eligibleTaskMap,
         availableKeys: {
-            userKey: scopeLayout.global.key,
-            workspaceKey: scopeLayout.workspace?.key,
+            userKey: scopeLayout.User.originKey,
+            workspaceKey: scopeLayout.Workspace?.originKey,
             primaKey,
             folder2Key
         },

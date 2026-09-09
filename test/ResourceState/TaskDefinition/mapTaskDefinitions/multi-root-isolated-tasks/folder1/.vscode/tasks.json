@@ -1,0 +1,11 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "task-in-folder1",
+            "command": "true",
+            "type": "shell",
+            "problemMatcher": []
+        }
+    ]
+}

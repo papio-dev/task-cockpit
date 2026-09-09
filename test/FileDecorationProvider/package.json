@@ -19,19 +19,19 @@
     "configuration": {
       "title": "File Decoration",
       "properties": {
-        "taskCockpit.display.badges.runningSymbol": {
+        "taskCockpit.decorator.runningSymbol": {
           "type": "string",
           "default": "●",
           "pattern": "^[^\\d\\s]$",
           "markdownDescription": "..."
         },
-        "taskCockpit.display.badges.overflowSymbol": {
+        "taskCockpit.decorator.overflowSymbol": {
           "type": "string",
           "default": "+",
           "pattern": "^[^\\d\\s]$",
           "markdownDescription": "..."
         },
-        "taskCockpit.display.badges.badgeOrder": {
+        "taskCockpit.decorator.badgeOrder": {
           "type": "string",
           "default": "symbolFirst",
           "enum": [
@@ -43,7 +43,7 @@
             "Count first"
           ]
         },
-        "taskCockpit.display.badges.availableSymbol": {
+        "taskCockpit.decorator.availableSymbol": {
           "type": "string",
           "default": "•",
           "pattern": "^[^\\d\\s]$",
