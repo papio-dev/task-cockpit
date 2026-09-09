@@ -54,8 +54,8 @@ export const EXTENSION = {
     OPEN_FILTERING_SETTINGS__USR   /**/: { ID: `${PREFIX}.open-filtering-settings@global`,         /**/ LABEL: 'Filtering Settings (Global)',          /**/ ICON: UI.ICON.LIST_FILTER },
     OPEN_SETTINGS_EXCLUDE_FOLDERS  /**/: { ID: `${PREFIX}.open-filtering-settings@excludeFolders`, /**/ LABEL: 'Filtering Settings — Exclude Folders', /**/ ICON: UI.ICON.LIST_FILTER },
     // Перечитать все данные, будет спровоцирована перестройка всех *-task-view представлений
-    FULL_REFRESH             /**/: { ID: `${PREFIX}.full-refresh`,             /**/ LABEL: 'Refresh Lists', /**/ ICON: UI.ICON.REFRESH },
-    FULL_REFRESH__NAVIGATION /**/: { ID: `${PREFIX}.full-refresh@navigation`,  /**/ LABEL: 'Refresh Lists', /**/ ICON: UI.ICON.REFRESH },
+    FULL_REFRESH             /**/: { ID: `${PREFIX}.full-refresh`,             /**/ LABEL: 'Full Refresh', /**/ ICON: UI.ICON.REFRESH },
+    FULL_REFRESH__NAVIGATION /**/: { ID: `${PREFIX}.full-refresh@navigation`,  /**/ LABEL: 'Full Refresh', /**/ ICON: UI.ICON.REFRESH },
     FULL_REFRESH__SPINNER    /**/: { ID: `${PREFIX}._full-refresh@spinner`,    /**/ LABEL: 'Scanning...',  /**/ ICON: UI.ICON.SYNC_ANIMATE }
   },
   WHEN: {

@@ -24,7 +24,7 @@
                 "${workspaceFolder}/.vscode-test/**/vs/**/*",
                 "${workspaceFolder}/node_modules/**/*"
             ],
-            "preLaunchTask": "Debug-inspect"
+            "preLaunchTask": "Run|debug"
         },
         {
             "type": "node",
@@ -45,33 +45,7 @@
                 "${workspaceFolder}/node_modules/**/*"
             ],
             "preLaunchTask": "${input:pickTask}"
-        },
-        // --------------------
-        {
-            "type": "node",
-            "request": "attach",
-            "name": "Attach: Extension Host (s)",
-            "port": 9229,
-            "restart": false,
-            "timeout": 3000,
-            "sourceMaps": true,
-            "outFiles": [
-                "${workspaceFolder}/~out-debug/**/*.js"
-            ],
-            "presentation": {
-                "hidden": false,
-                "group": "s",
-                "order": 1
-            },
-            "skipFiles": [
-                "<node_internals>/**",
-                // .vscode-test/*/resources/app/out/bootstrap-fork.js -- этот нужен
-                "${workspaceFolder}/.vscode-test/**/app/extensions/**/*",
-                "${workspaceFolder}/.vscode-test/**/vs/**/*",
-                "${workspaceFolder}/node_modules/**/*"
-            ],
-            "preLaunchTask": "Debug-inspect"
-        },
+        }
     ],
     "inputs": [
         {

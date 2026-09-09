@@ -1,0 +1,117 @@
+## Keybindings
+
+Task Cockpit registers no default keybindings to avoid conflicts with your existing setup.
+
+To add them, open **Keyboard Shortcuts (JSON)** (`Ctrl+Shift+P` → *Open Keyboard Shortcuts (JSON)*), paste the entries you need, and replace each `<kbd-…>` placeholder with your actual key combination.
+
+Bindings activate only when the respective view is focused, so the same key can safely appear multiple times — VS Code routes it by the `when` condition.
+
+~~~jsonc
+[
+    // Open Tasks File / Navigate to Definition
+    {
+        "key": "<kbd-open>",
+        "command": "task-cockpit_user-tasks.open-user-tasks",
+        "when": "focusedView == task-cockpit_user-tasks && task-cockpit_user-tasks.selectedNode"
+    },
+    {
+        "key": "<kbd-open>",
+        "command": "task-cockpit_project-tasks.open-tasks-file",
+        "when": "focusedView == task-cockpit_project-tasks && task-cockpit_project-tasks.selectedNode != RunnableNode"
+    },
+    {
+        "key": "<kbd-open>",
+        "command": "task-cockpit_project-tasks.task-go-to-definition",
+        "when": "focusedView == task-cockpit_project-tasks && task-cockpit_project-tasks.selectedNode == RunnableNode"
+    },
+
+    // Run Task
+    {
+        "key": "<kbd-run>",
+        "command": "task-cockpit_user-tasks.task-run",
+        "when": "focusedView == task-cockpit_user-tasks && task-cockpit_user-tasks.selectedNode == RunnableNode"
+    },
+    {
+        "key": "<kbd-run>",
+        "command": "task-cockpit_project-tasks.task-run",
+        "when": "focusedView == task-cockpit_project-tasks && task-cockpit_project-tasks.selectedNode == RunnableNode"
+    },
+
+    // Run New Instance
+    {
+        "key": "<kbd-alt-run>",
+        "command": "task-cockpit_user-tasks.task-run-new-instance",
+        "when": "focusedView == task-cockpit_user-tasks && task-cockpit_user-tasks.selectedNode == RunnableNode"
+    },
+    {
+        "key": "<kbd-alt-run>",
+        "command": "task-cockpit_project-tasks.task-run-new-instance",
+        "when": "focusedView == task-cockpit_project-tasks && task-cockpit_project-tasks.selectedNode == RunnableNode"
+    },
+
+    // Abort all running instances
+    {
+        "key": "<kbd-abort>",
+        "command": "task-cockpit_user-tasks.task-abort-all-instances",
+        "when": "focusedView == task-cockpit_user-tasks && task-cockpit_user-tasks.selectedNode == RunnableNode"
+    },
+    {
+        "key": "<kbd-abort>",
+        "command": "task-cockpit_project-tasks.task-abort-all-instances",
+        "when": "focusedView == task-cockpit_project-tasks && task-cockpit_project-tasks.selectedNode == RunnableNode"
+    },
+
+    // Navigate to terminal
+    {
+        "key": "<kbd-terminals>",
+        "command": "task-cockpit_user-tasks.task-navigate-to-terminal",
+        "when": "focusedView == task-cockpit_user-tasks && task-cockpit_user-tasks.selectedNode == RunnableNode"
+    },
+    {
+        "key": "<kbd-terminals>",
+        "command": "task-cockpit_project-tasks.task-navigate-to-terminal",
+        "when": "focusedView == task-cockpit_project-tasks && task-cockpit_project-tasks.selectedNode == RunnableNode"
+    },
+
+    // Find in list
+    {
+        "key": "<kbd-find>",
+        "command": "task-cockpit_user-tasks.list-find",
+        "when": "focusedView == task-cockpit_user-tasks"
+    },
+    {
+        "key": "<kbd-find>",
+        "command": "task-cockpit_project-tasks.list-find",
+        "when": "focusedView == task-cockpit_project-tasks"
+    },
+
+    // Full refresh
+    {
+        "key": "<kbd-refresh>",
+        "command": "task-cockpit.full-refresh",
+        "when": "focusedView == task-cockpit_user-tasks || focusedView == task-cockpit_project-tasks"
+    },
+
+    // Expand/Collapse list
+    {
+        "key": "<kbd-expand>",
+        "command": "task-cockpit_user-tasks.list-expand-all",
+        "when": "focusedView == task-cockpit_user-tasks"
+    },
+    {
+        "key": "<kbd-expand>",
+        "command": "task-cockpit_project-tasks.list-expand-all",
+        "when": "focusedView == task-cockpit_project-tasks"
+    },
+    {
+        "key": "<kbd-collapse>",
+        "command": "task-cockpit_user-tasks.list-collapse-all",
+        "when": "focusedView == task-cockpit_user-tasks"
+    },
+    {
+        "key": "<kbd-collapse>",
+        "command": "task-cockpit_project-tasks.list-collapse-all",
+        "when": "focusedView == task-cockpit_project-tasks"
+    }
+]
+~~~

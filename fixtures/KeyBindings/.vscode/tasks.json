@@ -1,0 +1,14 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "group1:subGroup:task1",
+            "command": "sleep inf",
+            "type": "shell",
+            "problemMatcher": [],
+            "runOptions": {
+                "instanceLimit": 5
+            }
+        }
+    ]
+}

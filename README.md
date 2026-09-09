@@ -17,10 +17,10 @@ A tree view for organizing, browsing, and running VS Code tasks from workspace a
 - You don't have a `tasks.json` file and don't plan to create one
 - You prefer keyboard-driven workflow over panel-based UI
 
-![Task Cockpit panel showing hierarchical task tree](media/main-view.png)
-
 
 ## Features
+
+![Task Cockpit panel showing hierarchical task tree](media/main-view.png)
 
 **Organization**
 - Separate trees for user profile and workspace tasks
@@ -85,6 +85,14 @@ A task appears in the tree if and only if it has an explicit `label` property �
 
 > [!TIP]
 > Set up keyboard shortcuts for frequently used actions — see [Custom Shortcuts](#custom-shortcuts).
+
+
+## Quick Reference
+
+- [Configuration](#configuration) — display, filtering, and diagnostics settings
+- [Custom Shortcuts](media/keybindings.md) — keybindings example
+
+-----
 
 
 ## Configuration
@@ -248,7 +256,7 @@ When enabled, flags tasks whose `dependsOn` references cannot be resolved — ei
 
 The extension doesn't define default keybindings.
 
-Use [this example](media/shortcuts.md) as a starting point for your `keybindings.json`.
+Use [this example](media/keybindings.md) as a starting point for your `keybindings.json`.
 
 
 ## Tip this project

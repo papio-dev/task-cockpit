@@ -180,6 +180,10 @@
         {
             "location": "playground-ScreenShots",
             "name": "playground-ScreenShots"
+        },
+        {
+            "location": "-329bca47",
+            "name": "extension-debug-keybindings"
         }
     ],
     "lastKnownMenubarData": {
@@ -1859,16 +1863,13 @@
     },
     "windowsState": {
         "lastActiveWindow": {
-            "workspaceIdentifier": {
-                "id": "8f8dbc149117e8f01453e3745d9dc153",
-                "configURIPath": "file:///home/lumen/Projects/Task%20Cockpit/playground/ScreenShots/diagnostics-problems/MyApp.code-workspace"
-            },
+            "folder": "file:///home/lumen/Projects/Task%20Cockpit/fixtures/KeyBindings",
             "uiState": {
-                "mode": 1,
-                "x": 580,
-                "y": 204,
-                "width": 1280,
-                "height": 720
+                "mode": 0,
+                "x": 0,
+                "y": 32,
+                "width": 1920,
+                "height": 1048
             }
         },
         "openedWindows": []

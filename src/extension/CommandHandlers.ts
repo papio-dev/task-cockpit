@@ -378,7 +378,7 @@ function create(
                     authority: 'github.com',
                     path: `/papio-dev/task-cockpit/tree/${version ? `v${version}` : 'main'}`,
                     query: 'tab=readme-ov-file',
-                    fragment: 'configuration'
+                    fragment: 'quick-reference'
                 }));
             }
             catch {

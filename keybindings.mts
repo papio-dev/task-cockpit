@@ -16,6 +16,7 @@ function _J(s: string | string[]): string {
 
 const KBD_OPEN = '<kbd-open>';
 const KBD_TASK_RUN = '<kbd-run>';
+const KBD_ALT_TASK_RUN = '<kbd-alt-run>';
 const KBD_TASK_ABORT_ALL_INSTANCES = '<kbd-abort>';
 const KBD_TASK_NAVIGATE_TO_TERMINAL = '<kbd-terminals>';
 const KBD_LIST_FIND = '<kbd-find>';
@@ -33,7 +34,7 @@ const KEYBINDINGS = [
         command: USER_TREE.COMMAND.OPEN_USER_TASKS.ID,
         when: _J([
             `focusedView == ${USER_TREE.ID}`,
-            `&& ${USER_TREE.WHEN.SELECTED_NODE_TYPE}`,
+            `&& ${USER_TREE.WHEN.SELECTED_NODE_TYPE}`
         ])
     },
     {
@@ -54,32 +55,13 @@ const KEYBINDINGS = [
     },
 
     // -----------------------------------------------------------------------------
-    // "Run Task / Run New Instance
-    {
-        key: KBD_TASK_RUN,
-        command: USER_TREE.COMMAND.TASK_RUN_NEW_INSTANCE.ID,
-        when: _J([
-            `focusedView == ${USER_TREE.ID}`,
-            `&& ${USER_TREE.WHEN.SELECTED_NODE_TYPE} == RunnableNode`,
-            `&& viewItem =~ /:Running/`
-        ])
-    },
-    {
-        key: KBD_TASK_RUN,
-        command: PROJECT_TREE.COMMAND.TASK_RUN_NEW_INSTANCE.ID,
-        when: _J([
-            `focusedView == ${PROJECT_TREE.ID}`,
-            `&& ${PROJECT_TREE.WHEN.SELECTED_NODE_TYPE} == RunnableNode`,
-            `&& viewItem =~ /:Running/`
-        ])
-    },
+    // "Run Task
     {
         key: KBD_TASK_RUN,
         command: USER_TREE.COMMAND.TASK_RUN.ID,
         when: _J([
             `focusedView == ${USER_TREE.ID}`,
-            `&& ${USER_TREE.WHEN.SELECTED_NODE_TYPE} == RunnableNode`,
-            `&& !(viewItem =~ /:Running/)`
+            `&& ${USER_TREE.WHEN.SELECTED_NODE_TYPE} == RunnableNode`
         ])
     },
     {
@@ -87,11 +69,28 @@ const KEYBINDINGS = [
         command: PROJECT_TREE.COMMAND.TASK_RUN.ID,
         when: _J([
             `focusedView == ${PROJECT_TREE.ID}`,
-            `&& ${PROJECT_TREE.WHEN.SELECTED_NODE_TYPE} == RunnableNode`,
-            `&& !(viewItem =~ /:Running/)`
+            `&& ${PROJECT_TREE.WHEN.SELECTED_NODE_TYPE} == RunnableNode`
         ])
     },
 
+    // -----------------------------------------------------------------------------
+    // Run New Instance
+    {
+        key: KBD_ALT_TASK_RUN,
+        command: USER_TREE.COMMAND.TASK_RUN_NEW_INSTANCE.ID,
+        when: _J([
+            `focusedView == ${USER_TREE.ID}`,
+            `&& ${USER_TREE.WHEN.SELECTED_NODE_TYPE} == RunnableNode`
+        ])
+    },
+    {
+        key: KBD_ALT_TASK_RUN,
+        command: PROJECT_TREE.COMMAND.TASK_RUN_NEW_INSTANCE.ID,
+        when: _J([
+            `focusedView == ${PROJECT_TREE.ID}`,
+            `&& ${PROJECT_TREE.WHEN.SELECTED_NODE_TYPE} == RunnableNode`
+        ])
+    },
     // -----------------------------------------------------------------------------
     // Abort All Instances
     {
