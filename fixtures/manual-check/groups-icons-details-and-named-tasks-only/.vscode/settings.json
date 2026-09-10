@@ -1,0 +1,5 @@
+{
+    "taskCockpit.display.segmentSeparator": ":",
+    "taskCockpit.display.groupByTaskGroup": true,
+    "taskCockpit.display.tintLabel": true
+}

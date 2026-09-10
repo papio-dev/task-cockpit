@@ -1,0 +1,10 @@
+{
+    "taskCockpit.display.segmentSeparator": ":",
+    "taskCockpit.display.groupByTaskGroup": true,
+    "taskCockpit.display.useFolderIcon": true,
+    "taskCockpit.display.defaultIconName": "tools",
+    "taskCockpit.display.tintLabel": true,
+    "taskCockpit.filtering.showHidden": false,
+    "taskCockpit.diagnostics.shadowedTasks": true,
+    "taskCockpit.diagnostics.unreachableDependencies": true
+}

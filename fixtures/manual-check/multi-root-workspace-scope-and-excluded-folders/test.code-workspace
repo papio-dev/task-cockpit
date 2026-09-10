@@ -1,0 +1,48 @@
+{
+    "folders": [
+        {
+            "path": "packages/app",
+            "name": "App (Workspace)"
+        },
+        {
+            "path": "packages/lib",
+            "name": "Lib"
+        },
+        {
+            "path": "tools",
+            "name": "tools"
+        },
+        {
+            "path": "docs"
+        }
+    ],
+    "settings": {
+        "taskCockpit.filtering.excludeFolders": [
+            "docs",
+            "tools",
+            "App (Workspace)",
+            "test (Workspace)"
+        ],
+        "taskCockpit.filtering.showUserLevelTasks": true,
+        "taskCockpit.display.segmentSeparator": ":",
+        "taskCockpit.display.groupByTaskGroup": true,
+        "taskCockpit.diagnostics.shadowedTasks": true,
+        "taskCockpit.diagnostics.unreachableDependencies": true
+    },
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "label": "workspace:build",
+                "type": "shell",
+                "command": "echo workspace build",
+                "group": "build"
+            },
+            {
+                "label": "workspace:clean",
+                "type": "shell",
+                "command": "echo workspace clean"
+            }
+        ]
+    }
+}

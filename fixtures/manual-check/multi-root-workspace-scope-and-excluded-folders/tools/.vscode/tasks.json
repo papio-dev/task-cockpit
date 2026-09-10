@@ -1,0 +1,11 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "tools:lint",
+            "type": "shell",
+            "command": "echo tools lint",
+            "group": "test"
+        }
+    ]
+}

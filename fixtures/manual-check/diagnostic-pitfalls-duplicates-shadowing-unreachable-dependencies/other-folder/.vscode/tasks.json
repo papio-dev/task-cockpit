@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "only-in-other-folder",
+            "type": "shell",
+            "command": "echo other"
+        },
+        {
+            "label": "same-as-user",
+            "type": "shell",
+            "command": "echo other same"
+        }
+    ]
+}

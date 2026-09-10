@@ -184,6 +184,30 @@
         {
             "location": "-329bca47",
             "name": "extension-debug-keybindings"
+        },
+        {
+            "location": "-77d62959",
+            "name": "manual-check-a-labyrinth-of-segments-order-and-hidden-nodes"
+        },
+        {
+            "location": "5e286eaa",
+            "name": "manual-check-groups-icons-details-and-named-tasks-only"
+        },
+        {
+            "location": "5a47e9d7",
+            "name": "manual-check-diagnostic-pitfalls-duplicates-shadowing-unreachable-dependencies"
+        },
+        {
+            "location": "75aaf3da",
+            "name": "manual-check-multi-root-workspace-scope-and-excluded-folders"
+        },
+        {
+            "location": "1792c827",
+            "name": "manual-check-a-single-repository-containing-over-800-tasks"
+        },
+        {
+            "location": "518d42d9",
+            "name": "manual-check-boundary-characters-and-unicode"
         }
     ],
     "lastKnownMenubarData": {
@@ -1863,7 +1887,7 @@
     },
     "windowsState": {
         "lastActiveWindow": {
-            "folder": "file:///home/lumen/Projects/Task%20Cockpit/fixtures/KeyBindings",
+            "folder": "file:///home/lumen/Projects/Task%20Cockpit/fixtures/manual-check/groups-icons-details-and-named-tasks-only",
             "uiState": {
                 "mode": 1,
                 "x": 448,

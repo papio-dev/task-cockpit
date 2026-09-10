@@ -1,0 +1,135 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "app",
+            "type": "shell",
+            "command": "echo app",
+            "group": "build",
+            "icon": {
+                "id": "play",
+                "color": "terminal.ansiGreen"
+            },
+            "detail": "**app** — корневая задача.\n\n- [ ] пункт\n- `code`\n\n---\n**Ожидается:** runnable + группа (есть command и дочерние узлы). Иконка `play`, цвет `terminal.ansiGreen`, tintLabel. Этот detail проверяет рендер markdown."
+        },
+        {
+            "label": "app:build",
+            "type": "shell",
+            "command": "echo app build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Ожидается: runnable + группа. group как объект {kind:build, isDefault:true} — дефолтная задача сборки."
+        },
+        {
+            "label": "app:build:web",
+            "type": "shell",
+            "command": "echo web",
+            "dependsOn": [
+                "app:build"
+            ],
+            "detail": "Ожидается: runnable + группа (дочерние: :prod, :dev). dependsOn: app:build."
+        },
+        {
+            "label": "app:build:web:prod",
+            "type": "shell",
+            "command": "echo prod",
+            "detail": "Ожидается: листовой runnable. Глубина 4 уровня."
+        },
+        {
+            "label": "app:build:web:dev",
+            "type": "shell",
+            "command": "echo dev ; sleep 3",
+            "detail": "Ожидается: листовой runnable. Глубина 4 уровня."
+        },
+        {
+            "label": "app:test",
+            "type": "shell",
+            "command": "echo test",
+            "detail": "Ожидается: runnable + группа (дочерние: :unit, :e2e). group не задан."
+        },
+        {
+            "label": "app:test:unit",
+            "type": "shell",
+            "command": "echo unit",
+            "detail": "Ожидается: листовой runnable."
+        },
+        {
+            "label": "app:test:e2e",
+            "type": "shell",
+            "command": "echo e2e ; sleep 3",
+            "dependsOn": [
+                "app:build:web:prod"
+            ],
+            "detail": "Ожидается: листовой runnable. dependsOn: app:build:web:prod."
+        },
+        {
+            "label": "app:hidden",
+            "type": "shell",
+            "command": "echo hidden",
+            "hide": true,
+            "detail": "Ожидается: скрыт (hide:true при showHidden:false). Но дочерняя :child видима — проверяет обработку скрытого промежуточного узла с видимыми детьми."
+        },
+        {
+            "label": "app:hidden:child",
+            "type": "shell",
+            "command": "echo visible child of hidden parent",
+            "detail": "Ожидается: видима, хотя родитель (app:hidden) скрыт. Проверяет: появляется ли ребёнок в дереве и под каким родителем."
+        },
+        {
+            "label": "a:b:c",
+            "type": "shell",
+            "command": "echo first occurrence",
+            "detail": "Ожидается: листовой runnable. Первое вхождение корня 'a' в tasks.json — позиция корня 'a' в дереве определяется здесь, а не задачей 'a'."
+        },
+        {
+            "label": "a",
+            "type": "shell",
+            "command": "echo a later",
+            "detail": "Ожидается: runnable + группа. Определена позже a:b:c — проверяет, что позиция ветки в дереве по первому вхождению, а не по определению корня."
+        },
+        {
+            "label": "a:b",
+            "type": "shell",
+            "command": "echo a:b later",
+            "detail": "Ожидается: runnable + группа (дочерняя: :c). Определена позже a:b:c — промежуточный узел появившийся после своего же ребёнка."
+        },
+        {
+            "label": "x",
+            "type": "shell",
+            "command": "echo x",
+            "dependsOn": [
+                "y:z",
+                "missing:task"
+            ],
+            "detail": "Ожидается: листовой runnable. dependsOn: y:z (существует) + missing:task (НЕ существует). Диагностика unreachableDependencies должна пометить missing:task."
+        },
+        {
+            "label": "y:z",
+            "type": "shell",
+            "command": "echo yz",
+            "detail": "Ожидается: листовой runnable под виртуальным узлом 'y'. 'y' явно не определена — проверяет создание виртуального промежуточного узла."
+        },
+        {
+            "label": "composite",
+            "dependsOn": [
+                "app:build:web",
+                "app:test:unit"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": [],
+            "detail": "Ожидается: runnable без command (composite). dependsOrder:sequence. Проверяет отображение задачи без shell/command."
+        },
+        {
+            "label": "composite:parallel",
+            "dependsOn": [
+                "app:build:web:dev",
+                "app:test:e2e"
+            ],
+            "dependsOrder": "parallel",
+            "problemMatcher": [],
+            "detail": "Ожидается: runnable без command (composite). dependsOrder:parallel. Дочерняя 'composite'."
+        }
+    ]
+}
