@@ -179,9 +179,6 @@ Icon name for tasks without a custom icon in their definition. Defaults to `tool
 
 ![Tasks with default and custom icons](media/custom-icons.png)
 
-> [!TIP]
-> To hide a task's icon, use `blank` as the icon name — it renders as an empty space.
-
 
 #### `display.tintLabel`
 
