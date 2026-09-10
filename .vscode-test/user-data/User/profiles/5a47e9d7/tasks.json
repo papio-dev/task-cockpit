@@ -1,0 +1,20 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "same-as-user",
+            "type": "shell",
+            "command": "echo user same"
+        },
+        {
+            "label": "user-only",
+            "type": "shell",
+            "command": "echo user only"
+        },
+        {
+            "label": "shadowed-by-workspace",
+            "type": "shell",
+            "command": "echo user shadowed"
+        }
+    ]
+}

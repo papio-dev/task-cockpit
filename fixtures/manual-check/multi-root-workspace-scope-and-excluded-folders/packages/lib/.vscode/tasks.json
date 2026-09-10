@@ -1,0 +1,22 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "lib:build",
+            "type": "shell",
+            "command": "echo lib build",
+            "group": "build"
+        },
+        {
+            "label": "lib:test",
+            "type": "shell",
+            "command": "echo lib test",
+            "group": "test"
+        },
+        {
+            "label": "shared",
+            "type": "shell",
+            "command": "echo lib shared"
+        }
+    ]
+}

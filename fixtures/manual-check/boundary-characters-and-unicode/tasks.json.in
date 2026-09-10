@@ -1,0 +1,115 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "a:b:c",
+            "type": "shell",
+            "command": "echo a:b:c"
+        },
+        {
+            "label": "a::b",
+            "type": "shell",
+            "command": "echo a::b"
+        },
+        {
+            "label": "a:::b",
+            "type": "shell",
+            "command": "echo a:::b"
+        },
+        {
+            "label": ":a:b",
+            "type": "shell",
+            "command": "echo leading"
+        },
+        {
+            "label": "a:b:",
+            "type": "shell",
+            "command": "echo trailing"
+        },
+        {
+            "label": "a : b",
+            "type": "shell",
+            "command": "echo spaces around"
+        },
+        {
+            "label": "a: b",
+            "type": "shell",
+            "command": "echo space after"
+        },
+        {
+            "label": "a :b",
+            "type": "shell",
+            "command": "echo space before"
+        },
+        {
+            "label": "Scripts:npm: install",
+            "type": "shell",
+            "command": "echo natural colon"
+        },
+        {
+            "label": "Compile/make in out/",
+            "type": "shell",
+            "command": "echo slash natural"
+        },
+        {
+            "label": "a/b/c",
+            "type": "shell",
+            "command": "echo slash path"
+        },
+        {
+            "label": "a//b",
+            "type": "shell",
+            "command": "echo double slash"
+        },
+        {
+            "label": "///",
+            "type": "shell",
+            "command": "echo only separators"
+        },
+        {
+            "label": "...",
+            "type": "shell",
+            "command": "echo dots"
+        },
+        {
+            "label": "a.b.c",
+            "type": "shell",
+            "command": "echo dots path"
+        },
+        {
+            "label": "a·b·c",
+            "type": "shell",
+            "command": "echo middle dot"
+        },
+        {
+            "label": "a→b→c",
+            "type": "shell",
+            "command": "echo arrow"
+        },
+        {
+            "label": "🚀:launch:prod",
+            "type": "shell",
+            "command": "echo emoji"
+        },
+        {
+            "label": "büild:test",
+            "type": "shell",
+            "command": "echo umlaut"
+        },
+        {
+            "label": "build:тест",
+            "type": "shell",
+            "command": "echo cyrillic"
+        },
+        {
+            "label": "build:test",
+            "type": "shell",
+            "command": "echo latin"
+        },
+        {
+            "label": "buіld:test",
+            "type": "shell",
+            "command": "echo confusable cyrillic i"
+        }
+    ]
+}

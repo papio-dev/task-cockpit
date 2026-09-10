@@ -60,6 +60,8 @@ if (EXT_SANDBOX && !fs.existsSync(EXT_SANDBOX)) {
 }
 
 
+const EXT_PACKAGE_JSON = process.env.EXT_PACKAGE_JSON ?? null;
+
 const VSC_VERSION = process.env.VSC_VERSION ?? '1.86.2';
 const VSC_PROFILE = process.env.VSC_PROFILE ?? "Default";
 const VSC_PARAM_LOG = process.env.VSC_PARAM_LOG;
@@ -74,14 +76,17 @@ const extensionDevelopmentPath = (() => {
 
     const developmentPath = path.join(CWD, OUT_DIR, EXT_SANDBOX);
 
-    const inPkgJson = path.join(CWD, EXT_SANDBOX, 'package.json');
+    if (EXT_PACKAGE_JSON) {
 
-    if (!fs.existsSync(inPkgJson)) {
-        throw new Error(`package.json not found: "${inPkgJson}"`);
+        const inPkgJson = path.join(CWD, EXT_PACKAGE_JSON);
+
+        if (!fs.existsSync(inPkgJson)) {
+            throw new Error(`package.json not found: "${inPkgJson}"`);
+        }
+
+        // копирование package.json
+        fs.copyFileSync(inPkgJson, path.join(developmentPath, 'package.json'));
     }
-
-    // копирование package.json
-    fs.copyFileSync(inPkgJson, path.join(developmentPath, 'package.json'));
 
     const extJs = path.join(CWD, OUT_DIR, EXT_SANDBOX, 'extension.js');
     if (!fs.existsSync(extJs)) {

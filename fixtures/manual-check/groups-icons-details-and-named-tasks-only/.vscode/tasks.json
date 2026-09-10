@@ -1,0 +1,125 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build:dev:watch",
+            "type": "shell",
+            "command": "echo dev watch",
+            "group": "build",
+            "icon": {
+                "id": "eye",
+                "color": "terminal.ansiYellow"
+            },
+            "detail": "Markdown **detail**\n\n```sh\nnpm run dev\n```\n\n---\n**Ожидается:** двойная вложенность — group:build даёт узел «Build», label «Build:dev:watch» добавляет ещё один «Build»→«dev»→«watch». Путь: **Build → Build → dev → watch**. Иконка id+color. Этот detail проверяет рендер markdown с code block."
+        },
+        {
+            "label": "Build:prod:minify",
+            "type": "shell",
+            "command": "echo prod",
+            "group": {
+                "kind": "build"
+            },
+            "icon": {
+                "id": "zap",
+                "color": "terminal.ansiRed"
+            },
+            "detail": "Ожидается: двойная вложенность **Build → Build → prod → minify**. group как объект {kind:build} без isDefault. Иконка id+color."
+        },
+        {
+            "label": "Test:unit",
+            "type": "shell",
+            "command": "echo unit",
+            "group": "test",
+            "icon": {
+                "id": "beaker",
+                "color": "terminal.ansiCyan"
+            },
+            "detail": "Ожидается: двойная вложенность — group:test даёт «Test», label «Test:unit» даёт ещё «Test»→«unit». Путь: **Test → Test → unit**. Иконка id+color."
+        },
+        {
+            "label": "Test:e2e",
+            "type": "shell",
+            "command": "echo e2e",
+            "group": "test",
+            "icon": {
+                "id": "globe",
+                "color": "terminal.ansiMagenta"
+            },
+            "detail": "Ожидается: двойная вложенность **Test → Test → e2e**. Иконка id+color."
+        },
+        {
+            "label": "Lint",
+            "type": "shell",
+            "command": "echo lint",
+            "group": "test",
+            "icon": { "id": "blank" },
+            "detail": "Ожидается: **Test → Lint** — одна вложенность, а не двойная: label без «:», поэтому сегментов нет, только group:test. Иконка blank — проверяет рендер пустой иконки."
+        },
+        {
+            "label": "Deploy:staging",
+            "type": "shell",
+            "command": "echo staging",
+            "group": "none",
+            "icon": {
+                "id": "cloud-upload",
+                "color": "terminal.ansiBlue"
+            },
+            "detail": "Ожидается: group:none — не попадает в Build/Test. Сегменты дают **Deploy → staging**. Иконка id+color."
+        },
+        {
+            "label": "Deploy:prod",
+            "type": "shell",
+            "command": "echo prod",
+            "group": "none",
+            "icon": {
+                "id": "cloud-upload",
+                "color": "terminal.ansiRed"
+            },
+            "detail": "Ожидается: group:none, **Deploy → prod**. Та же иконка (cloud-upload), другой color (ansiRed) — проверяет tintLabel с красным."
+        },
+        // -------------------------
+        {
+            "label": "npm: test",
+            "type": "npm",
+            "script": "test",
+            "detail": "Ожидается: явный label → появляется в дереве. Auto-detected npm-скрипты из package.json (build, test, lint) — НЕ должны появляться. Только этот."
+        },
+        // ----------------------
+        {
+            "label": "NoIcon",
+            "type": "shell",
+            "command": "echo no icon",
+            "detail": "Ожидается: без иконки, defaultIconName в settings не задан — проверяет fallback без иконки."
+        },
+        {
+            "label": "CustomIconNoColor",
+            "type": "shell",
+            "command": "echo icon",
+            "icon": {
+                "id": "rocket"
+            },
+            "detail": "Ожидается: иконка только с id, без color — tintLabel включён, но красить нечем. Проверяет рендер без tint."
+        },
+        {
+            "label": "CustomColorOnly",
+            "type": "shell",
+            "command": "echo color",
+            "icon": {
+                "color": "terminal.ansiGreen"
+            },
+            "detail": "Ожидается: иконка только с color, без id — проверяет fallback на дефолтную иконку с применением цвета."
+        },
+        {
+            "label": "<i>Italic</i><!--comment--><script>alert('xss')</script>",
+            "type": "shell",
+            "command": "echo xss-label",
+            "detail": "Ожидается: label отображается буквально — теги, комментарий и script видны как текст, не интерпретируются."
+        },
+        {
+            "label": "HtmlInDetail",
+            "type": "shell",
+            "command": "echo xss-detail",
+            "detail": "<b>жирный?</b> <img src=x onerror=alert(1)> &lt;экранированный&gt; <!--скрытый комментарий-->\n\n<script>document.title='pwned'</script>\n\nОжидается: всё выше — либо отображается как plain text, либо экранируется. Ничего не должно исполниться или отрендериться как HTML."
+        }
+    ]
+}

@@ -1,0 +1,74 @@
+{
+    "folders": [
+        {
+            "path": "other-folder"
+        }
+    ],
+    "settings": {
+        "taskCockpit.diagnostics.shadowedTasks": true,
+        "taskCockpit.diagnostics.unreachableDependencies": true
+    },
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "label": "dup",
+                "type": "shell",
+                "command": "echo first"
+            },
+            {
+                "label": "dup",
+                "type": "shell",
+                "command": "echo second"
+            },
+            {
+                "label": "depends-on-dup",
+                "type": "shell",
+                "command": "echo dep",
+                "dependsOn": [
+                    "dup"
+                ]
+            },
+            {
+                "label": "depends-on-missing",
+                "type": "shell",
+                "command": "echo missing",
+                "dependsOn": [
+                    "no-such-task"
+                ]
+            },
+            {
+                "label": "depends-on-hidden",
+                "type": "shell",
+                "command": "echo hidden dep",
+                "dependsOn": [
+                    "hidden-target"
+                ]
+            },
+            {
+                "label": "hidden-target",
+                "type": "shell",
+                "command": "echo hidden",
+                "hide": true
+            },
+            {
+                "label": "shadowed-by-workspace",
+                "type": "shell",
+                "command": "echo workspace"
+            },
+            {
+                "label": "unreachable-dependency-scope",
+                "type": "shell",
+                "command": "echo scope",
+                "dependsOn": [
+                    "only-in-other-folder"
+                ]
+            },
+            {
+                "label": "same-as-user",
+                "type": "shell",
+                "command": "echo workspace same"
+            }
+        ]
+    }
+}

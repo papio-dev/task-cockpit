@@ -3344,6 +3344,181 @@
                 }
             ]
         },
+// ============================================================================================
+        {
+            "label": "Test|manual-check|a-labyrinth-of-segments-order-and-hidden-nodes",
+            "icon": {
+                "id": "beaker"
+            },
+            "type": "shell",
+            "dependsOn": [
+                "Build (debug)"
+            ],
+            "dependsOrder": "sequence",
+            "command": [
+                "./.vscode-test/interactive-runner.mjs"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "OUT_DIR": "~out-debug",
+                    "EXT_SANDBOX": ".",
+                    "VSC_OPEN": "fixtures/manual-check/a-labyrinth-of-segments-order-and-hidden-nodes",
+                    "VSC_PROFILE": "manual-check-a-labyrinth-of-segments-order-and-hidden-nodes",
+                }
+            },
+            "problemMatcher": [
+                {
+                    "applyTo": "allDocuments",
+                    "base": "$tsc"
+                }
+            ]
+        },
+        {
+            "label": "Test|manual-check|a-single-repository-containing-over-800-tasks",
+            "icon": {
+                "id": "beaker"
+            },
+            "type": "shell",
+            "dependsOn": [
+                "Build (debug)"
+            ],
+            "dependsOrder": "sequence",
+            "command": [
+                "./.vscode-test/interactive-runner.mjs"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "OUT_DIR": "~out-debug",
+                    "EXT_SANDBOX": ".",
+                    "VSC_OPEN": "fixtures/manual-check/a-single-repository-containing-over-800-tasks",
+                    "VSC_PROFILE": "manual-check-a-single-repository-containing-over-800-tasks",
+                }
+            },
+            "problemMatcher": [
+                {
+                    "applyTo": "allDocuments",
+                    "base": "$tsc"
+                }
+            ]
+        },
+        {
+            "label": "Test|manual-check|boundary-characters-and-unicode",
+            "icon": {
+                "id": "beaker"
+            },
+            "type": "shell",
+            "dependsOn": [
+                "Build (debug)"
+            ],
+            "dependsOrder": "sequence",
+            "command": [
+                "./.vscode-test/interactive-runner.mjs"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "OUT_DIR": "~out-debug",
+                    "EXT_SANDBOX": ".",
+                    "VSC_OPEN": "fixtures/manual-check/boundary-characters-and-unicode/test.code-workspace",
+                    "VSC_PROFILE": "manual-check-boundary-characters-and-unicode",
+                }
+            },
+            "problemMatcher": [
+                {
+                    "applyTo": "allDocuments",
+                    "base": "$tsc"
+                }
+            ]
+        },
+        {
+            "label": "Test|manual-check|diagnostic-pitfalls-duplicates-shadowing-unreachable-dependencies",
+            "icon": {
+                "id": "beaker"
+            },
+            "type": "shell",
+            "dependsOn": [
+                "Build (debug)"
+            ],
+            "dependsOrder": "sequence",
+            "command": [
+                "./.vscode-test/interactive-runner.mjs"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "OUT_DIR": "~out-debug",
+                    "EXT_SANDBOX": ".",
+                    "VSC_OPEN": "fixtures/manual-check/diagnostic-pitfalls-duplicates-shadowing-unreachable-dependencies/workspace.code-workspace",
+                    "VSC_PROFILE": "manual-check-diagnostic-pitfalls-duplicates-shadowing-unreachable-dependencies",
+                }
+            },
+            "problemMatcher": [
+                {
+                    "applyTo": "allDocuments",
+                    "base": "$tsc"
+                }
+            ]
+        },
+        {
+            "label": "Test|manual-check|groups-icons-details-and-named-tasks-only",
+            "icon": {
+                "id": "beaker"
+            },
+            "type": "shell",
+            "dependsOn": [
+                "Build (debug)"
+            ],
+            "dependsOrder": "sequence",
+            "command": [
+                "./.vscode-test/interactive-runner.mjs"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "OUT_DIR": "~out-debug",
+                    "EXT_SANDBOX": ".",
+                    "VSC_OPEN": "fixtures/manual-check/groups-icons-details-and-named-tasks-only",
+                    "VSC_PROFILE": "manual-check-groups-icons-details-and-named-tasks-only",
+                }
+            },
+            "problemMatcher": [
+                {
+                    "applyTo": "allDocuments",
+                    "base": "$tsc"
+                }
+            ]
+        },
+        {
+            "label": "Test|manual-check|multi-root-workspace-scope-and-excluded-folders",
+            "icon": {
+                "id": "beaker"
+            },
+            "type": "shell",
+            "dependsOn": [
+                "Build (debug)"
+            ],
+            "dependsOrder": "sequence",
+            "command": [
+                "./.vscode-test/interactive-runner.mjs"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "OUT_DIR": "~out-debug",
+                    "EXT_SANDBOX": ".",
+                    "VSC_OPEN": "fixtures/manual-check/multi-root-workspace-scope-and-excluded-folders/test.code-workspace",
+                    "VSC_PROFILE": "manual-check-multi-root-workspace-scope-and-excluded-folders",
+                }
+            },
+            "problemMatcher": [
+                {
+                    "applyTo": "allDocuments",
+                    "base": "$tsc"
+                }
+            ]
+        }
 
     ],
     // ============================================================================================
