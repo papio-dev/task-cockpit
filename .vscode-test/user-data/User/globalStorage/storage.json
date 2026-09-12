@@ -1880,24 +1880,24 @@
             "editorBackground": "#ffffff",
             "titleBarBackground": "#dddddd",
             "activityBarBackground": "#2c2c2c",
+            "modernActivityBarBackground": "#2c2c2c",
+            "modernActivityBarInactiveBackground": "#2c2c2c",
+            "modernActivityBarBorder": "#2c2c2c",
             "sideBarBackground": "#f3f3f3",
+            "panelBackground": "#ffffff",
+            "editorGroupBorder": "#e7e7e7",
+            "editorBorder": "#f3f3f3",
+            "surfaceBackground": "#ffffff",
+            "surfaceBorder": "#f3f3f3",
+            "agentsPanelBackground": "#ffffff",
+            "agentsPanelBorder": "rgba(0, 0, 0, 0)",
             "statusBarBackground": "#007acc",
             "statusBarNoFolderBackground": "#68217a"
         }
     },
     "windowsState": {
-        "lastActiveWindow": {
-            "folder": "file:///home/lumen/Projects/Task%20Cockpit/fixtures/manual-check/groups-icons-details-and-named-tasks-only",
-            "uiState": {
-                "mode": 1,
-                "x": 448,
-                "y": 172,
-                "width": 1024,
-                "height": 768
-            }
-        },
         "openedWindows": []
     },
-    "telemetry.devDeviceId": "10fee10e-d7fb-449e-8041-0f905360d7aa",
+    "telemetry.devDeviceId": "d4d79b8c-a878-495d-9da2-25bcd29521b3",
     "windowControlHeight": 35
 }

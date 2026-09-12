@@ -1308,7 +1308,7 @@
                     "OUT_DIR": "~out-probe",
                     "EXT_SANDBOX": "fixtures/probe-probe",
                     "VSC_PROFILE": "prob-probe",
-                    "VSC_VERSION": "1.111.0",
+                    "VSC_VERSION": "stable",
                     "VSC_OPEN": "fixtures/probe-probe/prj"
                 }
             },
