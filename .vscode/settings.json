@@ -66,7 +66,7 @@
 	"files.trimFinalNewlines": true,
 	"notelets.notesFolder": "dev-docs",
 	"notelets.showStatusBar": false,
-	"terminal.integrated.shellIntegration.enabled": false,
+	"terminal.integrated.shellIntegration.enabled": true,
 	"taskCockpit.display.tintLabel": true,
 
 	"cSpell.ignoreRandomStrings": false,
@@ -82,6 +82,7 @@
 	"cSpell.words": [
 		"снапшоте"
     ],
+    "telemetry.feedback.enabled": false,
 
 
 
