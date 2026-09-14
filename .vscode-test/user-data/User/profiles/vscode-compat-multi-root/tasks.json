@@ -1,0 +1,32 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        { // Сценарий 1 (+U +W +P)
+            "label": "S1-test-task",
+            "type": "shell",
+            "command": "echo 'S1-test-task (User)' > '${workspaceFolder}/~vscode-task-markers/S1-test-task.marker'",
+            "problemMatcher": []
+        },
+
+        { // Сценарий 2 (+U +W -P)
+            "label": "S2-test-task",
+            "type": "shell",
+            "command": "echo 'S2-test-task (User)' > '${workspaceFolder}/~vscode-task-markers/S2-test-task.marker'",
+            "problemMatcher": []
+        },
+
+        { // Сценарий 3 (+U -W +P)
+            "label": "S3-test-task",
+            "type": "shell",
+            "command": "echo 'S3-test-task (User)' > '${workspaceFolder}/~vscode-task-markers/S3-test-task.marker'",
+            "problemMatcher": []
+        },
+
+        { // Сценарий 4 (+U -W -P)
+            "label": "S4-test-task",
+            "type": "shell",
+            "command": "echo 'S4-test-task (User)' > '${workspaceFolder}/~vscode-task-markers/S4-test-task.marker'",
+            "problemMatcher": []
+        }
+    ]
+}

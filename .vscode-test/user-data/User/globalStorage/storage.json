@@ -208,6 +208,14 @@
         {
             "location": "518d42d9",
             "name": "manual-check-boundary-characters-and-unicode"
+        },
+        {
+            "location": "20f2081f",
+            "name": "vscode-compat-"
+        },
+        {
+            "location": "vscode-compat-multi-root",
+            "name": "vscode-compat-multi-root"
         }
     ],
     "lastKnownMenubarData": {
@@ -1879,10 +1887,14 @@
             "background": "#ffffff",
             "editorBackground": "#ffffff",
             "titleBarBackground": "#dddddd",
+            "titleBarInactiveBackground": "#e5e5e5",
             "activityBarBackground": "#2c2c2c",
             "modernActivityBarBackground": "#2c2c2c",
             "modernActivityBarInactiveBackground": "#2c2c2c",
             "modernActivityBarBorder": "#2c2c2c",
+            "modernPanelBorder": "#f3f3f3",
+            "modernUIShellBackground": "#dddddd",
+            "modernUIInactiveShellBackground": "#e5e5e5",
             "sideBarBackground": "#f3f3f3",
             "panelBackground": "#ffffff",
             "editorGroupBorder": "#e7e7e7",
@@ -1892,6 +1904,7 @@
             "agentsPanelBackground": "#ffffff",
             "agentsPanelBorder": "rgba(0, 0, 0, 0)",
             "statusBarBackground": "#007acc",
+            "statusBarInactiveBackground": "#1476b8",
             "statusBarNoFolderBackground": "#68217a"
         }
     },

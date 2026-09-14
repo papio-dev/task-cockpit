@@ -1,0 +1,19 @@
+{
+  "name": "vscode-compat-test",
+  "publisher": "papio-dev",
+  "displayName": "vscode-compat-test",
+  "description": "vscode-compat-test",
+  "version": "0.0.0",
+  "engines": {
+    "vscode": "^1.86.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "extension.js",
+  "contributes": {
+  }
+}

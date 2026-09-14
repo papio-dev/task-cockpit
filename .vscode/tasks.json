@@ -3518,7 +3518,78 @@
                     "base": "$tsc"
                 }
             ]
-        }
+        },
+        //=============================================================================================
+        {
+            "label": "Test|vscode-compat|multi-root",
+            "icon": {
+                "id": "beaker"
+            },
+            "type": "shell",
+            "dependsOn": [
+                "Test|PreTest|Clean/create '~out-test/'"
+            ],
+            "dependsOrder": "sequence",
+            "command": [
+                "npx tsc -p ./${SUT_TEST}/tsconfig.json &&",
+                "./.vscode-test/test-runner.mjs"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "OUT_DIR": "~out-test",
+                    "SUT_EXT": "src",
+                    "SUT_TEST": "test/vscode-compat",
+                    "TESTS": "multi-root/characterization",
+                    "VSC_PROFILE": "vscode-compat-multi-root",
+                    "VSC_VERSION": "insiders",
+                    "MOCHA_TIMEOUT": "180000",
+                    "MOCHA_SLOW": "500000"
+                }
+            },
+            "problemMatcher": [
+                {
+                    "applyTo": "allDocuments",
+                    "base": "$tsc"
+                },
+                {
+                    "applyTo": "allDocuments",
+                    "owner": "Test Failes",
+                    "source": "vscode-test",
+                    "severity": "error",
+                    "fileLocation": [
+                        "autoDetect",
+                        "${workspaceFolder}"
+                    ],
+                    "pattern": {
+                        "regexp": "^\\s*at [^\\s]+ \\((.+):(\\d+):(\\d+)\\)",
+                        "message": 0,
+                        "file": 1,
+                        "line": 2,
+                        "column": 3
+                    }
+                },
+                {
+                    "applyTo": "allDocuments",
+                    "owner": "Test Failes",
+                    "source": "vscode-test",
+                    "severity": "error",
+                    "fileLocation": [
+                        "autoDetect",
+                        "${workspaceFolder}"
+                    ],
+                    "pattern": {
+                        "regexp": "^\\s*at (.+):(\\d+):(\\d+)",
+                        "message": 0,
+                        "file": 1,
+                        "line": 2,
+                        "column": 3
+                    }
+                }
+            ]
+        },
+
+        //==================================================================================================================
 
     ],
     // ============================================================================================

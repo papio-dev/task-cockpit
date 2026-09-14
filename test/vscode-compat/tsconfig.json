@@ -1,0 +1,19 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "sourceMap": true,
+        "removeComments": false,
+        "outDir": "../../~out-test",
+        "types": [
+            "node",
+            "mocha"
+        ]
+    },
+    "exclude": [
+        "./~*",
+        "./**/~*",
+    ],
+    "include": [
+        "./**/*.ts"
+    ]
+}
