@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import type Branch from '../../src/HierarchyModel/Branch';
+import type Branch from '../../src/TreeViewPanel/Branch';
 
 
 interface Fixture {

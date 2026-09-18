@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import * as assert from 'node:assert/strict';
-import Branch from '../../../src/HierarchyModel/Branch';
+import Branch from '../../../src/TreeViewPanel/Branch';
 import type Fixture from '../extension';
 
 
