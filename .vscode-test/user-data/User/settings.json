@@ -12,4 +12,5 @@
     "workbench.secondarySideBar.defaultVisibility": "hidden",
     "workbench.colorTheme": "Visual Studio Light",
     "window.menuBarVisibility": "compact",
+    "grunt.autoDetect": "on",
 }
