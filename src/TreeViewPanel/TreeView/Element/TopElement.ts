@@ -28,7 +28,7 @@ interface TopElement {
         hiddenCount: number;
         shadowedCount: number;
     };
-    children: Array<RunnableElement | IntermediateElement>;
+    children: ReadonlyArray<RunnableElement | IntermediateElement>;
 };
 
 
@@ -49,7 +49,7 @@ function create(originData: Immutable<OriginNode>): Immutable<TopElement> {
                     ? 'Workspace'
                     : 'Folder',
         tasksSummary: originData.taskCounts,
-        children: originData.hierarchy.children
+        children: originData.branch
     };
 }
 

@@ -376,7 +376,7 @@ class TaskTreeDataProvider implements ReadonlyTreeDataProvider<Immutable<Element
             }
         }
 
-        return element.children;
+        return element.children ?? null;
     }
 
     #rebuildTopElements(): Immutable<Array<Element>> {

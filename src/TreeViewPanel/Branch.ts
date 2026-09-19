@@ -3,264 +3,145 @@
 import * as assert from 'node:assert/strict';
 
 
-interface AnyData { readonly [k: string]: unknown; };
+interface AnyData { readonly [k: string]: unknown; }
 
 
+// #region построение
 
-type PathSegment = string;
-
-// #region class Element
-class Element<K extends string, D extends AnyData> {
-
-    #childrenMap?: Map<PathSegment, Element<K, D>>;
-    #data?: D;
-
-    public readonly label: string;
-    public readonly id: string;
-
-    public readonly branchKey: K;
-
-    public readonly parent?: Element<K, D>;
-
-    constructor(
-        branchKey: K,
-        id: string,
-        label: string,
-        parent: Element<K, D> | undefined
-    ) {
-        this.label = label;
-        this.id = id;
-        this.branchKey = branchKey;
-        if (parent) {
-            this.parent = parent;
-        }
-    }
-
-    // #region RO интерфейс
-
-    get children(): ReadonlyArray<Element<K, D>> | undefined {
-
-        if (!this.#childrenMap) { return undefined; }
-
-        assert.ok(this.#childrenMap.size > 0);
-
-        return [...this.#childrenMap.values()];
-    }
-
-
-    get data(): D | undefined {
-        return this.#data;
-    }
-
-
-    // #endregion RO интерфейс
-
-
-    ensureChildrenMap(): Map<PathSegment, Element<K, D>> {
-        return this.#childrenMap ??= new Map<PathSegment, Element<K, D>>();
-    }
-
-
-    setData(data: D) {
-
-        assert.ok(data !== undefined, 'setData: data must not be undefined');
-
-        this.#data = data;
-    }
-
-}
-// #endregion class Element
-
-
-/** Спецификация узла: scope, путь (сегменты) и данные. */
-interface ElementSpec<D extends AnyData> {
-    readonly path: ReadonlyArray<string>;
-    readonly data: Readonly<D>;
-}
-
-/** Спецификация ветки */
-interface BranchSpec<K extends string, D extends AnyData> {
-
-    /** Уникальный ключ ветки. Каждый созданный узел
-     * получит этот ключ в свойство `branchKey` для идентификации принадлежности
-     * к данной ветке. *обязан* быть уникальным среди *всех* веток. */
+/** Внутренний узел билдера. Наружу не выходит. */
+interface MutableNode<K extends string, D extends AnyData> {
     readonly branchKey: K;
-
-    /** Массив {@linkcode ElementSpec | спецификаций} (путь + данные),
-     * из которых строится дерево. Порядок элементов определяет порядок
-     * создания узлов и перезаписи данных на листьях. */
-    readonly nodes: ReadonlyArray<Readonly<ElementSpec<D>>>;
+    readonly id: string;
+    readonly label: string;
+    readonly parent: MutableNode<K, D> | undefined;
+    children: MutableNode<K, D>[] | undefined;
+    data: D | undefined;
 }
 
+/** Строит корни ветки. Порядок узлов = порядок первого объявления в `spec.nodes`.
+ *  Коллизии ID не проверяются: `makeId` обязан давать уникальные ID. */
+export function build<K extends string, D extends AnyData>(
+    spec: Branch.Spec<K, D>,
+    makeId: Branch.MakeId<K>
+): Branch<K, D> {
 
-/** Иерархическая ветка, построенная по {@link BranchSpec | списку спецификаций узлов}.
- *
- * Где {@link ElementSpec | каждая спецификация} из списка описывает путь в виде массива сегментов
- * и данные, которые должны быть записаны в узел, соответствующий последнему
- * сегменту пути.
- *
- * Узлы появляются в ветке в порядке первого объявления в `specs`.
- * Если несколько спецификаций заканчиваются одним и тем же путём,
- * данные последней перезаписывают предыдущие.
- *
- * @template D Тип данных, хранимых в runnable-узлах.
- * @template K
- *
- * @makeId Функция формирующая ID для узла. Предполагается что ID будут уникальными
- *   среди всех элементов всего дерева. Никаких проверок на коллизии здесь не выполняется.
- *
- * @roots Корни, узлы верхнего уровня.
- */
-class Branch<K extends string, D extends AnyData> {
+    const { branchKey } = spec;
+    const roots: MutableNode<K, D>[] = [];
 
-    readonly #roots: ReadonlyMap<PathSegment, Element<K, D>>;
+    // родитель → (сегмент → узел); ключ `undefined` — корневой уровень
+    const levels = new Map<MutableNode<K, D> | undefined, Map<string, MutableNode<K, D>>>();
 
-    constructor(
-        branchSpec: BranchSpec<K, D>,
-        makeId: Branch.MakeId<K, D>
-    ) {
-        this.#roots = buildRoots(
-            branchSpec,
-            makeId
-        );
-    }
+    for (const { path, data } of spec.nodes) {
 
-
-    get roots(): ReadonlyArray<Branch.Element<K, D>> {
-        return [...this.#roots.values()] as ReadonlyArray<Branch.Element<K, D>>;
-    }
-
-
-    static Element = {
-
-        isDataElement<K extends string, D extends AnyData>(element: Branch.Element<K, D>): element is Branch.DataElement<K, D> {
-            return element.data !== undefined;
-        },
-
-        isIntermediateElement<K extends string, D extends AnyData>(element: Branch.Element<K, D>): element is Branch.IntermediateElement<K, D> {
-            return !Branch.Element.isDataElement(element);
-        }
-
-    } as const;
-}
-
-
-
-function buildRoots<K extends string, D extends AnyData>(
-    branchSpec: BranchSpec<K, D>,
-    makeId: Branch.MakeId<K, D>
-): ReadonlyMap<PathSegment, Element<K, D>> {
-
-    if (branchSpec.nodes.length < 1) {
-        // нет структуры — пусто
-        return new Map();
-    }
-
-    const roots = new Map<PathSegment, Element<K, D>>();
-
-    // Обрабатываем массив спецификаций
-    for (const { path, data } of branchSpec.nodes) {
-
-        // нет пути — ошибка входных данных
         assert.ok(path.length > 0, 'Specification error: path must contain at least one segment.');
+        assert.ok(data != undefined, 'data must not be undefined');
 
-        let siblings = roots; // Map<PathSegment, Element> на текущем уровне
-        let parent: Element<K, D> | undefined = undefined;
+        let node: MutableNode<K, D> | undefined;
 
-        // обход сегментов
-        for (let i = 0; i < path.length; i++) {
+        for (const segment of path) {
+            const parent = node;
 
-            const segment = path.at(i);
-            assert.ok(segment !== undefined, 'Internal error: path segment is undefined while traversing.');
-            let element = siblings.get(segment);
-
-            if (!element) {
-                element = new Element<K, D>(
-                   /* branchKey */ branchSpec.branchKey,
-                          /* id */ makeId(branchSpec.branchKey, parent, segment),
-                       /* label */ segment,
-                      /* parent */ parent
-                );
-                siblings.set(segment, element);
+            let level = levels.get(parent);
+            if (!level) {
+                level = new Map();
+                levels.set(parent, level);
             }
 
-            if (i < path.length - 1) { // защита листа от ложной инициализации детей.
-                siblings = element.ensureChildrenMap();
-                parent = element;
-            }
-            else {
-                element.setData(data);
-            }
+            node = level.get(segment);
+            if (!node) {
+                node = {
+                    branchKey,
+                    id: makeId(branchKey, parent, segment),
+                    label: segment,
+                    parent,
+                    children: undefined,
+                    data: undefined
+                };
+                level.set(segment, node);
 
+                if (parent) { (parent.children ??= []).push(node); }
+                else { roots.push(node); }
+            }
         }
 
+        assert.ok(node); // path непустой, значит node определён
+        node.data = data;
     }
 
-    return roots;
+    // Единственный каст. Инвариант: data === undefined ⇒ children непуст,
+    // потому что узел без data создаётся только на пути к более глубокому сегменту.
+    return roots as ReadonlyArray<Branch.Element<K, D>>;
 }
 
+// #endregion построение
 
-// #region внешний интерфейс
-// Этот интерфейс отдается потребителю для использования.
+
+const isDataElement = <K extends string, D extends AnyData>(
+    e: Branch.Element<K, D>
+): e is Branch.Element.Data<K, D> => e.data !== undefined;
+
+const isIntermediateElement = <K extends string, D extends AnyData>(
+    e: Branch.Element<K, D>
+): e is Branch.Element.Intermediate<K, D> => e.data === undefined;
+
+
+// #region публичные типы
+
+type Branch<K extends string, D extends AnyData> = ReadonlyArray<Branch.Element<K, D>>;
 
 declare namespace Branch {
 
-    /** Read-only представление узла ветки.
-     *
-     * - branchKey: ключ ветки, указывающий принадлежность узла к ветке;
-     * - label: метка (ее сегмент пути) или составная метка после сжатия;
-     * - id: уникальный идентификатор узла;
-     * - data: данные узла. undefined если это чистый промежуточный узел;
-     * - children: массив дочерних узлов или undefined, если это чистый листовой узел.
-     *  */
-    type Element<K extends string, D extends AnyData> = DataElement<K, D> | IntermediateElement<K, D>;
-
-    interface DataElement<K extends string, D extends AnyData> {
+    interface ElementBase<K extends string> {
         readonly branchKey: K;
-        readonly children: ReadonlyArray<Branch.Element<K, D>> | undefined;
-        readonly data: D;
         readonly id: string;
         readonly label: string;
-        readonly parent: Branch.Element<K, D> | undefined;
     }
 
-    interface IntermediateElement<K extends string, D extends AnyData> {
+    type MakeId<K extends string> =
+        (branchKey: K, parent: Branch.ElementBase<K> | undefined, segment: string) => string;
+
+
+    export interface Spec<K extends string, D extends AnyData> {
+        /** Уникальный среди всех веток ключ; попадает в `branchKey` каждого узла. */
         readonly branchKey: K;
-        readonly children: ReadonlyArray<Branch.Element<K, D>>;
-        readonly data: undefined;
-        readonly id: string;
-        readonly label: string;
-        readonly parent: Branch.Element<K, D> | undefined;
-    }
-
-    /** Спецификация ветки */
-    interface Spec<K extends string, D extends AnyData> {
-
-        /** Уникальный ключ ветки. Каждый созданный узел
-         * получит этот ключ в свойство `branchKey` для идентификации принадлежности
-         * к данной ветке. *обязан* быть уникальным среди *всех* веток. */
-        branchKey: K;
-
-        /** Массив {@linkcode ElementSpec | спецификаций} (путь + данные),
-         * из которых строится дерево. Порядок элементов определяет порядок
-         * создания узлов и перезаписи данных на листьях. */
-        nodes: Array<Spec.Node<D>>;
+        readonly nodes: ReadonlyArray<Spec.Node<D>>;
     }
 
     namespace Spec {
-        /** Спецификация узла: scope, путь (сегменты) и данные. */
+        /** Узел ветки: путь (сегменты) и данные. При совпадении путей побеждает последний. */
         interface Node<D extends AnyData> {
-            path: Array<string>;
-            data: D;
+            readonly path: ReadonlyArray<string>;
+            readonly data: D;
         }
     }
 
-    type ParentRef<K extends string, D extends AnyData> = Pick<Branch.Element<K, D>, 'id' | 'label' | 'branchKey'> | undefined;
-    type MakeId<K extends string, D extends AnyData> = (branchKey: K, parent: ParentRef<K, D> | undefined, segment: string) => string;
+    type Element<K extends string, D extends AnyData> =
+        | Element.Data<K, D>
+        | Element.Intermediate<K, D>;
 
+    namespace Element {
+
+        interface Data<K extends string, D extends AnyData> extends ElementBase<K> {
+            readonly data: D;
+            readonly children: ReadonlyArray<Element<K, D>> | undefined;
+            readonly parent: Element<K, D> | undefined;
+        }
+
+        interface Intermediate<K extends string, D extends AnyData> extends ElementBase<K> {
+            readonly data: undefined;
+            readonly children: ReadonlyArray<Element<K, D>>;
+            readonly parent: Element<K, D> | undefined;
+        }
+    }
 }
+// #endregion публичные типы
 
-// #endregion внешний интерфейс
-
+const Branch = {
+    build,
+    Element: {
+        isDataElement,
+        isIntermediateElement
+    } as const
+} as const;
 
 export default Branch;

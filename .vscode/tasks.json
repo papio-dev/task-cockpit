@@ -1892,7 +1892,7 @@
             ]
         },
         {
-            "label": "Test|HierarchyModel",
+            "label": "Test|Branch",
             "icon": {
                 "id": "beaker"
             },
@@ -1910,7 +1910,7 @@
                 "env": {
                     "OUT_DIR": "~out-test",
                     "SUT_EXT": "src",
-                    "SUT_TEST": "test/HierarchyModel",
+                    "SUT_TEST": "test/Branch",
                     "TESTS": "*/*",
                     "VSC_PROFILE": "Task Cockpit Test"
                 }

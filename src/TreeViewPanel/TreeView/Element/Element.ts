@@ -1,6 +1,7 @@
 /** @file TreeViewPanel/TreeView/Element/Element.ts */
 
 import type Immutable from '../../../utils/Immutable';
+import Branch from '../../Branch';
 import EmptyElement from './EmptyElement';
 import IntermediateElement from './IntermediateElement';
 import RunnableElement from './RunnableElement';
@@ -38,7 +39,7 @@ function isEmpty(element: Immutable<Element.Top | Element.Empty>): element is Im
 
 
 function isRunnable(element: Immutable<Element.Runnable | Element.Intermediate>): element is Immutable<Element.Runnable> {
-    return element.data != null;
+    return Branch.Element.isDataElement(element);
 }
 
 const Element = {

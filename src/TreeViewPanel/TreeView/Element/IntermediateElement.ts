@@ -12,17 +12,16 @@ import type {
     CancellationToken,
     TreeItem
 } from 'vscode';
+import type Branch from '../../Branch';
 import type ContextValue from '../ContextValue';
-import type HierarchyModel from '../../../HierarchyModel/HierarchyModel';
 import type Immutable from '../../../utils/Immutable';
 import type OriginKey from '../../../OriginKey';
-import type RunnableElement from './RunnableElement';
-import type TaskName from '../../../TaskName';
-import type UriSchema from '../../../FileDecorationProvider/UriSchema';
 import type ResourceConfig from '../../../ResourceStateCoordinator/ResourceConfig/ResourceConfig';
+import type UriSchema from '../../../FileDecorationProvider/UriSchema';
+import TaskNodeData from '../../TaskNodeData';
 
 
-type IntermediateElement = Omit<HierarchyModel.Element<OriginKey, { taskName: TaskName; }>, 'data' | 'children'> & { data: null; children: Array<IntermediateElement | RunnableElement>; };
+type IntermediateElement = Branch.Element.Intermediate<OriginKey, TaskNodeData>;
 
 /**
  * Возвращает {@link TreeItem} для чистого промежуточного узла

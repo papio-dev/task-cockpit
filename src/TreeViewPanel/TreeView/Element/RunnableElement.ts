@@ -14,22 +14,21 @@ import type {
     CancellationToken,
     TreeItem
 } from 'vscode';
+import type Branch from '../../Branch';
 import type ContextValue from '../ContextValue';
 import type EligibleTask from '../../../ResourceStateCoordinator/EligibleTask/EligibleTask';
-import type HierarchyModel from '../../../HierarchyModel/HierarchyModel';
 import type Immutable from '../../../utils/Immutable';
-import type IntermediateElement from './IntermediateElement';
 import type OriginKey from '../../../OriginKey';
 import type ProcessState from '../../../Runtime/ProcessState';
+import type TaskBundle from '../../../ResourceStateCoordinator/TaskBundle';
 import type TaskDefinition from '../../../ResourceStateCoordinator/TaskDefinition/TaskDefinition';
+import type TaskNodeData from '../../TaskNodeData';
 import type TaskProcessId from '../../../Runtime/TaskProcessId';
 import type UriQuery from '../../../FileDecorationProvider/UriQuery';
 import type UriSchema from '../../../FileDecorationProvider/UriSchema';
-import type TaskNodeData from '../../TaskNodeData';
-import type TaskBundle from '../../../ResourceStateCoordinator/TaskBundle';
 
 
-type RunnableElement = Omit<HierarchyModel.Element<OriginKey, TaskNodeData>, 'data' | 'children'> & { data: TaskNodeData; children: Array<RunnableElement | IntermediateElement> | null; };
+type RunnableElement = Branch.Element.Data<OriginKey, TaskNodeData>;
 
 interface RuntimeState {
 

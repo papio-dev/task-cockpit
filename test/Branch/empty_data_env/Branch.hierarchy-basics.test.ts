@@ -8,6 +8,7 @@ suite('Branch', function () {
 
     let buildAsciiTree: Fixture['buildAsciiTree'];
     let makeId: Fixture['makeId'];
+    let checkInvariants: Fixture['checkInvariants'];
 
     suiteSetup(async function () {
         const ext = vscode.extensions.getExtension('papio-dev.task-cockpit');
@@ -19,21 +20,22 @@ suite('Branch', function () {
 
         buildAsciiTree = fixture.buildAsciiTree;
         makeId = fixture.makeId;
+        checkInvariants = fixture.checkInvariants;
     });
 
-    suite('Построение иерархии', function () {
+    suite('Построение иерархии (базовые)', function () {
 
         test('Простая вложенность', function () {
-
-            const branchSpec = {
-                branchKey: 'branch',
+            const branchKey = 'branch';
+            const branchSpec: Branch.Spec<'branch', {}> = {
+                branchKey,
                 nodes: [
                     { path: ['a', 'b-runnable'], data: {} },
                     { path: ['a', 'b-runnable', 'c-runnable'], data: {} }
                 ]
             };
 
-            const branch = new Branch(
+            const branch = Branch.build(
                 branchSpec,
                 makeId
             );
@@ -46,13 +48,15 @@ suite('Branch', function () {
                 '      └─ ▶ c-runnable'
             ], 'ascii дерево должно совпадать');
 
+            checkInvariants(branch, branchKey);
+
         });
 
 
         test('Простая вложенность, несколько корней', function () {
-
+            const branchKey = 'branch';
             const branchSpec = {
-                branchKey: 'branch',
+                branchKey,
                 nodes: [
                     { path: ['runnable1'], data: {} },
                     { path: ['group1', 'runnable2'], data: {} },
@@ -61,12 +65,12 @@ suite('Branch', function () {
                 ]
             };
 
-            const hierarchy = new Branch(
+            const branch = Branch.build(
                 branchSpec,
                 makeId
             );
 
-            const lines = buildAsciiTree(hierarchy);
+            const lines = buildAsciiTree(branch);
 
             assert.deepEqual(lines, [
                 '├─ ▶ runnable1',
@@ -77,6 +81,7 @@ suite('Branch', function () {
                 '   └─ ▶ runnable4'
             ], 'ascii дерево должно совпадать');
 
+            checkInvariants(branch, branchKey);
         });
 
         suite('Простая вложенность, несколько корней. Разный порядок', function () {
@@ -85,21 +90,21 @@ suite('Branch', function () {
             // Порядок элементов в структуре — зависит.
 
             test('Лист добавлен до поддерева-соседа', function () {
-
+                const branchKey = 'branch';
                 const branchSpec = {
-                    branchKey: 'branch',
+                    branchKey,
                     nodes: [
                         { path: ['aaa', 'bbb', 'ccc', 'ccc-runnable'], data: {} },
                         { path: ['aaa', 'bbb', 'ccc', 'ddd', 'ddd-runnable'], data: {} },
                     ]
                 };
 
-                const hierarchy = new Branch(
+                const branch = Branch.build(
                     branchSpec,
                     makeId
                 );
 
-                const lines = buildAsciiTree(hierarchy);
+                const lines = buildAsciiTree(branch);
 
                 assert.deepEqual(lines, [
                     '└─ aaa',
@@ -110,24 +115,25 @@ suite('Branch', function () {
                     '            └─ ▶ ddd-runnable'
                 ], 'ascii дерево должно совпадать');
 
+                checkInvariants(branch, branchKey);
             });
 
             test('Поддерево-сосед добавлено до листа', function () {
-
+                const branchKey = 'branch';
                 const branchSpec = {
-                    branchKey: 'branch',
+                    branchKey,
                     nodes: [
                         { path: ['aaa', 'bbb', 'ccc', 'ddd', 'ddd-runnable'], data: {} },
                         { path: ['aaa', 'bbb', 'ccc', 'ccc-runnable'], data: {} },
                     ]
                 };
 
-                const hierarchy = new Branch(
+                const branch = Branch.build(
                     branchSpec,
                     makeId
                 );
 
-                const lines = buildAsciiTree(hierarchy);
+                const lines = buildAsciiTree(branch);
 
                 assert.deepEqual(lines, [
                     // Порядок aaa→bbb→ccc→ddd,
@@ -139,7 +145,7 @@ suite('Branch', function () {
                     '         │  └─ ▶ ddd-runnable',
                     '         └─ ▶ ccc-runnable'
                 ], 'ascii дерево должно совпадать');
-
+                checkInvariants(branch, branchKey);
             });
         });
     });

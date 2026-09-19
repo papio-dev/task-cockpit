@@ -2,7 +2,7 @@
 /** @internal */
 
 import { UI } from '../tokens';
-import HierarchyModel from '../HierarchyModel/HierarchyModel';
+import Branch from './Branch';
 import Splitter from '../Splitter';
 
 import type { Uri } from 'vscode';
@@ -35,11 +35,11 @@ interface OriginNode {
     /** Отображаемое имя области */
     displayName: string;
 
-    /** Дерево задач данной области, готовое к рендерингу в TreeView.
+    /** Ветка задач данной области, готовое к рендерингу в TreeView.
       *
       * Результат группировки плоского списка эффективных определений задач по сегментам
       * (taskName и, опционально, group.kind) для последующего отображения. */
-    hierarchy: HierarchyModel.Hierarchy<OriginKey, TaskNodeData>;
+    branch: Branch<OriginKey, TaskNodeData>;
 
     /** Ключ области */
     originKey: OriginKey;
@@ -81,9 +81,9 @@ const OriginNode = {
         let hiddenCount = 0;
         let shadowedCount = 0;
 
-        const hierarchy = HierarchyModel.buildHierarchy({
+        const hierarchy = Branch.build({
             branchKey: originEntry.originKey,
-            specs:
+            nodes:
                 [...originEntry.definitionEntries].reduce((acc, [taskName, definitionEntry]) => {
 
                     const shadowedLength = definitionEntry.shadowed?.length ?? 0;
@@ -104,15 +104,15 @@ const OriginNode = {
                         ? effective.group?.kind
                         : undefined;
 
-                    const segments =
+                    const path =
                         groupKind
                             ? [groupKind, ...splitter.split(taskName)]
                             : splitter.split(taskName);
 
-                    const taskLabel = segments.join(UI.DISPLAY_SEGMENT_SEPARATOR);
+                    const taskLabel = path.join(UI.DISPLAY_SEGMENT_SEPARATOR);
 
                     acc.push({
-                        segments, data: {
+                        path, data: {
                             taskLabel,
                             taskName,
                             taskOrigin: originEntry.originKey,
@@ -122,18 +122,24 @@ const OriginNode = {
 
                     return acc;
 
-                }, [] as HierarchyModel.Spec<Immutable<TaskNodeData>>[])
-        }, HierarchyModel.PathCompression.OFF);
+                }, [] as Branch.Spec.Node<Immutable<TaskNodeData>>[])
+        }, makeId);
 
         return {
             originKey: originEntry.originKey,
             displayName: originEntry.name,
             taskSourceUri: originEntry.taskSource?.uri ?? null,
             taskCounts: { totalCount, hiddenCount, shadowedCount },
-            hierarchy
+            branch: hierarchy
         };
 
     }
 };
+
+const SEP = '\x00\xf1\x00';
+
+function makeId(branchKey: string, parent: Branch.ElementBase<string> | undefined, segment: string): string {
+    return parent ? `${parent.id}${SEP}${segment}` : `${branchKey}${SEP}${segment}`;
+}
 
 export default OriginNode;
