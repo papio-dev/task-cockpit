@@ -76,7 +76,7 @@ class Services {
         this.#taskProcessLifecycle = taskProcessLifecycle;
         this.#windowSettings = windowSettings;
 
-        this.#asyncQueue = AsyncQueue.create(logOutputChannel);
+        this.#asyncQueue = AsyncQueue.create('setContext', logOutputChannel);
 
         const fdpSubscription = window.registerFileDecorationProvider(this.#fileDecorationProvider);
 

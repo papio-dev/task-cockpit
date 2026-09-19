@@ -34,7 +34,7 @@ import type TreeView from '../TreeViewPanel/TreeView/TreeView';
 
 function createTaskLaunchQueue(logOutputChannel: LogOutputChannel) {
 
-    const asyncQueue = AsyncQueue.create(logOutputChannel);
+    const asyncQueue = AsyncQueue.create('TaskLaunchQueue', logOutputChannel);
 
     return {
         async runTask(eligibleTask: Immutable<EligibleTask>): Promise<void> {

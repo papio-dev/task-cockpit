@@ -90,7 +90,7 @@ class TreeView implements Disposable {
         this.#disposed = false;
 
         this.#logOutputChannel = logOutputChannel;
-        this.#asyncQueue = AsyncQueue.create(this.#logOutputChannel);
+        this.#asyncQueue = AsyncQueue.create('setContext', this.#logOutputChannel);
 
         this.#resourceProps = resourceProps;
         this.#taskProcessRegistry = taskProcessRegistry;

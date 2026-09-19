@@ -12,6 +12,7 @@ import type LifecycleOmitted from './LifecycleOmitted';
  * Дополнительно можно дождаться завершения всех операций в очереди
  * с помощью метода `drain()`. */
 function create(
+    queueName: string,
     logOutputChannel: LifecycleOmitted<LogOutputChannel>
 ): AsyncQueue {
     /** Цепочка промисов, представляющая конец очереди. */
@@ -30,7 +31,7 @@ function create(
             // Заменяем pending на цепочку, которая не падает при ошибке,
             // чтобы следующие операции могли стартовать.
             pending = next.catch((reason: unknown) => {
-                logOutputChannel.error(String(reason));
+                logOutputChannel.error(`[${queueName}]`, reason);
             });
             return next;
         },
